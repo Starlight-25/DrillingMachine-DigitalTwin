@@ -3,8 +3,5 @@ using UnityEngine.SceneManagement;
 
 public class DrillingMachineUI : MonoBehaviour
 {
-    public void ReturnButtonClicked()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+    public void ReturnButtonClicked() => SceneManager.LoadScene("MainMenu");
 }
