@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform DrillingMachine;
     
-    [SerializeField] private PlayerInput PlayerInput;
+    [SerializeField] private PlayerInput DMCameraInput;
     private InputAction MouseRotation;
     private InputAction LeftClick;
     private InputAction MouseScroll;
@@ -29,10 +29,10 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-        MouseRotation = PlayerInput.actions["MouseRotation"];
-        LeftClick = PlayerInput.actions["LeftClick"];
-        MouseScroll = PlayerInput.actions["MouseScroll"];
-        HeightNavigation = PlayerInput.actions["HeightNavigation"];
+        MouseRotation = DMCameraInput.actions["MouseRotation"];
+        LeftClick = DMCameraInput.actions["LeftClick"];
+        MouseScroll = DMCameraInput.actions["MouseScroll"];
+        HeightNavigation = DMCameraInput.actions["HeightNavigation"];
 
         rotation = transform.rotation;
         distance = Vector3.Distance(transform.position, DrillingMachine.position);

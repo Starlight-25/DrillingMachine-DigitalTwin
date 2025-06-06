@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrillingMachine: {fileID: 1778582196012740216}
-  PlayerInput: {fileID: 3903448571195481199}
+  DMCameraInput: {fileID: 3903448571195481199}
 --- !u!114 &3903448571195481199
 MonoBehaviour:
   m_ObjectHideFlags: 0
