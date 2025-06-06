@@ -1,0 +1,9 @@
+{
+  "ScreenMode" : "Fullscreen", 
+  "FPS" : 60,
+  "Sensibility":{
+    "MouseRotation" : 5,
+    "Zoom" : 60,
+    "HeightNavigation" : 5
+  }
+}

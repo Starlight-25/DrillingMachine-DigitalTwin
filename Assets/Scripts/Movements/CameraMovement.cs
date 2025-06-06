@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class CameraMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour, ISettingsUpdater
 {
     [SerializeField] private Transform DrillingMachine;
     
@@ -15,9 +15,11 @@ public class CameraMovement : MonoBehaviour
     private Quaternion rotation;
     private float distance;
     private float height;
-    private float RotationSensitivity = 5f;
-    private float ZoomSensitivity = 60f;
-    private float HeightNavigationSensitivity = 5f;
+    
+    [SerializeField] private SettingsHandler SettingsHandler;
+    private int RotationSensitivity;
+    private int ZoomSensitivity;
+    private int HeightNavigationSensitivity;
     
     private float x;
     private float y;
@@ -28,7 +30,7 @@ public class CameraMovement : MonoBehaviour
     
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        UpdateFromSettings();
         MouseRotation = DMCameraInput.actions["MouseRotation"];
         LeftClick = DMCameraInput.actions["LeftClick"];
         MouseScroll = DMCameraInput.actions["MouseScroll"];
@@ -62,6 +64,18 @@ public class CameraMovement : MonoBehaviour
     }
 
 
+    
+    
+
+    public void UpdateFromSettings()
+    {
+        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
+        RotationSensitivity = sensibility.MouseRotation;
+        ZoomSensitivity = sensibility.Zoom;
+        HeightNavigationSensitivity = sensibility.HeightNavigation;
+    }
+    
+    
     
     
 

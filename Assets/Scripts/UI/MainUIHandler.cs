@@ -1,0 +1,41 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+public class MainUIHandler : MonoBehaviour
+{
+    [SerializeField] private GameObject MainUI;
+    [SerializeField] private GameObject SettingsMenu;
+
+    [SerializeField] private PlayerInput UIInput;
+    private InputAction ReturnInputAction;
+
+    
+    
+    
+    
+    private void Start()
+    {
+        ReturnInputAction = UIInput.actions["Return"];
+    }
+
+    
+    
+    
+    
+    private void Update()
+    {
+        if (ReturnInputAction.triggered) SettingsButtonClicked();
+    }
+
+    
+    
+    
+    
+    public void SettingsButtonClicked()
+    {
+        MainUI.SetActive(false);
+        SettingsMenu.SetActive(true);
+    }
+}
