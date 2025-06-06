@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
@@ -48,7 +49,8 @@ public class CameraMovement : MonoBehaviour
     
     private void Update()
     {
-        if (LeftClick.IsPressed())
+        bool overUI = EventSystem.current.IsPointerOverGameObject();
+        if (LeftClick.IsPressed() && !overUI)
         {
             HandleCamRotation();
             MouseLock();
