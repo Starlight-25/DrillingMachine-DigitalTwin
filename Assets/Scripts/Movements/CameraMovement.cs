@@ -9,11 +9,14 @@ public class CameraMovement : MonoBehaviour
     private InputAction MouseRotation;
     private InputAction LeftClick;
     private InputAction MouseScroll;
+    private InputAction HeightNavigation;
 
+    private Quaternion rotation;
     private float distance;
     private float height;
-    private float RotationSensitivity = 60f;
-    private float ZoomSensitivity = 120f;
+    private float RotationSensitivity = 5f;
+    private float ZoomSensitivity = 60f;
+    private float HeightNavigationSensitivity = 5f;
     
     private float x;
     private float y;
@@ -28,7 +31,9 @@ public class CameraMovement : MonoBehaviour
         MouseRotation = PlayerInput.actions["MouseRotation"];
         LeftClick = PlayerInput.actions["LeftClick"];
         MouseScroll = PlayerInput.actions["MouseScroll"];
+        HeightNavigation = PlayerInput.actions["HeightNavigation"];
 
+        rotation = transform.rotation;
         distance = Vector3.Distance(transform.position, DrillingMachine.position);
         height = transform.position.y;
         
@@ -50,6 +55,8 @@ public class CameraMovement : MonoBehaviour
         }
         else MouseLock(false);
         HandleZoom();
+        HandleHeight();
+        UpdatePositionRotation();
     }
 
 
@@ -59,18 +66,11 @@ public class CameraMovement : MonoBehaviour
     private void HandleCamRotation()
     {
         Vector2 MouseRotVal = MouseRotation.ReadValue<Vector2>();
-        x += MouseRotVal.x * RotationSensitivity * Time.deltaTime;
-        y -= MouseRotVal.y * RotationSensitivity * Time.deltaTime;
+        x += MouseRotVal.x * RotationSensitivity * Time.fixedDeltaTime;
+        y -= MouseRotVal.y * RotationSensitivity * Time.fixedDeltaTime;
         y = Mathf.Clamp(y, -90, 90);
         
-        Quaternion rotation = Quaternion.Euler(y, x, 0);
-        
-        Vector3 negDistance = Vector3.back * distance;
-        Vector3 DMHeight = DrillingMachine.position + Vector3.up * height;
-        Vector3 position = rotation * negDistance + DMHeight;
-
-        transform.rotation = rotation;
-        transform.position = position;
+        rotation = Quaternion.Euler(y, x, 0);
     }
 
     
@@ -90,11 +90,31 @@ public class CameraMovement : MonoBehaviour
     private void HandleZoom()
     {
         float ScrollValue = MouseScroll.ReadValue<float>();
-        distance += ScrollValue * ZoomSensitivity * Time.deltaTime;
+        distance += ScrollValue * ZoomSensitivity * Time.fixedDeltaTime;
         distance = Mathf.Clamp(distance, 0, 100);
-        
+    }
+
+
+
+
+
+    private void HandleHeight()
+    {
+        float HeightNavValue = HeightNavigation.ReadValue<float>();
+        height += HeightNavValue * HeightNavigationSensitivity * Time.fixedDeltaTime;
+    }
+
+
+    
+    
+
+    private void UpdatePositionRotation()
+    {
         Vector3 negDistance = Vector3.back * distance;
         Vector3 DMHeight = DrillingMachine.position + Vector3.up * height;
-        transform.position = transform.rotation * negDistance + DMHeight;
+        Vector3 position = rotation * negDistance + DMHeight;
+
+        transform.rotation = rotation;
+        transform.position = position;
     }
 }
