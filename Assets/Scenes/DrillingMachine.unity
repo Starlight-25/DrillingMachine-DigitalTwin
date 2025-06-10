@@ -1221,11 +1221,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774300083}
   m_CullTransparentMesh: 1
---- !u!4 &823242049 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2400358028881338031, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &855412764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,11 +1639,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900515549}
   m_CullTransparentMesh: 1
---- !u!4 &1039220609 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8603488847592377270, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1047220949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,59 +1770,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1 &1155254950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1155254952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155254950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee13315680c45f7b74ab2ab2257543c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DrillBit: {fileID: 1039220609}
-  Kelly: {fileID: 823242049}
-  RotaryTable: {fileID: 1757914693}
-  SlipTable: {fileID: 1772054136}
-  HiglightMaterial: {fileID: 2100000, guid: 6f9c6d0a524c19a479b7b1158f54dae9, type: 2}
-  PlayerInput: {fileID: 1155254953}
---- !u!114 &1155254953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155254950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 0453af3f3d0a8974e88efd0a7f0f515a, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: DrillingMachineMovement
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1198059208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,16 +2319,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687345022}
   m_CullTransparentMesh: 1
---- !u!4 &1757914693 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3205848702966067481, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1772054136 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 217068793474933872, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1805993825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,14 +2814,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1389362917253226271, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1389362917253226271, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 1778582196012740216, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2939,22 +2858,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DrillingMachine
       objectReference: {fileID: 0}
-    - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: DMCameraInput
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: SettingsHandler
       value: 
-      objectReference: {fileID: 8960118158546340154}
+      objectReference: {fileID: 1047220950}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
-    - target: {fileID: 4338755021701089910, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338755021701089910, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 8948207340305715468, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_Name
       value: DrillBit
@@ -2962,25 +2873,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1155254953}
-    - targetCorrespondingSourceObject: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1155254952}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
---- !u!114 &8960118158546340154 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3903448571195481199, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
