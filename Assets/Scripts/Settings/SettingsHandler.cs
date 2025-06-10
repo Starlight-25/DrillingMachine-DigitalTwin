@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -13,7 +14,7 @@ public class SettingsHandler : MonoBehaviour
     
     
     
-    private void Start()
+    private void Awake()
     {
         SettingsPath = Path.Combine(Application.persistentDataPath, "settings.json");
         if (!File.Exists(SettingsPath)) CreateSettingsData();
@@ -22,9 +23,18 @@ public class SettingsHandler : MonoBehaviour
     }
 
 
+    
+    
+    
+    private void Start()
+    {
+        Application.targetFrameRate = Settings.FPS;
+    }
+
 
     
-
+    
+    
     private void CreateSettingsData()
     {
         string settingsData = Resources.Load<TextAsset>("settingsModel").text;

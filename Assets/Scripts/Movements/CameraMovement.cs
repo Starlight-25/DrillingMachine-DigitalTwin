@@ -30,7 +30,9 @@ public class CameraMovement : MonoBehaviour, ISettingsUpdater
     
     private void Start()
     {
+        SettingsHandler.Add(this);
         UpdateFromSettings();
+        
         MouseRotation = DMCameraInput.actions["MouseRotation"];
         LeftClick = DMCameraInput.actions["LeftClick"];
         MouseScroll = DMCameraInput.actions["MouseScroll"];
@@ -51,6 +53,7 @@ public class CameraMovement : MonoBehaviour, ISettingsUpdater
     
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
         bool overUI = EventSystem.current.IsPointerOverGameObject();
         if (LeftClick.IsPressed() && !overUI)
         {

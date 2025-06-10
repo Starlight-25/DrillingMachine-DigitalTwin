@@ -35,6 +35,7 @@ public class MainUIHandler : MonoBehaviour
     
     public void SettingsButtonClicked()
     {
+        Time.timeScale = 0f;
         MainUI.SetActive(false);
         SettingsMenu.SetActive(true);
     }
