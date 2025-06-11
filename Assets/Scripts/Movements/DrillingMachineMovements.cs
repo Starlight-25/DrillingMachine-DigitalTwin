@@ -96,7 +96,8 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private bool CanMoveDown()
     {
         Vector3 pos = Selected.position;
-        if (Vector3.Distance(pos, DrillBit.position) <= 7.6) return false;
+        if (pos.y <= 1f) return false;
+        if (Vector3.Distance(pos, DrillBit.position) <= 15.3) return false;
         float distToRT = Vector3.Distance(pos, RotaryTable.position);
         if (distToRT != 0f && distToRT <= 3f) return false;
         return true;
@@ -105,7 +106,8 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private bool CanMoveUp()
     {
         Vector3 pos = Selected.position;
-        if (Vector3.Distance(pos, Kelly.position) >= 11f) return false;
+        if (Vector3.Distance(pos, transform.position) >= 23) return false;
+        if (Vector3.Distance(pos, Kelly.position) >= 50f) return false;
         float distToST = Vector3.Distance(pos, SlipTable.position);
         if (distToST != 0f && distToST <= 3f) return false;
         return true;

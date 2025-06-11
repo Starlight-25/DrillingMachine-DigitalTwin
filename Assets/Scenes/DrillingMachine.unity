@@ -2866,10 +2866,6 @@ PrefabInstance:
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
-    - target: {fileID: 8948207340305715468, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_Name
-      value: DrillBit
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
