@@ -4,23 +4,29 @@ using UnityEngine.InputSystem;
 
 public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
 {
-    [SerializeField] private Transform DrillBit;
     [SerializeField] private Transform Kelly;
-    [SerializeField] private Transform RotaryTable;
     [SerializeField] private Transform SlipTable;
+    [SerializeField] private Transform RotaryTable;
+    [SerializeField] private Transform DrillBit;
 
     private Transform Selected;
 
+    [SerializeField] private Material BasicMaterial;
     [SerializeField] private Material HiglightMaterial;
+    [SerializeField] private Material TransparentMaterial;
 
     [SerializeField] private PlayerInput PlayerInput;
     private InputAction SelectNoneInputAction;
     private InputAction SelectSTInputAction;
     private InputAction SelectRTInputAction;
     private InputAction HeightMovementsInputAction;
+    private InputAction DLTDetailsVisibleInputAction;
 
     [SerializeField] private SettingsHandler SettingsHandler;
     private int HeightNavigationSensitivity;
+
+    [SerializeField] private MeshRenderer DLTDetailMeshRenderer;
+    private bool isDLTDetailsTransparent = false;
 
 
 
@@ -35,6 +41,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         SelectSTInputAction = PlayerInput.actions["SelectST"];
         SelectRTInputAction = PlayerInput.actions["SelectRT"];
         HeightMovementsInputAction = PlayerInput.actions["HeightMovement"];
+        DLTDetailsVisibleInputAction = PlayerInput.actions["DLTDetailsVisible"];
     }
 
 
@@ -47,6 +54,8 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         if (SelectSTInputAction.triggered) SelectEquipment(SlipTable);
         if (SelectRTInputAction.triggered) SelectEquipment(RotaryTable);
         MoveSelectedEquipment();
+        
+        if (DLTDetailsVisibleInputAction.triggered) SwitchDLTDetailsVisibility();
     }
 
 
@@ -111,5 +120,15 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         float distToST = Vector3.Distance(pos, SlipTable.position);
         if (distToST != 0f && distToST <= 3f) return false;
         return true;
+    }
+
+
+
+
+
+    private void SwitchDLTDetailsVisibility()
+    {
+        DLTDetailMeshRenderer.material = isDLTDetailsTransparent ? BasicMaterial : TransparentMaterial;
+        isDLTDetailsTransparent = !isDLTDetailsTransparent;
     }
 }
