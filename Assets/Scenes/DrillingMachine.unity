@@ -2863,6 +2863,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: LockedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8abd372b94f23904183eedcdeec343cd, type: 2}
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}

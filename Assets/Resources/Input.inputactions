@@ -215,6 +215,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LockEquipment",
+                    "type": "Button",
+                    "id": "6fa1cb80-fbc2-46e2-becf-b12cffe258cf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -292,6 +301,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DLTDetailsVisible",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1efe5519-f5b1-41e8-b4d9-f99185af364f",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockEquipment",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

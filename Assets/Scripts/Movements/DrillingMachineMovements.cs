@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +11,12 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     [SerializeField] private Transform DrillBit;
 
     private Transform Selected;
+    private bool STlocked = true;
+    private bool RTlocked = false;
 
     [SerializeField] private Material BasicMaterial;
     [SerializeField] private Material HiglightMaterial;
+    [SerializeField] private Material LockedMaterial;
     [SerializeField] private Material TransparentMaterial;
 
     [SerializeField] private PlayerInput PlayerInput;
@@ -21,6 +25,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private InputAction SelectRTInputAction;
     private InputAction HeightMovementsInputAction;
     private InputAction DLTDetailsVisibleInputAction;
+    private InputAction LockEquipmentInputAction;
 
     [SerializeField] private SettingsHandler SettingsHandler;
     private int HeightNavigationSensitivity;
@@ -42,6 +47,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         SelectRTInputAction = PlayerInput.actions["SelectRT"];
         HeightMovementsInputAction = PlayerInput.actions["HeightMovement"];
         DLTDetailsVisibleInputAction = PlayerInput.actions["DLTDetailsVisible"];
+        LockEquipmentInputAction = PlayerInput.actions["LockEquipment"];
     }
 
 
@@ -56,6 +62,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         MoveSelectedEquipment();
         
         if (DLTDetailsVisibleInputAction.triggered) SwitchDLTDetailsVisibility();
+        if (LockEquipmentInputAction.triggered && Selected is not null) LockTable();
     }
 
 
@@ -78,16 +85,21 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         if (Selected is not null)
         {
             meshRenderer = Selected.GetComponent<MeshRenderer>();
-            materials = meshRenderer.materials;
-            materials[1] = meshRenderer.material;
-            meshRenderer.materials = materials;
+            SwitchSecondMaterial(meshRenderer, meshRenderer.material);
         }
 
         Selected = equipment;
         if (Selected is null) return;
         meshRenderer = Selected.GetComponent<MeshRenderer>();
-        materials = meshRenderer.materials;
-        materials[1] = HiglightMaterial;
+        if (Selected.name == "SlipTable" && STlocked || Selected.name == "RotaryTable" && RTlocked)
+            SwitchSecondMaterial(meshRenderer, LockedMaterial);
+        else SwitchSecondMaterial(meshRenderer, HiglightMaterial);
+    }
+
+    private void SwitchSecondMaterial(MeshRenderer meshRenderer, Material material)
+    {
+        Material[] materials = meshRenderer.materials;
+        materials[1] = material;
         meshRenderer.materials = materials;
     }
 
@@ -96,10 +108,12 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
 
     private void MoveSelectedEquipment()
     {
-        if (Selected is null) return;
+        if (Selected is null || STlocked == RTlocked && STlocked) return;
         float HeightMovVal = HeightMovementsInputAction.ReadValue<float>();
         if (HeightMovVal < 0f && !CanMoveDown() || HeightMovVal > 0f && !CanMoveUp()) return;
-        Selected.position += Vector3.up * (HeightMovVal * Time.deltaTime * HeightNavigationSensitivity);
+        Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime * HeightNavigationSensitivity);
+        Selected.position += movement;
+        if (STlocked ^ RTlocked) MoveDM(movement);
     }
 
     private bool CanMoveDown()
@@ -120,6 +134,34 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         float distToST = Vector3.Distance(pos, SlipTable.position);
         if (distToST != 0f && distToST <= 3f) return false;
         return true;
+    }
+
+
+
+
+
+    private void MoveDM(Vector3 movement)
+    {
+        Kelly.position += movement;
+        DrillBit.position += movement;
+    }
+
+
+
+
+
+    private void LockTable()
+    {
+        if (Selected.name == "SlipTable")
+        {
+            STlocked = !STlocked;
+            SwitchSecondMaterial(Selected.GetComponent<MeshRenderer>(), STlocked ? LockedMaterial : HiglightMaterial);
+        }
+        else if (Selected.name == "RotaryTable")
+        {
+            RTlocked = !RTlocked;
+            SwitchSecondMaterial(Selected.GetComponent<MeshRenderer>(), RTlocked ? LockedMaterial : HiglightMaterial);
+        }
     }
 
 
