@@ -1,10 +1,7 @@
-using System;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
 {
