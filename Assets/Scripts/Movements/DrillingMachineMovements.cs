@@ -125,17 +125,37 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
 
     private bool CanMoveUp(Vector3 STpos, Vector3 RTpos, bool isSTSelected)
     {
-        if (STpos.y > 25f) return false;
-        if (!isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
-        if (isSTSelected && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
+        if (
+            isSTSelected && (
+                STpos.y > 23f ||
+                !RTlocked && STlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3 ||
+                !STlocked && Vector3.Distance(STpos, Kelly.position) >= 49f
+                ) ||
+            !isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f
+            )
+            return false;
+        // if (isSTSelected && STpos.y > 23f) return false;
+        // if (!isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
+        // if (isSTSelected && !RTlocked && STlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
+        // if (isSTSelected && !STlocked && Vector3.Distance(STpos, Kelly.position) >= 49f) return false;
         return true;
     }
 
     private bool CanMoveDown(Vector3 STpos, Vector3 RTpos, bool isSTSelected)
     {
-        if (RTpos.y <= 1f) return false;
-        if (isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
-        if (!isSTSelected && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
+        if (
+            isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f ||
+            !isSTSelected && (
+                RTpos.y <= 1f ||
+                !RTlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3 ||
+                RTlocked && Vector3.Distance(STpos, Kelly.position) >= 49f
+                )
+            )
+            return false;
+        // if (!isSTSelected && RTpos.y <= 1f) return false;
+        // if (isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
+        // if (!isSTSelected && !RTlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
+        // if (!isSTSelected && RTlocked && Vector3.Distance(STpos, Kelly.position) >= 49f) return false;
         return true;
     }
 
