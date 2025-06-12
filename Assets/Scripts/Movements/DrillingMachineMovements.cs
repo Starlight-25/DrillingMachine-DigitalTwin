@@ -81,7 +81,6 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private void SelectEquipment(Transform equipment)
     {
         MeshRenderer meshRenderer;
-        Material[] materials;
         if (Selected is not null)
         {
             meshRenderer = Selected.GetComponent<MeshRenderer>();
@@ -110,29 +109,35 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     {
         if (Selected is null || STlocked == RTlocked && STlocked) return;
         float HeightMovVal = HeightMovementsInputAction.ReadValue<float>();
-        if (HeightMovVal < 0f && !CanMoveDown() || HeightMovVal > 0f && !CanMoveUp()) return;
+        if (!CanMove(HeightMovVal > 0f)) return;
         Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime * HeightNavigationSensitivity);
         Selected.position += movement;
-        if (STlocked ^ RTlocked) MoveDM(movement);
+        if ((Selected.name == "SlipTable" && STlocked) ^ (Selected.name == "RotaryTable" && RTlocked)) MoveDM(movement);
     }
 
-    private bool CanMoveDown()
+    private bool CanMove(bool up)
     {
-        Vector3 pos = Selected.position;
-        if (pos.y <= 1f) return false;
-        if (Vector3.Distance(pos, DrillBit.position) <= 15.3) return false;
-        float distToRT = Vector3.Distance(pos, RotaryTable.position);
-        if (distToRT != 0f && distToRT <= 3f) return false;
+        Vector3 STpos = SlipTable.position;
+        Vector3 RTpos = RotaryTable.position;
+        bool isSTSelected = Selected.name == "SlipTable";
+        if (up && !CanMoveUp(STpos, RTpos, isSTSelected)) return false;
+        if (!up && !CanMoveDown(STpos, RTpos, isSTSelected)) return false;
         return true;
     }
 
-    private bool CanMoveUp()
+    private bool CanMoveUp(Vector3 STpos, Vector3 RTpos, bool isSTSelected)
     {
-        Vector3 pos = Selected.position;
-        if (Vector3.Distance(pos, transform.position) >= 23) return false;
-        if (Vector3.Distance(pos, Kelly.position) >= 50f) return false;
-        float distToST = Vector3.Distance(pos, SlipTable.position);
-        if (distToST != 0f && distToST <= 3f) return false;
+        if (STpos.y > 25f) return false;
+        if (!isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
+        if (isSTSelected && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
+        return true;
+    }
+
+    private bool CanMoveDown(Vector3 STpos, Vector3 RTpos, bool isSTSelected)
+    {
+        if (RTpos.y <= 1f) return false;
+        if (isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f) return false;
+        if (!isSTSelected && Vector3.Distance(RTpos, DrillBit.position) <= 15.3) return false;
         return true;
     }
 
