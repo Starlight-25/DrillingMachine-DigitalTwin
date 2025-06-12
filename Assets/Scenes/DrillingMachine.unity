@@ -2858,8 +2858,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: DrillingMachine
       objectReference: {fileID: 0}
-    - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: DMCameraInput
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: BasicMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: LockedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8abd372b94f23904183eedcdeec343cd, type: 2}
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: SettingsHandler
+      value: 
+      objectReference: {fileID: 1047220950}
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: TransparentMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f0e1b10d799178408192265586904fe, type: 2}
+    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: DLTDetailMeshRenderer
       value: 
       objectReference: {fileID: 8960118158546340154}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
@@ -2871,17 +2887,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
---- !u!114 &8960118158546340154 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3903448571195481199, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+--- !u!23 &8960118158546340154 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5464744347693448380, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
   m_PrefabInstance: {fileID: 8960118158546340153}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
