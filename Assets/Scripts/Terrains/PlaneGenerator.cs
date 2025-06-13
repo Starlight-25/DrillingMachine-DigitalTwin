@@ -7,16 +7,17 @@ public class PlaneGenerator : MonoBehaviour
     private Mesh Mesh;
     private MeshFilter MeshFilter;
     private MeshCollider MeshCollider;
-    [SerializeField] private Vector2 planeSize = new Vector2(1, 1);
-    [SerializeField] private int planeResolution = 1;
+    [SerializeField] private Vector2 planeSize = new Vector2(10, 10);
+    [SerializeField] private int planeResolution = 10;
 
     private List<Vector3> verticles;
     private List<int> triangles;
+    private List<Vector2> uvs;
     
-    [SerializeField] private float radius = 4.5f;
-    [SerializeField] private float depth = 10;
+    private float radius = 4.5f;
+    private float depth = 10;
 
-    
+
     
     
     
@@ -46,6 +47,7 @@ public class PlaneGenerator : MonoBehaviour
     private void GeneratePlane(Vector2 size, int resolution)
     {
         verticles = new List<Vector3>();
+        uvs = new List<Vector2>();
         float xPerStep = size.x / resolution;
         float yPerStep = size.y / resolution;
         for (int y = 0; y < resolution + 1; y++)
@@ -53,6 +55,7 @@ public class PlaneGenerator : MonoBehaviour
             for (int x = 0; x < resolution+1; x++)
             {
                 verticles.Add(new Vector3(x * xPerStep - size.x / 2f, 0, y * yPerStep - size.y / 2f));
+                uvs.Add(new Vector2((float)x / resolution, (float)y / resolution));
             }
         }
 
@@ -82,6 +85,7 @@ public class PlaneGenerator : MonoBehaviour
         Mesh.Clear();
         Mesh.vertices = verticles.ToArray();
         Mesh.triangles = triangles.ToArray();
+        Mesh.uv = uvs.ToArray();
         Mesh.RecalculateNormals();
         Mesh.RecalculateBounds();
 
