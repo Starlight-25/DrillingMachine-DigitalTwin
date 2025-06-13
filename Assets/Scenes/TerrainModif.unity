@@ -340,32 +340,8 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1430416995238031505, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: SandMat
-      value: 
-      objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
-    - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
-    - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
-    - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: 'm_Materials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
-    - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: 'm_Materials.Array.data[3]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
-    - target: {fileID: 2029896037569338634, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
-      propertyPath: 'm_Materials.Array.data[4]'
       value: 
       objectReference: {fileID: 2100000, guid: 2222378c700b7164991f5eb580e94a0c, type: 2}
     - target: {fileID: 2480569362934682023, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}

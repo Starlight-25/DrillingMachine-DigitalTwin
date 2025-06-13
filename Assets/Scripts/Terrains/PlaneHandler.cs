@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneGenerator : MonoBehaviour
+public class PlaneHandler : MonoBehaviour
 {
     private Mesh Mesh;
     private MeshFilter MeshFilter;
@@ -15,8 +15,7 @@ public class PlaneGenerator : MonoBehaviour
     private List<Vector2> uvs;
     
     private float radius = 4.5f;
-    private float depth = 10;
-
+    private float curDepth = 0f;
 
     
     
@@ -27,16 +26,7 @@ public class PlaneGenerator : MonoBehaviour
         MeshFilter = GetComponent<MeshFilter>();
         MeshFilter.mesh = Mesh;
         MeshCollider = GetComponent<MeshCollider>();
-    }
-
-
-    
-    
-    
-    private void Update()
-    {
         GeneratePlane(planeSize, planeResolution);
-        Hole();
         AssignMesh();
     }
 
@@ -44,6 +34,17 @@ public class PlaneGenerator : MonoBehaviour
     
     
     
+    private void OnCollisionEnter(Collision other)
+    {
+        GeneratePlane(planeSize, planeResolution);
+        Hole(other.transform.position.y);
+        AssignMesh();
+    }
+
+    
+    
+    
+
     private void GeneratePlane(Vector2 size, int resolution)
     {
         verticles = new List<Vector3>();
@@ -97,13 +98,14 @@ public class PlaneGenerator : MonoBehaviour
     
     
     
-    private void Hole()
+    private void Hole(float depth)
     {
+        if (curDepth > depth) curDepth = depth;
         for (int i = 0; i < verticles.Count; i++)
         {
             Vector3 vertex = verticles[i];
             float distance = new Vector2(vertex.x, vertex.z).magnitude;
-            if (distance < radius) vertex.y -= depth;
+            if (distance < radius) vertex.y += curDepth;
             verticles[i] = vertex;
         }
     }
