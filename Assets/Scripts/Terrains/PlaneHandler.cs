@@ -10,9 +10,9 @@ public class PlaneHandler : MonoBehaviour
     [SerializeField] private Vector2 planeSize = new Vector2(10, 10);
     [SerializeField] private int planeResolution = 10;
 
-    private List<Vector3> verticles;
-    private List<int> triangles;
-    private List<Vector2> uvs;
+    private Vector3[] verticles;
+    private int[] triangles;
+    private Vector2[] uvs;
     
     private float radius = 4.5f;
     private float curDepth = 0f;
@@ -36,7 +36,6 @@ public class PlaneHandler : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        GeneratePlane(planeSize, planeResolution);
         Hole(other.transform.position.y);
         AssignMesh();
     }
@@ -47,32 +46,37 @@ public class PlaneHandler : MonoBehaviour
 
     private void GeneratePlane(Vector2 size, int resolution)
     {
-        verticles = new List<Vector3>();
-        uvs = new List<Vector2>();
+        int vertCount = (resolution + 1) * (resolution + 1);
+        verticles = new Vector3[vertCount];
+        uvs = new Vector2[vertCount];
+        triangles = new int[resolution * resolution * 6];
+        
         float xPerStep = size.x / resolution;
         float yPerStep = size.y / resolution;
+
+        int vertexIndex = 0;
         for (int y = 0; y < resolution + 1; y++)
         {
-            for (int x = 0; x < resolution+1; x++)
+            for (int x = 0; x < resolution+1; x++, vertexIndex++)
             {
-                verticles.Add(new Vector3(x * xPerStep - size.x / 2f, 0, y * yPerStep - size.y / 2f));
-                uvs.Add(new Vector2((float)x / resolution, (float)y / resolution));
+                verticles[vertexIndex] = new Vector3(x * xPerStep - size.x / 2f, 0, y * yPerStep - size.y / 2f);
+                uvs[vertexIndex] = new Vector2((float)x / resolution, (float)y / resolution);
             }
         }
 
-        triangles = new List<int>();
+        int triangleIntex = 0;
         for (int row = 0; row < resolution; row++)
         {
             for (int col = 0; col < resolution; col++)
             {
                 int i = row * resolution + row + col;
-                triangles.Add(i);
-                triangles.Add(i + resolution + 1);
-                triangles.Add(i + resolution + 2);
+                triangles[triangleIntex++] = i;
+                triangles[triangleIntex++] = i + resolution + 1;
+                triangles[triangleIntex++] = i + resolution + 2;
 
-                triangles.Add(i);
-                triangles.Add(i + resolution + 2);
-                triangles.Add(i + 1);
+                triangles[triangleIntex++] = i;
+                triangles[triangleIntex++] = i + resolution + 2;
+                triangles[triangleIntex++] = i + 1;
             }
         }
     }
@@ -84,9 +88,9 @@ public class PlaneHandler : MonoBehaviour
     private void AssignMesh()
     {
         Mesh.Clear();
-        Mesh.vertices = verticles.ToArray();
-        Mesh.triangles = triangles.ToArray();
-        Mesh.uv = uvs.ToArray();
+        Mesh.vertices = verticles;
+        Mesh.triangles = triangles;
+        Mesh.uv = uvs;
         Mesh.RecalculateNormals();
         Mesh.RecalculateBounds();
 
@@ -101,11 +105,11 @@ public class PlaneHandler : MonoBehaviour
     private void Hole(float depth)
     {
         if (curDepth > depth) curDepth = depth;
-        for (int i = 0; i < verticles.Count; i++)
+        for (int i = 0; i < verticles.Length; i++)
         {
             Vector3 vertex = verticles[i];
             float distance = new Vector2(vertex.x, vertex.z).magnitude;
-            if (distance < radius) vertex.y += curDepth;
+            if (distance < radius) vertex.y = curDepth;
             verticles[i] = vertex;
         }
     }
