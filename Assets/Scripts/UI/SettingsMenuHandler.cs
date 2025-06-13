@@ -13,6 +13,7 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
 
     [SerializeField] private SettingsHandler SettingsHandler;
 
+    [SerializeField] private TMP_Dropdown ScreenModeDropDown;
     [SerializeField] private TMP_Dropdown FreshrateDropDown;
     
     
@@ -34,35 +35,7 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     {
         if (ReturnInputAction.triggered) ReturnButtonClicked();
     }
-
     
-    
-    
-
-    public void ReturnButtonClicked()
-    {
-        Time.timeScale = 1f;
-        SettingsMenu.SetActive(false);
-        MainUI.SetActive(true);
-    }
-
-
-
-    
-
-    public void QuitButtonClicked() => SceneManager.LoadScene("MainMenu");
-
-
-
-
-
-    public void UpdateFreshRate(int val)
-    {
-        Application.targetFrameRate = val == 4 ? -1 : int.Parse(FreshrateDropDown.options[val].text);
-        SettingsHandler.Settings.FPS = Application.targetFrameRate;
-        SettingsHandler.SaveSettingsData();
-    }
-
     
     
     
@@ -70,6 +43,15 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     public void UpdateFromSettings()
     {
         SetFreshRateDropDownValFromSettings();
+        SetScreenModeFromSettings();
+    }
+
+    private void SetScreenModeFromSettings()
+    {
+        int screenMode = SettingsHandler.Settings.ScreenMode;
+        ScreenModeDropDown.value = screenMode;
+        ScreenModeDropDown.RefreshShownValue();
+        SetScreenMode(screenMode);
     }
 
     private void SetFreshRateDropDownValFromSettings()
@@ -93,4 +75,48 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
             }
         }
     }
+
+
+    
+    
+    
+
+    public void ReturnButtonClicked()
+    {
+        Time.timeScale = 1f;
+        SettingsMenu.SetActive(false);
+        MainUI.SetActive(true);
+    }
+
+
+
+    
+
+    public void QuitButtonClicked() => SceneManager.LoadScene("MainMenu");
+
+
+
+
+
+    public void UpdateFreshRate()
+    {
+        int val = FreshrateDropDown.value;
+        Application.targetFrameRate = val == 4 ? -1 : int.Parse(FreshrateDropDown.options[val].text);
+        SettingsHandler.Settings.FPS = Application.targetFrameRate;
+        SettingsHandler.SaveSettingsData();
+    }
+
+    
+
+
+
+    public void UpdateScreenMode()
+    {
+        int screenMode = ScreenModeDropDown.value;
+        SetScreenMode(screenMode);
+        SettingsHandler.Settings.ScreenMode = screenMode;
+        SettingsHandler.SaveSettingsData();
+    }
+
+    private void SetScreenMode(int screenModeValue) => Screen.fullScreenMode = (FullScreenMode)screenModeValue;
 }

@@ -1,5 +1,5 @@
 {
-  "ScreenMode" : "Fullscreen", 
+  "ScreenMode" : 0, 
   "FPS" : 60,
   "Sensibility":{
     "MouseRotation" : 5,
