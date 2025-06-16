@@ -14,11 +14,11 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
+  m_Fog: 1
+  m_FogColor: {r: 0.4901961, g: 0.7490196, b: 0.8235295, a: 1}
+  m_FogMode: 1
+  m_FogDensity: 0.003
+  m_LinearFogStart: 100
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
@@ -26,8 +26,8 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
+  m_HaloStrength: 0
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -2547,13 +2547,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885471401}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.051504176, y: 0.89955235, z: -0.4194681, w: -0.11045107}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 194, z: 0}
 --- !u!114 &885471404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6776,25 +6776,13 @@ PrefabInstance:
       value: DrillingMachine
       objectReference: {fileID: 0}
     - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: BasicMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: LockedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 8abd372b94f23904183eedcdeec343cd, type: 2}
-    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
     - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: TransparentMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 0f0e1b10d799178408192265586904fe, type: 2}
-    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: DLTDetailMeshRenderer
       value: 
-      objectReference: {fileID: 8960118158546340154}
+      objectReference: {fileID: 0}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
@@ -6804,11 +6792,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
---- !u!23 &8960118158546340154 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5464744347693448380, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
