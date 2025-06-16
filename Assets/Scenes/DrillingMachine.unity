@@ -6782,7 +6782,7 @@ PrefabInstance:
     - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: DLTDetailMeshRenderer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8960118158546340154}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
@@ -6792,6 +6792,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+--- !u!23 &8960118158546340154 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7015838865832585346, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+  m_PrefabInstance: {fileID: 8960118158546340153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
