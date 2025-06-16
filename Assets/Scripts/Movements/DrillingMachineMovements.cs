@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,12 +32,21 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     [SerializeField] private MeshRenderer DLTDetailMeshRenderer;
     private bool isDLTDetailsTransparent = false;
 
+    [SerializeField] private Transform MainUI;
+    private TextMeshProUGUI ExcavatedDepthText;
+    private TMP_Dropdown TimeSpeedDropDown;
+    private TextMeshProUGUI DateText;
+
 
 
 
 
     private void Start()
     {
+        ExcavatedDepthText = MainUI.Find("ExcavatedDepth Text").GetComponent<TextMeshProUGUI>();
+        TimeSpeedDropDown = MainUI.Find("Time Speed Dropdown").GetComponent<TMP_Dropdown>();
+        DateText = MainUI.Find("Date").GetChild(0).GetComponent<TextMeshProUGUI>();
+        
         SettingsHandler.Add(this);
         UpdateFromSettings();
 
