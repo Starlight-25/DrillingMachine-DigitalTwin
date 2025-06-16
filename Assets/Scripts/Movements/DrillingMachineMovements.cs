@@ -129,7 +129,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
             isSTSelected && (
                 STpos.y > 23f ||
                 !RTlocked && STlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3 ||
-                !STlocked && Vector3.Distance(STpos, Kelly.position) >= 49f
+                !STlocked && Vector3.Distance(STpos, Kelly.position) >= 48f
                 ) ||
             !isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f
             )
@@ -144,11 +144,17 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private bool CanMoveDown(Vector3 STpos, Vector3 RTpos, bool isSTSelected)
     {
         if (
-            isSTSelected && Vector3.Distance(RTpos, STpos) <= 3f ||
+            isSTSelected && (
+                Vector3.Distance(RTpos, STpos) <= 3f ||
+                STlocked && DrillBit.position.y <= -30f
+                ) ||
             !isSTSelected && (
                 RTpos.y <= 1f ||
                 !RTlocked && Vector3.Distance(RTpos, DrillBit.position) <= 15.3 ||
-                RTlocked && Vector3.Distance(STpos, Kelly.position) >= 49f
+                RTlocked && (
+                    Vector3.Distance(STpos, Kelly.position) >= 48f ||
+                    DrillBit.position.y <= -30f
+                    )
                 )
             )
             return false;
