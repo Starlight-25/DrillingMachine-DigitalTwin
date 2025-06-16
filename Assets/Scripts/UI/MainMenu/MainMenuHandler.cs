@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject CreditsMenu;
     
     
@@ -14,6 +15,16 @@ public class MainMenuHandler : MonoBehaviour
 
 
 
+    
+
+    public void SettingsButtonClicked()
+    {
+        SettingsMenu.SetActive(true);
+        MainMenu.SetActive(false);
+    }
+
+
+    
 
 
     public void CreditsButtonClicked()
