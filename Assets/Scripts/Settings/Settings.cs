@@ -1,17 +1,6 @@
-public enum ScreenMode
-{
-    Fullscreen,
-    Windowed,
-    Maximized
-}
-
-
-
-
-
 public class Settings
 {
-    public ScreenMode ScreenMode;
+    public int ScreenMode;
     public int FPS;
     public Sensibility Sensibility;
 }
