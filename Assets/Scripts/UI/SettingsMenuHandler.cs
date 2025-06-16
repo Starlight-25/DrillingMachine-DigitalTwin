@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
 {
@@ -16,11 +17,23 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     [SerializeField] private TMP_Dropdown ScreenModeDropDown;
     [SerializeField] private TMP_Dropdown FreshrateDropDown;
     
+    [SerializeField] private Slider MouseSensibilitySlider;
+    private TextMeshProUGUI MouseSensiValueText;
+    [SerializeField] private Slider ScrollSensibilitySlider;
+    private TextMeshProUGUI ScrollSensiValueText;
+    [SerializeField] private Slider HeightNavSensibilitySlider;
+    private TextMeshProUGUI HeightNavSensiValueText;
+    
+    
     
     
 
     private void Start()
     {
+        MouseSensiValueText = MouseSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
+        ScrollSensiValueText = ScrollSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
+        HeightNavSensiValueText = HeightNavSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
+
         SettingsHandler.Add(this);
         UpdateFromSettings();
 
@@ -44,6 +57,10 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     {
         SetFreshRateDropDownValFromSettings();
         SetScreenModeFromSettings();
+        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
+        SetMouseSliderValue(sensibility);
+        SetScrollSliderValue(sensibility);
+        SetHeightNavSliderValue(sensibility);
     }
 
     private void SetScreenModeFromSettings()
@@ -74,6 +91,24 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
                 return;
             }
         }
+    }
+
+    private void SetMouseSliderValue(Sensibility sensibility)
+    {
+        MouseSensibilitySlider.value = sensibility.MouseRotation;
+        MouseSensiValueText.text = sensibility.MouseRotation.ToString();
+    }
+
+    private void SetScrollSliderValue(Sensibility sensibility)
+    {
+        ScrollSensibilitySlider.value = sensibility.Zoom;
+        ScrollSensiValueText.text = sensibility.Zoom.ToString();
+    }
+
+    private void SetHeightNavSliderValue(Sensibility sensibility)
+    {
+        HeightNavSensibilitySlider.value = sensibility.HeightNavigation;
+        HeightNavSensiValueText.text = sensibility.HeightNavigation.ToString();
     }
 
 
@@ -119,4 +154,43 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     }
 
     private void SetScreenMode(int screenModeValue) => Screen.fullScreenMode = (FullScreenMode)screenModeValue;
+
+
+
+
+
+    public void UpdateMouseSensibility()
+    {
+        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
+        sensibility.MouseRotation = (int)MouseSensibilitySlider.value;
+        MouseSensiValueText.text = sensibility.MouseRotation.ToString();
+        SettingsHandler.SaveSettingsData();
+        SettingsHandler.ApplySettings();
+    }
+    
+    
+    
+    
+    
+    public void UpdateScrollSensibility()
+    {
+        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
+        sensibility.Zoom = (int)ScrollSensibilitySlider.value;
+        ScrollSensiValueText.text = sensibility.Zoom.ToString();
+        SettingsHandler.SaveSettingsData();
+        SettingsHandler.ApplySettings();
+    }
+
+
+
+    
+
+    public void UpdateHeightNavSensibility()
+    {
+        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
+        sensibility.HeightNavigation = (int)HeightNavSensibilitySlider.value;
+        HeightNavSensiValueText.text = sensibility.HeightNavigation.ToString();
+        SettingsHandler.SaveSettingsData();
+        SettingsHandler.ApplySettings();
+    }
 }
