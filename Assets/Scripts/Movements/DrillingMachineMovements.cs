@@ -79,6 +79,7 @@ public class DrillingMachineMovements : MonoBehaviour
             isDigging = true;
             excavatedDepth = DrillBit.position.y;
             MainUIHandler.UpdateExcavatedDepthText(excavatedDepth);
+            RotateDrillBit();
         }
         else isDigging = false;
     }
@@ -187,6 +188,18 @@ public class DrillingMachineMovements : MonoBehaviour
     {
         Kelly.position += movement;
         DrillBit.position += movement;
+    }
+
+
+    
+    
+    
+    private void RotateDrillBit()
+    {
+        float rotationVelocity = 30f; //RPM
+        float rotationDegree = rotationVelocity * 360 / 60;
+        DrillBit.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
+        Kelly.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
     }
 
 

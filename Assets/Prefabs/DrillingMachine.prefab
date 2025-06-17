@@ -274,8 +274,9 @@ MonoBehaviour:
   LockedMaterial: {fileID: 2100000, guid: 8abd372b94f23904183eedcdeec343cd, type: 2}
   TransparentMaterial: {fileID: 2100000, guid: 0f0e1b10d799178408192265586904fe, type: 2}
   PlayerInput: {fileID: 1656118903520455883}
-  SettingsHandler: {fileID: 0}
-  DLTDetailMeshRenderer: {fileID: 0}
+  DLTDetailMeshRenderer: {fileID: 7015838865832585346}
+  MainUIHandler: {fileID: 0}
+  TimeSpeedDropDown: {fileID: 0}
 --- !u!1001 &470581393322451740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -376,11 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8ae26ef5ab317f47ac5e7b2fc4cf415, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8ae26ef5ab317f47ac5e7b2fc4cf415, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8ae26ef5ab317f47ac5e7b2fc4cf415, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -576,6 +577,11 @@ PrefabInstance:
 --- !u!4 &2712095559378501545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
+  m_PrefabInstance: {fileID: 2461769115813419074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7015838865832585346 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4860705272215285952, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
   m_PrefabInstance: {fileID: 2461769115813419074}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3700309498509139799

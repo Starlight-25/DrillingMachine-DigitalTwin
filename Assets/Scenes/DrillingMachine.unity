@@ -8521,6 +8521,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_Name
       value: DrillingMachine
@@ -8529,10 +8537,6 @@ PrefabInstance:
       propertyPath: MainUIHandler
       value: 
       objectReference: {fileID: 14209120}
-    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: SettingsHandler
-      value: 
-      objectReference: {fileID: 1047220950}
     - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: TimeSpeedDropDown
       value: 
