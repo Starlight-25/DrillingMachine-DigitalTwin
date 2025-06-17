@@ -198,8 +198,8 @@ public class DrillingMachineMovements : MonoBehaviour
     {
         float rotationVelocity = 30f; //RPM
         float rotationDegree = rotationVelocity * 360 / 60;
-        DrillBit.Rotate(0, rotationDegree * Time.deltaTime * TimeAceleration, 0);
-        Kelly.Rotate(0, rotationDegree * Time.deltaTime * TimeAceleration, 0);
+        DrillBit.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
+        Kelly.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
     }
 
 
