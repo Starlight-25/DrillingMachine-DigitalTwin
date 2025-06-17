@@ -8522,28 +8522,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.7069644
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7069644
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.014191355
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.014191355
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -362.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_Name
@@ -8561,14 +8545,6 @@ PrefabInstance:
       propertyPath: DLTDetailMeshRenderer
       value: 
       objectReference: {fileID: 8960118158546340154}
-    - target: {fileID: 3274417763358594876, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3274417763358594876, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
