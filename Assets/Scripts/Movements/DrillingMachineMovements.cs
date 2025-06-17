@@ -31,8 +31,9 @@ public class DrillingMachineMovements : MonoBehaviour
 
     private float excavatedDepth = 0f;
     private float drillingVelocity = 8.3e-4f;
-    private float heightNavVelocity = 1f;
+    private float heightNavVelocity = 1.6e-3f;
     private bool isDigging = false;
+    private float rotationVelocity = 30f; //RPM
 
     [SerializeField] private MainUIHandler MainUIHandler;
     [SerializeField] private TMP_Dropdown TimeSpeedDropDown;
@@ -122,7 +123,7 @@ public class DrillingMachineMovements : MonoBehaviour
         
         if (!CanMove(HeightMovVal > 0f)) return;
         Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime *
-                                         (isDigging ? drillingVelocity * TimeAceleration : heightNavVelocity));
+                                         (isDigging ? drillingVelocity : heightNavVelocity) * TimeAceleration);
         Selected.position += movement;
         
         if ((Selected.name == "SlipTable" && STlocked) ^ (Selected.name == "RotaryTable" && RTlocked)) MoveDM(movement);
@@ -196,7 +197,6 @@ public class DrillingMachineMovements : MonoBehaviour
     
     private void RotateDrillBit()
     {
-        float rotationVelocity = 30f; //RPM
         float rotationDegree = rotationVelocity * 360 / 60;
         DrillBit.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
         Kelly.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
