@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TargetPlane : MonoBehaviour
 {
+    private InputAction TargetPlaneVisibleInputAction;
+
     private Mesh Mesh;
     private MeshFilter MeshFilter;
+    private MeshRenderer MeshRenderer;
     [SerializeField] private Vector2 planeSize = new Vector2(20, 20);
     [SerializeField] private int planeResolution = 50;
 
@@ -12,23 +16,36 @@ public class TargetPlane : MonoBehaviour
     private Vector2[] uvs;
 
     private float radius = 4.75f;
-    
-    
-    
-    private void Start()
-    {
-        Mesh = new Mesh();
-        MeshFilter = GetComponent<MeshFilter>();
-        MeshFilter.mesh = Mesh;
-        GeneratePlane(planeSize, planeResolution);
-        Hole();
-        AssignMesh();
-    }
 
     
     
     
     
+    private void Start()
+    {
+        TargetPlaneVisibleInputAction = GetComponent<PlayerInput>().actions["TargetPlaneVisible"];
+        Mesh = new Mesh();
+        MeshFilter = GetComponent<MeshFilter>();
+        MeshFilter.mesh = Mesh;
+        MeshRenderer = GetComponent<MeshRenderer>();
+        GeneratePlane(planeSize, planeResolution);
+        Hole();
+        AssignMesh();
+    }
+
+
+    
+    
+    
+    private void Update()
+    {
+        if (TargetPlaneVisibleInputAction.triggered) ChangePlaneVisibility();
+    }
+
+    
+    
+    
+
     private void GeneratePlane(Vector2 size, int resolution)
     {
         int vertCount = (resolution + 1) * (resolution + 1);
@@ -94,4 +111,10 @@ public class TargetPlane : MonoBehaviour
         Mesh.RecalculateNormals();
         Mesh.RecalculateBounds();
     }
+
+
+    
+
+
+    private void ChangePlaneVisibility() => MeshRenderer.enabled = !MeshRenderer.enabled;
 }
