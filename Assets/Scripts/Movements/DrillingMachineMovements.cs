@@ -1,8 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
+public class DrillingMachineMovements : MonoBehaviour
 {
     [SerializeField] private Transform Kelly;
     [SerializeField] private Transform SlipTable;
@@ -26,30 +27,24 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     private InputAction DLTDetailsVisibleInputAction;
     private InputAction LockEquipmentInputAction;
 
-    [SerializeField] private SettingsHandler SettingsHandler;
-    private int HeightNavigationSensitivity;
-
     [SerializeField] private MeshRenderer DLTDetailMeshRenderer;
     private bool isDLTDetailsTransparent = false;
 
-    [SerializeField] private Transform MainUI;
-    private TextMeshProUGUI ExcavatedDepthText;
-    private TMP_Dropdown TimeSpeedDropDown;
-    private TextMeshProUGUI DateText;
+    private float excavatedDepth = 0f;
+    private float drillingVelocity = 8.3e-4f;
+    private float heightNavVelocity = 1f;
+    private bool isDigging = false;
 
+    [SerializeField] private MainUIHandler MainUIHandler;
+    [SerializeField] private TMP_Dropdown TimeSpeedDropDown;
+    private int TimeAceleration = 1;
+    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
 
 
 
 
     private void Start()
     {
-        ExcavatedDepthText = MainUI.Find("ExcavatedDepth Text").GetComponent<TextMeshProUGUI>();
-        TimeSpeedDropDown = MainUI.Find("Time Speed Dropdown").GetComponent<TMP_Dropdown>();
-        DateText = MainUI.Find("Date").GetChild(0).GetComponent<TextMeshProUGUI>();
-        
-        SettingsHandler.Add(this);
-        UpdateFromSettings();
-
         SelectNoneInputAction = PlayerInput.actions["SelectNone"];
         SelectSTInputAction = PlayerInput.actions["SelectST"];
         SelectRTInputAction = PlayerInput.actions["SelectRT"];
@@ -64,6 +59,7 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
 
     private void Update()
     {
+        UpdateIsDigging();
         if (SelectNoneInputAction.triggered) SelectEquipment(null);
         if (SelectSTInputAction.triggered) SelectEquipment(SlipTable);
         if (SelectRTInputAction.triggered) SelectEquipment(RotaryTable);
@@ -73,18 +69,24 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
         if (LockEquipmentInputAction.triggered && Selected is not null) LockTable();
     }
 
-
-
-
-
-    public void UpdateFromSettings()
+    
+    
+    
+    
+    private void UpdateIsDigging()
     {
-        HeightNavigationSensitivity = SettingsHandler.Settings.Sensibility.HeightNavigation;
+        if (DrillBit.position.y < excavatedDepth)
+        {
+            isDigging = true;
+            excavatedDepth = DrillBit.position.y;
+            MainUIHandler.UpdateExcavatedDepthText(excavatedDepth);
+        }
+        else isDigging = false;
     }
 
-
-
-
+    
+    
+    
 
     private void SelectEquipment(Transform equipment)
     {
@@ -117,9 +119,12 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     {
         if (Selected is null || STlocked == RTlocked && STlocked) return;
         float HeightMovVal = HeightMovementsInputAction.ReadValue<float>();
+        
         if (!CanMove(HeightMovVal > 0f)) return;
-        Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime * HeightNavigationSensitivity);
+        Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime *
+                                         (isDigging ? drillingVelocity * TimeAceleration : heightNavVelocity));
         Selected.position += movement;
+        
         if ((Selected.name == "SlipTable" && STlocked) ^ (Selected.name == "RotaryTable" && RTlocked)) MoveDM(movement);
     }
 
@@ -211,5 +216,14 @@ public class DrillingMachineMovements : MonoBehaviour, ISettingsUpdater
     {
         DLTDetailMeshRenderer.material = isDLTDetailsTransparent ? BasicMaterial : TransparentMaterial;
         isDLTDetailsTransparent = !isDLTDetailsTransparent;
+    }
+    
+    
+    
+    
+    
+    public void UpdateTimeSpeedDropDown()
+    {
+        TimeAceleration = timeAccelerationMap[TimeSpeedDropDown.value];
     }
 }
