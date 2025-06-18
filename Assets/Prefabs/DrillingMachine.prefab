@@ -275,8 +275,8 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 2100000, guid: 0f0e1b10d799178408192265586904fe, type: 2}
   PlayerInput: {fileID: 1656118903520455883}
   DLTDetailMeshRenderer: {fileID: 7015838865832585346}
+  Parameters: {fileID: 0}
   MainUIHandler: {fileID: 0}
-  TimeSpeedDropDown: {fileID: 0}
 --- !u!1001 &470581393322451740
 PrefabInstance:
   m_ObjectHideFlags: 0

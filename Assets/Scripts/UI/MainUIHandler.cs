@@ -7,17 +7,19 @@ public class MainUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject MainUI;
     [SerializeField] private GameObject SettingsMenu;
+    [SerializeField] private GameObject ParameterMenu;
+    [SerializeField] private RectTransform ParameterButton;
 
     [SerializeField] private PlayerInput UIInput;
     private InputAction ReturnInputAction;
+    private InputAction ShowParameter;
     
-    [SerializeField] private TextMeshProUGUI ExcavatedDepthText;
-    [SerializeField] private TMP_Dropdown TimeSpeedDropDown;
     [SerializeField] private TextMeshProUGUI DateText;
-    private int TimeAcceleration = 1;
-    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
     private DateTime startTime = new DateTime(2025, 1, 1, 0, 0, 0);
     private double curTime = 0;
+    [SerializeField] private TextMeshProUGUI ExcavatedDepthText;
+
+    [SerializeField] private Parameters Parameters;
     
     
     
@@ -26,6 +28,7 @@ public class MainUIHandler : MonoBehaviour
     private void Start()
     {
         ReturnInputAction = UIInput.actions["Return"];
+        ShowParameter = UIInput.actions["ShowParameters"];
     }
 
     
@@ -35,6 +38,7 @@ public class MainUIHandler : MonoBehaviour
     private void Update()
     {
         if (ReturnInputAction.triggered) SettingsButtonClicked();
+        if (ShowParameter.triggered) ParametterButtonClicked();
         UpdateTimeDate();
     }
 
@@ -44,25 +48,30 @@ public class MainUIHandler : MonoBehaviour
     
     public void SettingsButtonClicked()
     {
-        Time.timeScale = 0f;
-        MainUI.SetActive(false);
-        SettingsMenu.SetActive(true);
+        if (ParameterMenu.activeInHierarchy) ParametterButtonClicked();
+        else
+        {
+            Time.timeScale = 0f;
+            MainUI.SetActive(false);
+            SettingsMenu.SetActive(true);
+        }    
     }
 
 
 
-
-
-    public void UpdateExcavatedDepthText(float depth) => ExcavatedDepthText.text = $"Excavated depth: {string.Format("{0:0.##}", -depth)}m";
-
-
-
-
-
-    public void UpdateTimeSpeedDropDown()
+    
+    
+    public void ParametterButtonClicked()
     {
-        TimeAcceleration = timeAccelerationMap[TimeSpeedDropDown.value];
+        ParameterMenu.SetActive(!ParameterMenu.activeInHierarchy);
+        ParameterButton.position += Vector3.right * (ParameterMenu.activeInHierarchy ? -500 : 500);
     }
+
+
+
+
+
+    public void UpdateExcavatedDepthText(float depth) => ExcavatedDepthText.text = $"Socket depth: {string.Format("{0:0.##}", -depth)}m";
 
     
     
@@ -70,7 +79,7 @@ public class MainUIHandler : MonoBehaviour
     
     private void UpdateTimeDate()
     {
-        curTime += Time.deltaTime * TimeAcceleration;
+        curTime += Time.deltaTime * Parameters.TimeAcceleration;
         DateText.text = startTime.AddSeconds(curTime).ToString("dd/MM/yyyy\nHH:mm:ss");
     }
 }

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e014d47917f94293a2e988522f6fbcb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeSize: {x: 20, y: 20}
+  planeSize: {x: 10, y: 10}
   planeResolution: 50
 --- !u!54 &1749472992389485774
 Rigidbody:
