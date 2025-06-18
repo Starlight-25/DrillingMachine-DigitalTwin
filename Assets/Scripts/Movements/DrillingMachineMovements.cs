@@ -29,17 +29,12 @@ public class DrillingMachineMovements : MonoBehaviour
     [SerializeField] private MeshRenderer DLTDetailMeshRenderer;
     private bool isDLTDetailsTransparent = false;
 
+    [SerializeField] private Parameters Parameters;
     private float excavatedDepth = 0f;
-    private float drillingVelocity = 8.3e-4f;
-    private float heightNavVelocity = 1.6e-3f;
     private bool isDigging = false;
-    private float rotationVelocity = 30f; //RPM
-
     [SerializeField] private MainUIHandler MainUIHandler;
-    [SerializeField] private TMP_Dropdown TimeSpeedDropDown;
-    private int TimeAceleration = 1;
-    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
 
+    
 
 
 
@@ -123,7 +118,7 @@ public class DrillingMachineMovements : MonoBehaviour
         
         if (!CanMove(HeightMovVal > 0f)) return;
         Vector3 movement = Vector3.up * (HeightMovVal * Time.deltaTime *
-                                         (isDigging ? drillingVelocity : heightNavVelocity) * TimeAceleration);
+                                         (isDigging ? Parameters.DrillingVelocity : Parameters.HeightNavVelocity) * Parameters.TimeAcceleration);
         Selected.position += movement;
         
         if ((Selected.name == "SlipTable" && STlocked) ^ (Selected.name == "RotaryTable" && RTlocked)) MoveDM(movement);
@@ -197,9 +192,9 @@ public class DrillingMachineMovements : MonoBehaviour
     
     private void RotateDrillBit()
     {
-        float rotationDegree = rotationVelocity * 360 / 60;
-        DrillBit.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
-        Kelly.Rotate(0, 0, rotationDegree * Time.deltaTime * TimeAceleration);
+        float rotationDegree = Parameters.RotationVelocity * 360 / 60;
+        DrillBit.Rotate(0, 0, rotationDegree * Time.deltaTime * Parameters.TimeAcceleration);
+        Kelly.Rotate(0, 0, rotationDegree * Time.deltaTime * Parameters.TimeAcceleration);
     }
 
 
@@ -228,14 +223,5 @@ public class DrillingMachineMovements : MonoBehaviour
     {
         DLTDetailMeshRenderer.material = isDLTDetailsTransparent ? BasicMaterial : TransparentMaterial;
         isDLTDetailsTransparent = !isDLTDetailsTransparent;
-    }
-    
-    
-    
-    
-    
-    public void UpdateTimeSpeedDropDown()
-    {
-        TimeAceleration = timeAccelerationMap[TimeSpeedDropDown.value];
     }
 }
