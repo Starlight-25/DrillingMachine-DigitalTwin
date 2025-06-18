@@ -14,7 +14,7 @@ public class TerrainLayer : MonoBehaviour
     private void Start()
     {
         TerrainLayerVisibilityInputAction = GetComponent<PlayerInput>().actions["TerrainLayerVisibility"];
-        MeshRenderers = new MeshRenderer[transform.childCount];
+        MeshRenderers = new MeshRenderer[transform.childCount - 1];
         for (int i = 0; i < MeshRenderers.Length; i++)
         {
             MeshRenderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
