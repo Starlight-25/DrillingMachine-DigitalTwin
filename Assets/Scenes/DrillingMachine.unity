@@ -265,7 +265,7 @@ MonoBehaviour:
   SettingsMenu: {fileID: 727602729}
   UIInput: {fileID: 855412770}
   ExcavatedDepthText: {fileID: 1408881639}
-  TimeSpeedDropDown: {fileID: 478346563}
+  TimeSpeedDropDown: {fileID: 0}
   DateText: {fileID: 520364020}
 --- !u!1 &25994822
 GameObject:
@@ -8582,14 +8582,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2914905808704639890, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: m_Name
       value: DrillingMachine
@@ -8602,24 +8594,19 @@ PrefabInstance:
       propertyPath: TimeSpeedDropDown
       value: 
       objectReference: {fileID: 478346563}
-    - target: {fileID: 3242154173168063490, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-      propertyPath: DLTDetailMeshRenderer
-      value: 
-      objectReference: {fileID: 8960118158546340154}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
+    - target: {fileID: 9084328643128880839, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
---- !u!23 &8960118158546340154 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7015838865832585346, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
-  m_PrefabInstance: {fileID: 8960118158546340153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
