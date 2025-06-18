@@ -33,8 +33,8 @@ public class PostProcessing : MonoBehaviour
         else
         {
             RenderSettings.fogColor = new Color(0xA1/255f, 0xBA/255f, 0xC1/255f); //A1BAC1
-            RenderSettings.fogStartDistance = 500f;
-            RenderSettings.fogEndDistance = 700f;
+            RenderSettings.fogStartDistance = 100f;
+            RenderSettings.fogEndDistance = 450f;
         }
     }
 }
