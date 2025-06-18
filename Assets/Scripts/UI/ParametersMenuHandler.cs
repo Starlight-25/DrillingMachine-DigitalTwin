@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -39,5 +38,4 @@ public class ParametersMenuHandler : MonoBehaviour
         Parameters.RotationVelocity = value;
         RotationVelocityValueText.text = $"{(int)value}RPM";
     }
-
 }

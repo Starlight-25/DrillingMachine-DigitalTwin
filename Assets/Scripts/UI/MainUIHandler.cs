@@ -38,7 +38,7 @@ public class MainUIHandler : MonoBehaviour
     private void Update()
     {
         if (ReturnInputAction.triggered) SettingsButtonClicked();
-        if (ShowParameter.triggered)
+        if (ShowParameter.triggered) ParametterButtonClicked();
         UpdateTimeDate();
     }
 
@@ -48,13 +48,19 @@ public class MainUIHandler : MonoBehaviour
     
     public void SettingsButtonClicked()
     {
-        Time.timeScale = 0f;
-        MainUI.SetActive(false);
-        SettingsMenu.SetActive(true);
+        if (ParameterMenu.activeInHierarchy) ParametterButtonClicked();
+        else
+        {
+            Time.timeScale = 0f;
+            MainUI.SetActive(false);
+            SettingsMenu.SetActive(true);
+        }    
     }
 
 
 
+    
+    
     public void ParametterButtonClicked()
     {
         ParameterMenu.SetActive(!ParameterMenu.activeInHierarchy);
