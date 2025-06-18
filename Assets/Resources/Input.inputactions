@@ -246,9 +246,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TargetPlaneVisible",
+                    "name": "TerrainLayerVisibility",
                     "type": "Button",
-                    "id": "c784455a-8603-4ddc-befe-02af37ac37a5",
+                    "id": "96c71e6b-6a05-4eb8-8764-9da72cdfebe2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -346,12 +346,12 @@
                 },
                 {
                     "name": "",
-                    "id": "64f75745-eb90-426e-805c-70b9b09f14b2",
+                    "id": "c6f35187-1b0f-4509-8ccd-e34efde6f784",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TargetPlaneVisible",
+                    "action": "TerrainLayerVisibility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
