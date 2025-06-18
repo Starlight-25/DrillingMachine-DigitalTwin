@@ -204,45 +204,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 155503729}
     m_Modifications:
-    - target: {fileID: 2099854317048688993, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2266014689394437724, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2833373694417220406, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227782703811250263, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716494536476972015, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925065994936649082, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5191864222795294132, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
       propertyPath: m_Name
       value: WaterPlanes
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586518552996551169, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8240128953873269431, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393757258006891363, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9169746314035115891, guid: 19f5ed71bc6319d46be70ef4fc3387d2, type: 3}
       propertyPath: m_LocalPosition.x
