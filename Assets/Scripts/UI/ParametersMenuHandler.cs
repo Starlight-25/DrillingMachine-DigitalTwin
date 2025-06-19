@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParametersMenuHandler : MonoBehaviour
 {
@@ -8,10 +10,31 @@ public class ParametersMenuHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI DrillingVelocityValueText;
     [SerializeField] private TextMeshProUGUI RotationVelocityValueText;
 
-    
-    
-    
+    [SerializeField] private Slider LLDepthSlider;
+    [SerializeField] private Slider BELDepthSlider;
+    [SerializeField] private Slider ClayDepthSlider;
+    [SerializeField] private Slider RLDepthSlider;
+    private TextMeshProUGUI LLDepthValueText;
+    private TextMeshProUGUI BELDepthValueText;
+    private TextMeshProUGUI ClayDepthValueText;
+    private TextMeshProUGUI RLDepthValueText;
 
+
+    
+    
+    
+    private void Start()
+    {
+        LLDepthValueText = LLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
+        BELDepthValueText = BELDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+        ClayDepthValueText = ClayDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+        RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+    }
+
+
+    
+    
+    
     public void UpdateTimeSpeedDropDown(int index)
     {
         Parameters.TimeAcceleration = timeAccelerationMap[index];
@@ -37,5 +60,57 @@ public class ParametersMenuHandler : MonoBehaviour
     {
         Parameters.RotationVelocity = value;
         RotationVelocityValueText.text = $"{(int)value}RPM";
+    }
+
+    
+    
+    
+
+    public void UpdateLLDepthSlider(float value)
+    {
+        Parameters.LLDepth = value;
+        LLDepthValueText.text = $"{(int)value}m";
+        if (BELDepthSlider.value < value) UpdateBELDepthSlider(value);
+        if (ClayDepthSlider.value < value) UpdateClayDepthSlider(value);
+        if (RLDepthSlider.value < value) UpdateRLDepthSlider(value);
+        HandleValueDepthSlider();
+    }
+
+    public void UpdateBELDepthSlider(float value)
+    {
+        Parameters.BELDepth = value;
+        BELDepthValueText.text = $"{(int)value}m";
+        if (LLDepthSlider.value > value) UpdateLLDepthSlider(value);
+        if (ClayDepthSlider.value < value) UpdateClayDepthSlider(value);
+        if (RLDepthSlider.value < value) UpdateRLDepthSlider(value);
+        HandleValueDepthSlider();
+    }
+
+    public void UpdateClayDepthSlider(float value)
+    {
+        Parameters.ClayDepth = value;
+        ClayDepthValueText.text = $"{(int)value}m";
+        if (LLDepthSlider.value > value) UpdateLLDepthSlider(value);
+        if (BELDepthSlider.value > value) UpdateBELDepthSlider(value);
+        if (RLDepthSlider.value < value) UpdateRLDepthSlider(value);
+        HandleValueDepthSlider();
+    }
+
+    public void UpdateRLDepthSlider(float value)
+    {
+        Parameters.RLDepth = value;
+        RLDepthValueText.text = $"{(int)value}m";
+        if (LLDepthSlider.value > value) UpdateLLDepthSlider(value);
+        if (BELDepthSlider.value > value) UpdateBELDepthSlider(value);
+        if (ClayDepthSlider.value > value) UpdateClayDepthSlider(value);
+        HandleValueDepthSlider();
+    }
+
+    private void HandleValueDepthSlider()
+    {
+        LLDepthSlider.value = Parameters.LLDepth;
+        BELDepthSlider.value = Parameters.BELDepth;
+        ClayDepthSlider.value = Parameters.ClayDepth;
+        RLDepthSlider.value = Parameters.RLDepth;
     }
 }

@@ -6,4 +6,9 @@ public class Parameters : MonoBehaviour
     public float DrillingVelocity = 0.05f/60f;
     public float HeightNavVelocity = 0.1f/60f;
     public float RotationVelocity = 5f;
+
+    public float LLDepth = 2f;
+    public float BELDepth = 9f;
+    public float ClayDepth = 16f;
+    public float RLDepth = 23f;
 }
