@@ -18,8 +18,8 @@ RenderSettings:
   m_FogColor: {r: 0.4901961, g: 0.7490196, b: 0.8235295, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.003
-  m_LinearFogStart: 100
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 25
+  m_LinearFogEnd: 75
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -196,6 +196,17 @@ Transform:
   - {fileID: 646741129792979092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &506988986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6931702490296502449, guid: 87f563577760c724aa634c9593c81be9, type: 3}
+  m_PrefabInstance: {fileID: 2022294096460343861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &583353890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,6 +670,10 @@ PrefabInstance:
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
+    - target: {fileID: 1835068677838369390, guid: 87f563577760c724aa634c9593c81be9, type: 3}
+      propertyPath: FogDistanceSlider
+      value: 
+      objectReference: {fileID: 506988986}
     - target: {fileID: 5135068144499889218, guid: 87f563577760c724aa634c9593c81be9, type: 3}
       propertyPath: Parameters
       value: 
@@ -871,6 +886,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 14209120}
     - target: {fileID: 3333866617221080756, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: SettingsHandler
+      value: 
+      objectReference: {fileID: 1047220950}
+    - target: {fileID: 4688243303236968323, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
