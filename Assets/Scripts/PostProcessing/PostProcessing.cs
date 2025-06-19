@@ -21,9 +21,9 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
     private void Start()
     {
         SettingsHandler.Add(this);
+        UpdateFromSettings();
         
         Volume = GetComponent<Volume>();
-        //FogDistance = SettingsHandler.Settings.Graphics.FogDistance;
     }
 
     
@@ -48,7 +48,7 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
     
     
     
-    
+
     private void ChangeEffect(bool underwater)
     {
         if (underwater)
@@ -56,7 +56,7 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
             Volume.profile = UnderWaterPostProcessing;
             RenderSettings.fogColor = UnderwaterFogColor;
             RenderSettings.fogStartDistance = 25f;
-            RenderSettings.fogEndDistance = SettingsHandler.Settings.Graphics.FogDistance;
+            RenderSettings.fogEndDistance = FogDistance;
         }
         else
         {
