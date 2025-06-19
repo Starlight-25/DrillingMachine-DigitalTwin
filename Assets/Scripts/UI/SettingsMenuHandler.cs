@@ -23,7 +23,9 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     private TextMeshProUGUI ScrollSensiValueText;
     [SerializeField] private Slider HeightNavSensibilitySlider;
     private TextMeshProUGUI HeightNavSensiValueText;
-    
+
+    [SerializeField] private Slider FogDistanceSlider;
+    private TextMeshProUGUI FogDistanceValueText;
     
     
     
@@ -33,7 +35,8 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
         MouseSensiValueText = MouseSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
         ScrollSensiValueText = ScrollSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
         HeightNavSensiValueText = HeightNavSensibilitySlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
-
+        FogDistanceValueText = FogDistanceSlider.transform.Find("Value Text").GetComponent<TextMeshProUGUI>();
+        
         SettingsHandler.Add(this);
         UpdateFromSettings();
 
@@ -61,6 +64,7 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
         SetMouseSliderValue(sensibility);
         SetScrollSliderValue(sensibility);
         SetHeightNavSliderValue(sensibility);
+        SetFogDistanceSliderValue(SettingsHandler.Settings.Graphics.FogDistance);
     }
 
     private void SetScreenModeFromSettings()
@@ -111,6 +115,12 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
         HeightNavSensiValueText.text = sensibility.HeightNavigation.ToString();
     }
 
+    private void SetFogDistanceSliderValue(int distance)
+    {
+        FogDistanceSlider.value = distance;
+        FogDistanceValueText.text = distance.ToString();
+    }
+
 
     
     
@@ -128,26 +138,13 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     
 
     public void QuitButtonClicked() => SceneManager.LoadScene("MainMenu");
-
-
-
-
-
-    public void UpdateFreshRate()
-    {
-        int val = FreshrateDropDown.value;
-        Application.targetFrameRate = val == 4 ? -1 : int.Parse(FreshrateDropDown.options[val].text);
-        SettingsHandler.Settings.FPS = Application.targetFrameRate;
-        SettingsHandler.SaveSettingsData();
-    }
+    
 
     
 
 
-
-    public void UpdateScreenMode()
+    public void UpdateScreenModeDropDown(int screenMode)
     {
-        int screenMode = ScreenModeDropDown.value;
         SetScreenMode(screenMode);
         SettingsHandler.Settings.ScreenMode = screenMode;
         SettingsHandler.SaveSettingsData();
@@ -156,14 +153,25 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     private void SetScreenMode(int screenModeValue) => Screen.fullScreenMode = (FullScreenMode)screenModeValue;
 
 
-
-
-
-    public void UpdateMouseSensibility()
+    
+    
+    
+    public void UpdateFreshRateDropDown(int index)
     {
-        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
-        sensibility.MouseRotation = (int)MouseSensibilitySlider.value;
-        MouseSensiValueText.text = sensibility.MouseRotation.ToString();
+        Application.targetFrameRate = index == 4 ? -1 : int.Parse(FreshrateDropDown.options[index].text);
+        SettingsHandler.Settings.FPS = Application.targetFrameRate;
+        SettingsHandler.SaveSettingsData();
+    }
+
+    
+    
+
+
+    public void UpdateMouseSensibilitySlider(float val)
+    {
+        int value = (int)val;
+        SettingsHandler.Settings.Sensibility.MouseRotation = value;
+        MouseSensiValueText.text = value.ToString();
         SettingsHandler.SaveSettingsData();
         SettingsHandler.ApplySettings();
     }
@@ -172,11 +180,11 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     
     
     
-    public void UpdateScrollSensibility()
+    public void UpdateScrollSensibilitySlider(float val)
     {
-        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
-        sensibility.Zoom = (int)ScrollSensibilitySlider.value;
-        ScrollSensiValueText.text = sensibility.Zoom.ToString();
+        int value = (int)val;
+        SettingsHandler.Settings.Sensibility.Zoom = value;
+        ScrollSensiValueText.text = value.ToString();
         SettingsHandler.SaveSettingsData();
         SettingsHandler.ApplySettings();
     }
@@ -185,11 +193,24 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
 
     
 
-    public void UpdateHeightNavSensibility()
+    public void UpdateHeightNavSensibilitySlider(float val)
     {
-        Sensibility sensibility = SettingsHandler.Settings.Sensibility;
-        sensibility.HeightNavigation = (int)HeightNavSensibilitySlider.value;
-        HeightNavSensiValueText.text = sensibility.HeightNavigation.ToString();
+        int value = (int)val;
+        SettingsHandler.Settings.Sensibility.HeightNavigation = value;
+        HeightNavSensiValueText.text = value.ToString();
+        SettingsHandler.SaveSettingsData();
+        SettingsHandler.ApplySettings();
+    }
+
+
+
+
+
+    public void UpdateFogDistanceSlider(float value)
+    {
+        int distance = (int)value;
+        SettingsHandler.Settings.Graphics.FogDistance = distance;
+        FogDistanceValueText.text = distance.ToString();
         SettingsHandler.SaveSettingsData();
         SettingsHandler.ApplySettings();
     }

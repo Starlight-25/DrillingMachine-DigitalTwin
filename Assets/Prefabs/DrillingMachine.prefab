@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SurfacePostProcessing: {fileID: 11400000, guid: 57bc89164a669594eab322ca104e0e7f, type: 2}
   UnderWaterPostProcessing: {fileID: 11400000, guid: 471b1101e693f0a46aa83d9d1c628c76, type: 2}
+  SettingsHandler: {fileID: 0}
 --- !u!1 &2914905808704639890
 GameObject:
   m_ObjectHideFlags: 0

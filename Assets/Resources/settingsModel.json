@@ -5,5 +5,8 @@
     "MouseRotation" : 5,
     "Zoom" : 60,
     "HeightNavigation" : 5
+  },
+  "Graphics":{
+    "FogDistance" : 75
   }
 }
