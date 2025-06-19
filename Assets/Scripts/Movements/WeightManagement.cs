@@ -33,6 +33,7 @@ public class WeightManagement : MonoBehaviour
     [SerializeField] private Transform DrillBit;
     private MeshRenderer DrillBitMeshRenderer;
     [SerializeField] private Gradient colorGradient;
+    private float curGradientFactor;
     private float excavatedDepth = 0f;
     private bool isDigging = false;
     
@@ -66,7 +67,7 @@ public class WeightManagement : MonoBehaviour
         UpdateIsDigging();
         if (TerrainLayerVisibilityInputAction.triggered) ChangeTerrainLayerVisibility();
         InfoCanvasLookAtCamera();
-        SetDrillBitColor(GetWeightNeeded());
+        SetDrillBitColor();
     }
     
     
@@ -122,34 +123,23 @@ public class WeightManagement : MonoBehaviour
     }
 
 
+    
 
 
-
+    private void SetDrillBitColor()
+    {
+        float t = Mathf.InverseLerp(0, 100, GetWeightNeeded());
+        curGradientFactor = Mathf.Lerp(curGradientFactor, t, Time.deltaTime * 5f);
+        DrillBitMeshRenderer.material.color = colorGradient.Evaluate(curGradientFactor);;
+    }
+    
+    private int GetWeightNeeded() => isDigging ? TerrainLayers[GetCurrentDiggingLayerIndex()].WeightNeeded : 0;
+    
     private int GetCurrentDiggingLayerIndex()
     {
         int i = 0;
         while (i < TerrainLayers.Length && excavatedDepth < TerrainLayers[i].Depth)
             i++;
         return i-1;
-    }
-
-    
-    
-    
-    
-    private int GetWeightNeeded()
-    {
-        if (!isDigging) return 0;
-        return TerrainLayers[GetCurrentDiggingLayerIndex()].WeightNeeded;
-    }
-
-
-    
-    
-
-    private void SetDrillBitColor(int weight)
-    {
-        float t = Mathf.InverseLerp(0, 100, weight);
-        DrillBitMeshRenderer.material.color = colorGradient.Evaluate(t);
     }
 }
