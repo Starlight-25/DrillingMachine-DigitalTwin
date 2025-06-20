@@ -513,6 +513,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6712388284899931280, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
+      propertyPath: m_Name
+      value: TerrainLayersNames
+      objectReference: {fileID: 0}
     - target: {fileID: 6741565190548904048, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1250

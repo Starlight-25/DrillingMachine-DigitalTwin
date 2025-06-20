@@ -74,8 +74,10 @@ public class WeightManagement : MonoBehaviour
     private void SetTerrainLayer()
     {
         TerrainLayers = new TerrainLayer[transform.childCount - 1]; //5 layers
+        Transform terrainLayerNames = transform.Find("Info Canvas").Find("TerrainLayersNames");
         for (int i = 0; i < TerrainLayers.Length; i++)
-            TerrainLayers[i] = new TerrainLayer(transform.GetChild(i), WeightNeededList[i]);
+            TerrainLayers[i] = new TerrainLayer(transform.GetChild(i), WeightNeededList[i],
+                terrainLayerNames.GetChild(i).GetComponent<RectTransform>());
         Parameters.TerrainLayers = TerrainLayers;
     }
 
@@ -93,6 +95,8 @@ public class WeightManagement : MonoBehaviour
             Transform terrainTransform = terrainLayer.Transform;
             terrainTransform.localScale = new Vector3(9f, (nextDepth - terrainLayer.Depth) / 2, 9f);
             terrainTransform.position = Vector3.up * (-terrainLayer.Depth - terrainTransform.localScale.y);
+
+            terrainLayer.TMPName.anchoredPosition = terrainTransform.position * 20f;
         }
     }
 
