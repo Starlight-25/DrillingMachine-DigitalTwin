@@ -10,6 +10,7 @@ public class ParametersMenuHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI DrillingVelocityValueText;
     [SerializeField] private TextMeshProUGUI RotationVelocityValueText;
 
+    [SerializeField] private WeightManagement WeightManagement;
     [SerializeField] private Slider LLDepthSlider;
     [SerializeField] private Slider BELDepthSlider;
     [SerializeField] private Slider ClayDepthSlider;
@@ -112,5 +113,11 @@ public class ParametersMenuHandler : MonoBehaviour
         BELDepthSlider.value = Parameters.BELDepth;
         ClayDepthSlider.value = Parameters.ClayDepth;
         RLDepthSlider.value = Parameters.RLDepth;
+        TerrainLayer[] terrainLayers = Parameters.TerrainLayers;
+        terrainLayers[1].Depth = LLDepthSlider.value;
+        terrainLayers[2].Depth = BELDepthSlider.value;
+        terrainLayers[3].Depth = ClayDepthSlider.value;
+        terrainLayers[4].Depth = RLDepthSlider.value;
+        WeightManagement.UpdateTerrainLayer();
     }
 }

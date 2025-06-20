@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242db4d0d590488d88eb6d27d4ebf2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parameters: {fileID: 0}
   DrillBit: {fileID: 0}
   colorGradient:
     serializedVersion: 2

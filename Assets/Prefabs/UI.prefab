@@ -2887,6 +2887,7 @@ MonoBehaviour:
   Parameters: {fileID: 0}
   DrillingVelocityValueText: {fileID: 4340412785371814684}
   RotationVelocityValueText: {fileID: 9021051452162848586}
+  WeightManagement: {fileID: 0}
   LLDepthSlider: {fileID: 6306471970316358664}
   BELDepthSlider: {fileID: 8380665155080798495}
   ClayDepthSlider: {fileID: 5697818731412989699}

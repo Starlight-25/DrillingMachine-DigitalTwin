@@ -1,26 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TerrainLayer
-{
-    public string Name;
-    public Transform Transform;
-    public float Depth;
-    public int WeightNeeded;
-
-    public TerrainLayer(Transform transform, int weightNeeded)
-    {
-        Name = transform.name;
-        Transform = transform;
-        WeightNeeded = weightNeeded;
-        Depth = transform.position.y + transform.localScale.y;
-    }
-}
-
-
-
-
-
 public class WeightManagement : MonoBehaviour
 {
     private TerrainLayer[] TerrainLayers;
@@ -29,6 +9,7 @@ public class WeightManagement : MonoBehaviour
     private MeshRenderer[] MeshRenderers;
     private Transform InfoCanvas;
     private Transform Camera;
+    [SerializeField] private Parameters Parameters;
     
     [SerializeField] private Transform DrillBit;
     private MeshRenderer DrillBitMeshRenderer;
@@ -39,10 +20,11 @@ public class WeightManagement : MonoBehaviour
     
     
     
+    
 
     private void Start()
     {
-        UpdateTerrainLayer();
+        SetTerrainLayer();
         
         TerrainLayerVisibilityInputAction = GetComponent<PlayerInput>().actions["TerrainLayerVisibility"];
         
@@ -89,12 +71,28 @@ public class WeightManagement : MonoBehaviour
 
     
 
-    public void UpdateTerrainLayer()
+    private void SetTerrainLayer()
     {
         TerrainLayers = new TerrainLayer[transform.childCount - 1]; //5 layers
         for (int i = 0; i < TerrainLayers.Length; i++)
-        {
             TerrainLayers[i] = new TerrainLayer(transform.GetChild(i), WeightNeededList[i]);
+        Parameters.TerrainLayers = TerrainLayers;
+    }
+
+    
+    
+    
+    
+    public void UpdateTerrainLayer()
+    {
+        TerrainLayers = Parameters.TerrainLayers;
+        for (int i = 0; i < TerrainLayers.Length; i++)
+        {
+            TerrainLayer terrainLayer = TerrainLayers[i];
+            float nextDepth = i == TerrainLayers.Length -1 ? 30 : TerrainLayers[i + 1].Depth;
+            Transform terrainTransform = terrainLayer.Transform;
+            terrainTransform.localScale = new Vector3(9f, (nextDepth - terrainLayer.Depth) / 2, 9f);
+            terrainTransform.position = Vector3.up * (-terrainLayer.Depth - terrainTransform.localScale.y);
         }
     }
 
