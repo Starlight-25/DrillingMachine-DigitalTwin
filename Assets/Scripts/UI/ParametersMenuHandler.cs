@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,7 @@ public class ParametersMenuHandler : MonoBehaviour
     [SerializeField] private GameObject MainUI;
     
     [SerializeField] private Parameters Parameters;
-    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
+    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600 };
     [SerializeField] private TextMeshProUGUI DrillingVelocityValueText;
     [SerializeField] private TextMeshProUGUI RotationVelocityValueText;
 
@@ -24,6 +25,12 @@ public class ParametersMenuHandler : MonoBehaviour
     private TextMeshProUGUI BELDepthValueText;
     private TextMeshProUGUI ClayDepthValueText;
     private TextMeshProUGUI RLDepthValueText;
+    [SerializeField] private TMP_InputField MaxWeightInputField;
+    [SerializeField] private TMP_InputField SandWeightInputField;
+    [SerializeField] private TMP_InputField LLWeightInputField;
+    [SerializeField] private TMP_InputField BELWeightInputField;
+    [SerializeField] private TMP_InputField ClayWeightInputField;
+    [SerializeField] private TMP_InputField RLWeightInputField;
 
 
     
@@ -54,6 +61,7 @@ public class ParametersMenuHandler : MonoBehaviour
     
     public void ReturnButtonClicked()
     {
+        Time.timeScale = 1f;
         MainUI.SetActive(true);
         gameObject.SetActive(false);
     }
@@ -146,4 +154,17 @@ public class ParametersMenuHandler : MonoBehaviour
         terrainLayers[4].Depth = RLDepthSlider.value;
         WeightManagement.UpdateTerrainLayer();
     }
+
+
+
+    
+
+    public void MaxWeightInputValueChange(string weight) => MaxWeightInputField.text = FilterTextForNum(weight);
+    public void SandWeightInputValueChange(string weight) => SandWeightInputField.text = FilterTextForNum(weight);
+    public void LLWeightInputValueChange(string weight) => LLWeightInputField.text = FilterTextForNum(weight);
+    public void BELWeightInputValueChange(string weight) => BELWeightInputField.text = FilterTextForNum(weight);
+    public void ClayWeightInputValueChange(string weight) => ClayWeightInputField.text = FilterTextForNum(weight);
+    public void RLWeightInputValueChange(string weight) => RLWeightInputField.text = FilterTextForNum(weight);
+
+    private string FilterTextForNum(string text) => new string(text.Where(char.IsDigit).ToArray());
 }

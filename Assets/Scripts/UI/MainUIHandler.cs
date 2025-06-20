@@ -46,13 +46,9 @@ public class MainUIHandler : MonoBehaviour
     
     public void SettingsButtonClicked()
     {
-        if (ParameterMenu.activeInHierarchy) ParametterButtonClicked();
-        else
-        {
-            Time.timeScale = 0f;
-            SettingsMenu.SetActive(true);
-            gameObject.SetActive(false);
-        }    
+        Time.timeScale = 0f;
+        SettingsMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
@@ -61,6 +57,7 @@ public class MainUIHandler : MonoBehaviour
     
     public void ParametterButtonClicked()
     {
+        Time.timeScale = 0f;
         ParameterMenu.SetActive(true);
         gameObject.SetActive(false);
     }
