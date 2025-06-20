@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class MainUIHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject MainUI;
     [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject ParameterMenu;
 
@@ -51,8 +50,8 @@ public class MainUIHandler : MonoBehaviour
         else
         {
             Time.timeScale = 0f;
-            MainUI.SetActive(false);
             SettingsMenu.SetActive(true);
+            gameObject.SetActive(false);
         }    
     }
 
@@ -63,7 +62,7 @@ public class MainUIHandler : MonoBehaviour
     public void ParametterButtonClicked()
     {
         ParameterMenu.SetActive(true);
-        MainUI.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 

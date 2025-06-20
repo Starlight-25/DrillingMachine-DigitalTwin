@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
 {
-    [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject MainUI;
 
     [SerializeField] private PlayerInput UIInput;
@@ -129,8 +128,8 @@ public class SettingsMenuHandler : MonoBehaviour, ISettingsUpdater
     public void ReturnButtonClicked()
     {
         Time.timeScale = 1f;
-        SettingsMenu.SetActive(false);
         MainUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
