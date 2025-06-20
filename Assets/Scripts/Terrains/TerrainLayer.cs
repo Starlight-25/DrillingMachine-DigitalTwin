@@ -14,6 +14,6 @@ public class TerrainLayer
         Transform = transform;
         WeightNeeded = weightNeeded;
         TMPName = tmpName;
-        Depth = transform.position.y + transform.localScale.y;
+        Depth = -transform.position.y - transform.localScale.y;
     }
 }

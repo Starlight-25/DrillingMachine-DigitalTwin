@@ -24,6 +24,7 @@ public class WeightManagement : MonoBehaviour
 
     private void Start()
     {
+        InfoCanvas = transform.GetChild(transform.childCount - 1);
         SetTerrainLayer();
         
         TerrainLayerVisibilityInputAction = GetComponent<PlayerInput>().actions["TerrainLayerVisibility"];
@@ -34,7 +35,6 @@ public class WeightManagement : MonoBehaviour
             MeshRenderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
         }
 
-        InfoCanvas = transform.GetChild(transform.childCount - 1);
         Camera = UnityEngine.Camera.main.transform;
         
         DrillBitMeshRenderer = DrillBit.GetComponent<MeshRenderer>();
@@ -74,7 +74,7 @@ public class WeightManagement : MonoBehaviour
     private void SetTerrainLayer()
     {
         TerrainLayers = new TerrainLayer[transform.childCount - 1]; //5 layers
-        Transform terrainLayerNames = transform.Find("Info Canvas").Find("TerrainLayersNames");
+        Transform terrainLayerNames = InfoCanvas.Find("TerrainLayersNames");
         for (int i = 0; i < TerrainLayers.Length; i++)
             TerrainLayers[i] = new TerrainLayer(transform.GetChild(i), WeightNeededList[i],
                 terrainLayerNames.GetChild(i).GetComponent<RectTransform>());
@@ -91,10 +91,11 @@ public class WeightManagement : MonoBehaviour
         for (int i = 0; i < TerrainLayers.Length; i++)
         {
             TerrainLayer terrainLayer = TerrainLayers[i];
-            float nextDepth = i == TerrainLayers.Length -1 ? 30 : TerrainLayers[i + 1].Depth;
             Transform terrainTransform = terrainLayer.Transform;
-            terrainTransform.localScale = new Vector3(9f, (nextDepth - terrainLayer.Depth) / 2, 9f);
-            terrainTransform.position = Vector3.up * (-terrainLayer.Depth - terrainTransform.localScale.y);
+            float nextDepth = i == TerrainLayers.Length -1 ? 30 : TerrainLayers[i + 1].Depth;
+            float depth = terrainLayer.Depth;
+            terrainTransform.localScale = new Vector3(9f, (nextDepth - depth) / 2, 9f);
+            terrainTransform.position = Vector3.up * (-depth - terrainTransform.localScale.y);
 
             terrainLayer.TMPName.anchoredPosition = terrainTransform.position * 20f;
         }
@@ -107,9 +108,9 @@ public class WeightManagement : MonoBehaviour
     private void ChangeTerrainLayerVisibility()
     {
         foreach (MeshRenderer mesh in MeshRenderers)
-        {
             mesh.enabled = !mesh.enabled;
-        }
+        GameObject infoCanvasGameobject = InfoCanvas.gameObject;
+        infoCanvasGameobject.SetActive(!infoCanvasGameobject.activeInHierarchy);
     }
 
 
@@ -140,7 +141,7 @@ public class WeightManagement : MonoBehaviour
     private int GetCurrentDiggingLayerIndex()
     {
         int i = 0;
-        while (i < TerrainLayers.Length && excavatedDepth < TerrainLayers[i].Depth)
+        while (i < TerrainLayers.Length && excavatedDepth < -TerrainLayers[i].Depth)
             i++;
         return i-1;
     }
