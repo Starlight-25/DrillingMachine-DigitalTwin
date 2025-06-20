@@ -12,4 +12,5 @@ public class Parameters : MonoBehaviour
     public float BELDepth = 9f;
     public float ClayDepth = 16f;
     public float RLDepth = 23f;
+    public int MaxWeight = 100;
 }

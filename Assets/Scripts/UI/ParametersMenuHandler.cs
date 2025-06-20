@@ -43,7 +43,9 @@ public class ParametersMenuHandler : MonoBehaviour
         LLDepthValueText = LLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
         BELDepthValueText = BELDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
         ClayDepthValueText = ClayDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
-        RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+        RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        SetWeightInputValue();
     }
 
     
@@ -157,8 +159,22 @@ public class ParametersMenuHandler : MonoBehaviour
 
 
 
-    
 
+
+    private void SetWeightInputValue()
+    {
+        MaxWeightInputField.text = $"{Parameters.MaxWeight}T";
+        TMP_InputField[] LayerWeightInputField =
+            { SandWeightInputField, LLWeightInputField, BELWeightInputField, ClayWeightInputField, RLWeightInputField };
+        TerrainLayer[] terrainLayers = Parameters.TerrainLayers;
+        for (int i = 0; i < terrainLayers.Length; i++)
+            LayerWeightInputField[i].text = $"{terrainLayers[i].WeightNeeded}T";
+    }
+    
+    
+    
+    
+    
     public void MaxWeightInputValueChange(string weight) => MaxWeightInputField.text = FilterTextForNum(weight);
     public void SandWeightInputValueChange(string weight) => SandWeightInputField.text = FilterTextForNum(weight);
     public void LLWeightInputValueChange(string weight) => LLWeightInputField.text = FilterTextForNum(weight);
