@@ -8,7 +8,6 @@ public class MainUIHandler : MonoBehaviour
     [SerializeField] private GameObject MainUI;
     [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject ParameterMenu;
-    [SerializeField] private RectTransform ParameterButton;
 
     [SerializeField] private PlayerInput UIInput;
     private InputAction ReturnInputAction;
@@ -63,8 +62,8 @@ public class MainUIHandler : MonoBehaviour
     
     public void ParametterButtonClicked()
     {
-        ParameterMenu.SetActive(!ParameterMenu.activeInHierarchy);
-        ParameterButton.position += Vector3.right * (ParameterMenu.activeInHierarchy ? -500 : 500);
+        ParameterMenu.SetActive(true);
+        MainUI.SetActive(false);
     }
 
 

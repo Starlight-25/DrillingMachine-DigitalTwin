@@ -1,10 +1,15 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ParametersMenuHandler : MonoBehaviour
 {
+    [SerializeField] private PlayerInput PlayerInput;
+    private InputAction ReturnInputAction;
+    [SerializeField] private GameObject MainUI;
+    
     [SerializeField] private Parameters Parameters;
     private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
     [SerializeField] private TextMeshProUGUI DrillingVelocityValueText;
@@ -26,10 +31,31 @@ public class ParametersMenuHandler : MonoBehaviour
     
     private void Start()
     {
+        ReturnInputAction = PlayerInput.actions["Return"];
+        
         LLDepthValueText = LLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
         BELDepthValueText = BELDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
         ClayDepthValueText = ClayDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
         RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+    }
+
+    
+    
+    
+    
+    private void Update()
+    {
+        if (ReturnInputAction.triggered) ReturnButtonClicked();
+    }
+
+    
+    
+    
+    
+    public void ReturnButtonClicked()
+    {
+        MainUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
