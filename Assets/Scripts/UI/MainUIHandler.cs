@@ -5,10 +5,8 @@ using UnityEngine.InputSystem;
 
 public class MainUIHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject MainUI;
     [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject ParameterMenu;
-    [SerializeField] private RectTransform ParameterButton;
 
     [SerializeField] private PlayerInput UIInput;
     private InputAction ReturnInputAction;
@@ -48,13 +46,9 @@ public class MainUIHandler : MonoBehaviour
     
     public void SettingsButtonClicked()
     {
-        if (ParameterMenu.activeInHierarchy) ParametterButtonClicked();
-        else
-        {
-            Time.timeScale = 0f;
-            MainUI.SetActive(false);
-            SettingsMenu.SetActive(true);
-        }    
+        Time.timeScale = 0f;
+        SettingsMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
@@ -63,8 +57,9 @@ public class MainUIHandler : MonoBehaviour
     
     public void ParametterButtonClicked()
     {
-        ParameterMenu.SetActive(!ParameterMenu.activeInHierarchy);
-        ParameterButton.position += Vector3.right * (ParameterMenu.activeInHierarchy ? -500 : 500);
+        Time.timeScale = 0f;
+        ParameterMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 

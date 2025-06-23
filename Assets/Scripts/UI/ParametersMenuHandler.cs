@@ -1,12 +1,17 @@
-using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ParametersMenuHandler : MonoBehaviour
 {
+    [SerializeField] private PlayerInput PlayerInput;
+    private InputAction ReturnInputAction;
+    [SerializeField] private GameObject MainUI;
+    
     [SerializeField] private Parameters Parameters;
-    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
+    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600 };
     [SerializeField] private TextMeshProUGUI DrillingVelocityValueText;
     [SerializeField] private TextMeshProUGUI RotationVelocityValueText;
 
@@ -19,6 +24,12 @@ public class ParametersMenuHandler : MonoBehaviour
     private TextMeshProUGUI BELDepthValueText;
     private TextMeshProUGUI ClayDepthValueText;
     private TextMeshProUGUI RLDepthValueText;
+    [SerializeField] private TMP_InputField MaxWeightInputField;
+    [SerializeField] private TMP_InputField SandWeightInputField;
+    [SerializeField] private TMP_InputField LLWeightInputField;
+    [SerializeField] private TMP_InputField BELWeightInputField;
+    [SerializeField] private TMP_InputField ClayWeightInputField;
+    [SerializeField] private TMP_InputField RLWeightInputField;
 
 
     
@@ -26,10 +37,34 @@ public class ParametersMenuHandler : MonoBehaviour
     
     private void Start()
     {
+        ReturnInputAction = PlayerInput.actions["Return"];
+        
         LLDepthValueText = LLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
         BELDepthValueText = BELDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
         ClayDepthValueText = ClayDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
-        RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+        RLDepthValueText = RLDepthSlider.transform.Find("Value Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        SetWeightInputValue();
+    }
+
+    
+    
+    
+    
+    private void Update()
+    {
+        if (ReturnInputAction.triggered) ReturnButtonClicked();
+    }
+
+    
+    
+    
+    
+    public void ReturnButtonClicked()
+    {
+        Time.timeScale = 1f;
+        MainUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
@@ -119,5 +154,62 @@ public class ParametersMenuHandler : MonoBehaviour
         terrainLayers[3].Depth = ClayDepthSlider.value;
         terrainLayers[4].Depth = RLDepthSlider.value;
         WeightManagement.UpdateTerrainLayer();
+    }
+
+
+
+
+
+    private void SetWeightInputValue()
+    {
+        MaxWeightInputField.text = $"{Parameters.MaxWeight}T";
+        TMP_InputField[] LayerWeightInputField =
+            { SandWeightInputField, LLWeightInputField, BELWeightInputField, ClayWeightInputField, RLWeightInputField };
+        TerrainLayer[] terrainLayers = Parameters.TerrainLayers;
+        for (int i = 0; i < terrainLayers.Length; i++)
+            LayerWeightInputField[i].text = $"{terrainLayers[i].WeightNeeded}T";
+    }
+    
+    
+    
+    
+    
+    public void MaxWeightInputValueChange(string weight) => MaxWeightInputField.text = FilterTextForNum(weight);
+    public void SandWeightInputValueChange(string weight) => SandWeightInputField.text = FilterTextForNum(weight);
+    public void LLWeightInputValueChange(string weight) => LLWeightInputField.text = FilterTextForNum(weight);
+    public void BELWeightInputValueChange(string weight) => BELWeightInputField.text = FilterTextForNum(weight);
+    public void ClayWeightInputValueChange(string weight) => ClayWeightInputField.text = FilterTextForNum(weight);
+    public void RLWeightInputValueChange(string weight) => RLWeightInputField.text = FilterTextForNum(weight);
+
+    private string FilterTextForNum(string text) => new string(text.Where(char.IsDigit).ToArray());
+
+
+
+
+
+    public void MaxWeightInputEnd(string value)
+    {
+        if (value == "") value = "0";
+        int weight = int.Parse(value);
+        Parameters.MaxWeight = weight;
+        foreach (TerrainLayer terrainLayer in Parameters.TerrainLayers)
+        {
+            if (terrainLayer.WeightNeeded > weight) terrainLayer.WeightNeeded = weight;
+        }
+        SetWeightInputValue();
+        WeightManagement.UpdateFromParameters();
+    }
+
+    public void SandWeightInputEnd(string value) => GetWeightInputEnd(value, 0);
+    public void LLWeightInputEnd(string value) => GetWeightInputEnd(value, 1);
+    public void BELWeightInputEnd(string value) => GetWeightInputEnd(value, 2);
+    public void ClayWeightInputEnd(string value) => GetWeightInputEnd(value, 3);
+    public void RLWeightInputEnd(string value) => GetWeightInputEnd(value, 4);
+
+    private void GetWeightInputEnd(string value, int terrainLayerIndex)
+    {
+        int weight = Mathf.Min(Parameters.MaxWeight, value == "" ? 0 : int.Parse(value));
+        Parameters.TerrainLayers[terrainLayerIndex].WeightNeeded = weight;
+        SetWeightInputValue();
     }
 }
