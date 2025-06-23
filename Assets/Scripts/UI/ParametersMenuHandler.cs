@@ -183,4 +183,34 @@ public class ParametersMenuHandler : MonoBehaviour
     public void RLWeightInputValueChange(string weight) => RLWeightInputField.text = FilterTextForNum(weight);
 
     private string FilterTextForNum(string text) => new string(text.Where(char.IsDigit).ToArray());
+
+
+
+
+
+    public void MaxWeightInputEnd(string value)
+    {
+        if (value == "") value = "0";
+        int weight = int.Parse(value);
+        Parameters.MaxWeight = weight;
+        foreach (TerrainLayer terrainLayer in Parameters.TerrainLayers)
+        {
+            if (terrainLayer.WeightNeeded > weight) terrainLayer.WeightNeeded = weight;
+        }
+        SetWeightInputValue();
+        WeightManagement.UpdateFromParameters();
+    }
+
+    public void SandWeightInputEnd(string value) => GetWeightInputEnd(value, 0);
+    public void LLWeightInputEnd(string value) => GetWeightInputEnd(value, 1);
+    public void BELWeightInputEnd(string value) => GetWeightInputEnd(value, 2);
+    public void ClayWeightInputEnd(string value) => GetWeightInputEnd(value, 3);
+    public void RLWeightInputEnd(string value) => GetWeightInputEnd(value, 4);
+
+    private void GetWeightInputEnd(string value, int terrainLayerIndex)
+    {
+        int weight = Mathf.Min(Parameters.MaxWeight, value == "" ? 0 : int.Parse(value));
+        Parameters.TerrainLayers[terrainLayerIndex].WeightNeeded = weight;
+        SetWeightInputValue();
+    }
 }

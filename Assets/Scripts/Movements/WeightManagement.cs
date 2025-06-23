@@ -15,6 +15,7 @@ public class WeightManagement : MonoBehaviour
     private MeshRenderer DrillBitMeshRenderer;
     [SerializeField] private Gradient colorGradient;
     private float curGradientFactor;
+    private int maxWeight;
     private float excavatedDepth = 0f;
     private bool isDigging = false;
     
@@ -38,6 +39,8 @@ public class WeightManagement : MonoBehaviour
         Camera = UnityEngine.Camera.main.transform;
         
         DrillBitMeshRenderer = DrillBit.GetComponent<MeshRenderer>();
+
+        UpdateFromParameters();
     }
 
     
@@ -70,7 +73,7 @@ public class WeightManagement : MonoBehaviour
 
 
     
-
+    
     private void SetTerrainLayer()
     {
         TerrainLayers = new TerrainLayer[transform.childCount - 1]; //5 layers
@@ -81,6 +84,16 @@ public class WeightManagement : MonoBehaviour
         Parameters.TerrainLayers = TerrainLayers;
     }
 
+
+
+
+
+    public void UpdateFromParameters()
+    {
+        UpdateTerrainLayer();
+        ChangeMaxWeightTerrain();
+    }
+    
     
     
     
@@ -100,6 +113,12 @@ public class WeightManagement : MonoBehaviour
             terrainLayer.TMPName.anchoredPosition = terrainTransform.position * 20f;
         }
     }
+
+
+
+
+
+    public void ChangeMaxWeightTerrain() => maxWeight = Parameters.MaxWeight;
 
 
     
@@ -131,7 +150,7 @@ public class WeightManagement : MonoBehaviour
 
     private void SetDrillBitColor()
     {
-        float t = Mathf.InverseLerp(0, 100, GetWeightNeeded());
+        float t = Mathf.InverseLerp(0, maxWeight, GetWeightNeeded());
         curGradientFactor = Mathf.Lerp(curGradientFactor, t, Time.deltaTime * 5f);
         DrillBitMeshRenderer.material.color = colorGradient.Evaluate(curGradientFactor);;
     }
