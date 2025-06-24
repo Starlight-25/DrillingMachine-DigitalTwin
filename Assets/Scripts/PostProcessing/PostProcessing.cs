@@ -3,6 +3,7 @@ using UnityEngine.Rendering;
 
 public class PostProcessing : MonoBehaviour, ISettingsUpdater
 {
+    private Camera camera;
     private Volume Volume;
     [SerializeField] private VolumeProfile SurfacePostProcessing;
     [SerializeField] private VolumeProfile UnderWaterPostProcessing;
@@ -13,6 +14,9 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
 
     [SerializeField] private SettingsHandler SettingsHandler;
     private int FogDistance;
+
+    private int TerrainLayerIndex;
+    private int UndergroundLayerIndex;
     
     
     
@@ -22,8 +26,12 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
     {
         SettingsHandler.Add(this);
         UpdateFromSettings();
-        
+
+        camera = GetComponent<Camera>();
         Volume = GetComponent<Volume>();
+        
+        TerrainLayerIndex = LayerMask.NameToLayer("Terrain");
+        UndergroundLayerIndex = LayerMask.NameToLayer("Underground");
     }
 
     
@@ -34,6 +42,7 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
     {
         float CameraY = transform.position.y;
         ChangeEffect(CameraY >= 0 && CameraY <= WaterSurface);
+        ChangeUndergroundVisibility(CameraY <= 0);
     }
 
     
@@ -64,6 +73,24 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
             RenderSettings.fogColor = SurfaceFogColor;
             RenderSettings.fogStartDistance = 100f;
             RenderSettings.fogEndDistance = 450f;
+        }
+    }
+
+
+
+
+    private void ChangeUndergroundVisibility(bool underground)
+    {
+        RenderSettings.fog = !underground;
+        if (underground)
+        {
+            camera.cullingMask |= 1 << UndergroundLayerIndex;
+            camera.cullingMask &= ~(1 << TerrainLayerIndex);
+        }
+        else
+        {
+            camera.cullingMask |= 1 << TerrainLayerIndex;
+            camera.cullingMask &= ~(1 << UndergroundLayerIndex);
         }
     }
 }
