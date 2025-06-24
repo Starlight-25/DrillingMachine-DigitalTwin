@@ -18,6 +18,12 @@ public class MainUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ExcavatedDepthText;
 
     [SerializeField] private Parameters Parameters;
+
+
+
+
+    
+    public float GetCurTime() => (float)curTime;
     
     
     

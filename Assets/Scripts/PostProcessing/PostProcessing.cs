@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 
 public class PostProcessing : MonoBehaviour, ISettingsUpdater
 {
-    private Camera camera;
+    private new Camera camera;
     private Volume Volume;
     [SerializeField] private VolumeProfile SurfacePostProcessing;
     [SerializeField] private VolumeProfile UnderWaterPostProcessing;

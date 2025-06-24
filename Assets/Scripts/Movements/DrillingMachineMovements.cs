@@ -34,10 +34,17 @@ public class DrillingMachineMovements : MonoBehaviour
     private bool isDigging = false;
     [SerializeField] private MainUIHandler MainUIHandler;
 
+
+
+
     
-
-
-
+    public float GetDepth() => excavatedDepth;
+    public float GetDrillBitHeight() => DrillBit.position.y;
+    
+    
+    
+    
+    
     private void Start()
     {
         SelectNoneInputAction = PlayerInput.actions["SelectNone"];
