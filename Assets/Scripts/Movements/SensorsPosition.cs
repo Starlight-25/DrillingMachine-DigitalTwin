@@ -8,6 +8,10 @@ public class SensorsPosition : MonoBehaviour
     [SerializeField] private Transform DrillBitPosSensor;
     [SerializeField] private Transform RTTempSensor;
     [SerializeField] private Transform STTempSensor;
+    private MeshRenderer[] SensorMeshes;
+
+    [SerializeField] private Material SensorMaterial;
+    [SerializeField] private Material SensorHoverMaterial;
 
     private new Camera camera;
     private DrillingMachineMovements DrillingMachineMovements;
@@ -23,6 +27,10 @@ public class SensorsPosition : MonoBehaviour
     
     private void Start()
     {
+        SensorMeshes = new MeshRenderer[Sensors.childCount];
+        for (int i = 0; i < SensorMeshes.Length; i++)
+            SensorMeshes[i] = Sensors.GetChild(i).GetComponent<MeshRenderer>();
+        
         camera = Camera.main;
         DrillingMachineMovements = GetComponent<DrillingMachineMovements>();
 
@@ -95,9 +103,17 @@ public class SensorsPosition : MonoBehaviour
     {
         Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 150f, SensorLayer) && LeftClickInputAction.triggered)
+        if (Physics.Raycast(ray, out hit, 150f, SensorLayer))
         {
-            GraphHandler.HandleSensorsInteraction(hit.transform.name);
+            ChangeSensorHoverMaterial(hit.transform);
+            if (LeftClickInputAction.triggered) GraphHandler.HandleSensorsInteraction(hit.transform.name);
         }
+        else ChangeSensorHoverMaterial();
+    }
+
+    private void ChangeSensorHoverMaterial(Transform sensor = null)
+    {
+        if (sensor is not null) sensor.GetComponent<MeshRenderer>().material = SensorHoverMaterial;
+        else foreach (MeshRenderer sensorMesh in SensorMeshes) sensorMesh.material = SensorMaterial;
     }
 }
