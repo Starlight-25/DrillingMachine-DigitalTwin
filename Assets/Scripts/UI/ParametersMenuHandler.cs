@@ -82,7 +82,7 @@ public class ParametersMenuHandler : MonoBehaviour
 
     public void UpdateDrillingVelocitySlider(float value)
     {
-        float velocity = value / 60;
+        float velocity = value * 0.01f / 60;
         Parameters.DrillingVelocity = velocity;
         Parameters.HeightNavVelocity = 2 * velocity;
         DrillingVelocityValueText.text = $"{(int)value}cm/min";
