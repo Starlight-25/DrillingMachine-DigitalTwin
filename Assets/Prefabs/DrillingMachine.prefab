@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SurfacePostProcessing: {fileID: 11400000, guid: 57bc89164a669594eab322ca104e0e7f, type: 2}
   UnderWaterPostProcessing: {fileID: 11400000, guid: 471b1101e693f0a46aa83d9d1c628c76, type: 2}
+  Light: {fileID: 0}
   SettingsHandler: {fileID: 0}
 --- !u!1 &627807305170847977
 GameObject:
@@ -1075,7 +1076,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4ebab9b000b6cb647832c0983289c3a3, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f7a4f21f65a9df40b4f87ae191e66e0, type: 2}
     - target: {fileID: 919132149155446097, guid: 4ebab9b000b6cb647832c0983289c3a3, type: 3}
       propertyPath: m_Name
       value: RotaryTable
