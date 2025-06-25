@@ -10,8 +10,8 @@ public class SensorsPosition : MonoBehaviour
     [SerializeField] private Transform STTempSensor;
     private MeshRenderer[] SensorMeshes;
 
-    [SerializeField] private Material SensorMaterial;
-    [SerializeField] private Material SensorHoverMaterial;
+    private Color SensorColor = new Color(0x00 / 255f, 0xFF / 255f, 0xFF / 255f); //00FFFF
+    private Color SensorHoverColor = new Color(0x00 / 255f, 0xFF / 255f, 0x80 / 255f); //00FF80
 
     private new Camera camera;
     private DrillingMachineMovements DrillingMachineMovements;
@@ -113,7 +113,7 @@ public class SensorsPosition : MonoBehaviour
 
     private void ChangeSensorHoverMaterial(Transform sensor = null)
     {
-        if (sensor is not null) sensor.GetComponent<MeshRenderer>().material = SensorHoverMaterial;
-        else foreach (MeshRenderer sensorMesh in SensorMeshes) sensorMesh.material = SensorMaterial;
+        if (sensor is not null) sensor.GetComponent<MeshRenderer>().material.color = SensorHoverColor;
+        else foreach (MeshRenderer sensorMesh in SensorMeshes) sensorMesh.material.color = SensorColor;
     }
 }

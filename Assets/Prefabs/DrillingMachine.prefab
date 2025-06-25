@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 432423019615518143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 22, z: 2.8}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalPosition: {x: -3, y: 22, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5167943553923944303}
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
+  - {fileID: 2100000, guid: 7e4892da833bafa4c9918741307e3642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &505519504940176878
 GameObject:
@@ -473,8 +473,6 @@ MonoBehaviour:
   DrillBitPosSensor: {fileID: 3862858835229037327}
   RTTempSensor: {fileID: 5291017581312310406}
   STTempSensor: {fileID: 8949806174315589814}
-  SensorMaterial: {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
-  SensorHoverMaterial: {fileID: 2100000, guid: 39b855fb9507e9d4287ae9318338ed1d, type: 2}
   GraphHandler: {fileID: 0}
 --- !u!1 &5810701938620838981
 GameObject:
@@ -505,7 +503,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5167943553923944303}
@@ -541,7 +539,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
+  - {fileID: 2100000, guid: 7e4892da833bafa4c9918741307e3642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -582,7 +580,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7114125230567416744
 GameObject:
@@ -612,8 +610,8 @@ Transform:
   m_GameObject: {fileID: 7114125230567416744}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 16, z: 2.8}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalPosition: {x: -3, y: 16, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5167943553923944303}
@@ -649,7 +647,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
+  - {fileID: 2100000, guid: 7e4892da833bafa4c9918741307e3642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -690,7 +688,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7634081619614084344
 GameObject:
@@ -721,7 +719,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.8, y: 0, z: 2.8}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5167943553923944303}
@@ -757,7 +755,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
+  - {fileID: 2100000, guid: 7e4892da833bafa4c9918741307e3642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -798,7 +796,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &470581393322451740
 PrefabInstance:
