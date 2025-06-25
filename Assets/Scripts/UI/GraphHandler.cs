@@ -141,6 +141,8 @@ public class GraphHandler : MonoBehaviour
             curSensor = selectedSensor;
             Title title = lineChart.EnsureChartComponent<Title>();
             title.text = sensor;
+            lineChart.EnsureChartComponent<YAxis>().axisName.name = selectedSensor < 2 ? "Depth (m)" :
+                selectedSensor < 4 ? "Temperature (°C)" : "Height (m)"; 
             lineChart.gameObject.SetActive(true);
             ChangeSensor();
         }
