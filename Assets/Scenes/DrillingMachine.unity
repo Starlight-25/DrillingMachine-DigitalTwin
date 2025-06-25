@@ -1126,6 +1126,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1047220950}
     - target: {fileID: 4688243303236968323, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: Light
+      value: 
+      objectReference: {fileID: 885471402}
+    - target: {fileID: 4688243303236968323, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
