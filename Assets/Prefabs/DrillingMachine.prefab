@@ -473,6 +473,8 @@ MonoBehaviour:
   DrillBitPosSensor: {fileID: 3862858835229037327}
   RTTempSensor: {fileID: 5291017581312310406}
   STTempSensor: {fileID: 8949806174315589814}
+  SensorMaterial: {fileID: 2100000, guid: c52ab825ac63ada43bcf1463860011a7, type: 2}
+  SensorHoverMaterial: {fileID: 2100000, guid: 39b855fb9507e9d4287ae9318338ed1d, type: 2}
   GraphHandler: {fileID: 0}
 --- !u!1 &5810701938620838981
 GameObject:
