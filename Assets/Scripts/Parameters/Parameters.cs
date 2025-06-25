@@ -13,4 +13,6 @@ public class Parameters : MonoBehaviour
     public float ClayDepth = 16f;
     public float RLDepth = 23f;
     public int MaxWeight = 100;
+
+    public int WaterTemperature = 15;
 }

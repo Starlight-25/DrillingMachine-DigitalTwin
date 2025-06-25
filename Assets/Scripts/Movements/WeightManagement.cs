@@ -155,7 +155,7 @@ public class WeightManagement : MonoBehaviour
         DrillBitMeshRenderer.material.color = colorGradient.Evaluate(curGradientFactor);;
     }
     
-    private int GetWeightNeeded() => isDigging ? TerrainLayers[GetCurrentDiggingLayerIndex()].WeightNeeded : 0;
+    public int GetWeightNeeded() => isDigging ? TerrainLayers[GetCurrentDiggingLayerIndex()].WeightNeeded : 0;
     
     private int GetCurrentDiggingLayerIndex()
     {
