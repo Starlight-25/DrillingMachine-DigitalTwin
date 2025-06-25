@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
@@ -7,18 +6,19 @@ public class GraphHandler : MonoBehaviour
 {
     private MainUIHandler MainUIHandler;
     [SerializeField] private DrillingMachineMovements DrillingMachineMovements;
+    [SerializeField] private WeightManagement WeightManagement;
     [SerializeField] private Parameters Parameters;
     
     [SerializeField] private LineChart lineChart;
     private Serie serie;
     private const int MaxVisiblePoints = 60;
-    private List<SerieData> depthPoints = new List<SerieData>();
-    private List<SerieData> drillBitPosPoints = new List<SerieData>();
+    private Dictionary<string, int> SensorIndexMap;
+    private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private float prevTime;
     private const float timeInterval = 1f;
 
-    private string curSensor = "";
+    private int curSensor = -1;
     
     
     
@@ -31,6 +31,16 @@ public class GraphHandler : MonoBehaviour
         serie.ClearData();
 
         prevTime = Time.time;
+
+        SensorIndexMap = new Dictionary<string, int>()
+        {
+            { "Socket Depth", 0 },
+            { "Drill Bit Position", 1 },
+            { "Rotary Table Temperature", 2 }
+        };
+        
+        for (int _ = 0; _ < SensorIndexMap.Count; _++)
+            ListPoints.Add(new List<SerieData>());
     }
 
     
@@ -53,45 +63,36 @@ public class GraphHandler : MonoBehaviour
 
     private void AddPoint(float x)
     {
+        List<SerieData> newData = CreatePoints(x);
+        AddPointToList(newData);
+        if (curSensor != -1) ShowPoint(newData[curSensor]);
+    }
+
+    private List<SerieData> CreatePoints(float x)
+    {
         SerieData newDepthData = new SerieData();
         newDepthData.data = new List<double>(){ x, DrillingMachineMovements.GetDepth() };
 
-        SerieData newDrillBitPosPoint = new SerieData();
-        newDrillBitPosPoint.data = new List<double>() { x, DrillingMachineMovements.GetDrillBitHeight() };
+        SerieData newDrillBitPosData = new SerieData();
+        newDrillBitPosData.data = new List<double>() { x, DrillingMachineMovements.GetDrillBitHeight() };
 
-        AddPointToList(newDepthData, newDrillBitPosPoint);
+        SerieData newDrillBitTempData = new SerieData();
+        newDrillBitTempData.data = new List<double>()
+            { x, Parameters.RotationVelocity * WeightManagement.GetWeightNeeded() / 10 };
 
-        switch (curSensor)
-        {
-            case "DrillBitPosition":
-                ShowPoint(newDrillBitPosPoint);
-                break;
-            case "Depth":
-                ShowPoint(newDepthData);
-                break;
-        }
-        
+        return new List<SerieData>() { newDepthData, newDrillBitPosData , newDrillBitTempData};
     }
-
     
-    
-    
-    
-    private void AddPointToList(SerieData newDepthPoint, SerieData newDrillBitPosPoint)
+    private void AddPointToList(List<SerieData> newData)
     {
-        depthPoints.Add(newDepthPoint);
-        drillBitPosPoints.Add(newDrillBitPosPoint);
-        if (depthPoints.Count > MaxVisiblePoints)
-        {
-            depthPoints.RemoveAt(0);
-            drillBitPosPoints.RemoveAt(0);
-        }
+        for (int i = 0; i < newData.Count; i++)
+            ListPoints[i].Add(newData[i]);
+        
+        if (ListPoints[0].Count > MaxVisiblePoints)
+            foreach (List<SerieData> listPoint in ListPoints)
+                listPoint.RemoveAt(0);
     }
-
     
-    
-    
-
     private void ShowPoint(SerieData newPoint)
     {
         serie.data.Add(newPoint);
@@ -105,15 +106,7 @@ public class GraphHandler : MonoBehaviour
     private void ChangeSensor()
     {
         serie.ClearData();
-        switch (curSensor)
-        {
-            case "DrillBitPosition":
-                serie.data.AddRange(drillBitPosPoints);
-                break;
-            case "Depth":
-                serie.data.AddRange(depthPoints);
-                break;
-        }
+        serie.data.AddRange(ListPoints[curSensor]);
     }
 
     
@@ -122,15 +115,17 @@ public class GraphHandler : MonoBehaviour
 
     public void HandleSensorsInteraction(string sensor)
     {
-        Debug.Log(sensor);
-        if (sensor == curSensor)
+        int selectedSensor = SensorIndexMap[sensor];
+        if (selectedSensor == curSensor)
         {
-            curSensor = "";
+            curSensor = -1;
             lineChart.gameObject.SetActive(false);
         }
         else
         {
-            curSensor = sensor;
+            curSensor = selectedSensor;
+            Title title = lineChart.EnsureChartComponent<Title>();
+            title.text = sensor;
             lineChart.gameObject.SetActive(true);
             ChangeSensor();
         }

@@ -1,18 +1,20 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SensorsPosition : MonoBehaviour
 {
     [SerializeField] private Transform Sensors;
-    [SerializeField] private Transform DrillBitPosSensor;
     [SerializeField] private Transform DepthSensor;
+    [SerializeField] private Transform DrillBitPosSensor;
+    [SerializeField] private Transform RTTempSensor;
 
-    [SerializeField] private new Transform camera;
+    private new Camera camera;
     private DrillingMachineMovements DrillingMachineMovements;
     [SerializeField] private GraphHandler GraphHandler;
 
     private InputAction LeftClickInputAction;
+
+    private int SensorLayer;
     
     
     
@@ -20,9 +22,11 @@ public class SensorsPosition : MonoBehaviour
     
     private void Start()
     {
+        camera = Camera.main;
         DrillingMachineMovements = GetComponent<DrillingMachineMovements>();
 
         LeftClickInputAction = GetComponent<PlayerInput>().actions["LeftClick"];
+        SensorLayer = LayerMask.GetMask("Sensors");
     }
 
     
@@ -34,6 +38,7 @@ public class SensorsPosition : MonoBehaviour
         DrillBitSensorPos();
         DepthSensorPos();
         SensorOrientation();
+        RTTempSensorPos();
         HandleSensorsRayCast();
     }
 
@@ -55,12 +60,19 @@ public class SensorsPosition : MonoBehaviour
         DepthSensor.position = pos;
     }
 
+    private void RTTempSensorPos()
+    {
+        Vector3 pos = RTTempSensor.position;
+        pos.y = DrillingMachineMovements.GetRTHeight();
+        RTTempSensor.position = pos;
+    }
+
 
 
 
     private void SensorOrientation()
     {
-        Sensors.LookAt(camera);
+        Sensors.LookAt(camera.transform);
         var angles = Sensors.rotation.eulerAngles;
         angles.x = 0f;
         Sensors.rotation = Quaternion.Euler(angles);
@@ -72,9 +84,9 @@ public class SensorsPosition : MonoBehaviour
 
     private void HandleSensorsRayCast()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 150f, LayerMask.GetMask("Sensors")) && LeftClickInputAction.triggered)
+        if (Physics.Raycast(ray, out hit, 150f, SensorLayer) && LeftClickInputAction.triggered)
         {
             GraphHandler.HandleSensorsInteraction(hit.transform.name);
         }

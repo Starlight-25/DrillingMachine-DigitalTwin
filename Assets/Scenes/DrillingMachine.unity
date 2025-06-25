@@ -440,6 +440,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1023063587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555508131784489704, guid: 87f563577760c724aa634c9593c81be9, type: 3}
+  m_PrefabInstance: {fileID: 2022294096460343861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732fea81f7d94299a83ea4cf35ce452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1047220950 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4948598471051158534, guid: 1e5e5df8ada91744fbc1f2d8cf49dbdd, type: 3}
@@ -652,6 +663,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6253672571539168574, guid: 031b4a1becb1fd74f85d0ee564e04bbf, type: 3}
   m_PrefabInstance: {fileID: 1153469400}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1230094998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2018002507622776012, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+  m_PrefabInstance: {fileID: 8960118158546340153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1277619612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,6 +720,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
+      propertyPath: DrillBit
+      value: 
+      objectReference: {fileID: 1230094998}
+    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
+      propertyPath: Parameters
+      value: 
+      objectReference: {fileID: 1709030118}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -882,6 +906,10 @@ PrefabInstance:
       propertyPath: Parameters
       value: 
       objectReference: {fileID: 1709030118}
+    - target: {fileID: 7555508131784489704, guid: 87f563577760c724aa634c9593c81be9, type: 3}
+      propertyPath: WeightManagement
+      value: 
+      objectReference: {fileID: 1277619613}
     - target: {fileID: 7555508131784489704, guid: 87f563577760c724aa634c9593c81be9, type: 3}
       propertyPath: DrillingMachineMovements
       value: 
@@ -1101,6 +1129,10 @@ PrefabInstance:
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 1047220950}
+    - target: {fileID: 5090554085223880703, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
+      propertyPath: GraphHandler
+      value: 
+      objectReference: {fileID: 1023063587}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

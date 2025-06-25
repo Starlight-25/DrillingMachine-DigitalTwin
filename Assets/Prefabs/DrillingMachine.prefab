@@ -247,8 +247,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3862858835229037327}
   - {fileID: 1291573363511499762}
+  - {fileID: 3862858835229037327}
   - {fileID: 5291017581312310406}
   m_Father: {fileID: 1778582196012740216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,9 +360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sensors: {fileID: 5167943553923944303}
-  DrillBitPosSensor: {fileID: 3862858835229037327}
   DepthSensor: {fileID: 1291573363511499762}
-  camera: {fileID: 5652700073260518696}
+  DrillBitPosSensor: {fileID: 3862858835229037327}
+  RTTempSensor: {fileID: 5291017581312310406}
+  GraphHandler: {fileID: 0}
 --- !u!1 &5810701938620838981
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +377,7 @@ GameObject:
   - component: {fileID: 2057763006275978981}
   - component: {fileID: 1285200952713352218}
   m_Layer: 8
-  m_Name: Depth
+  m_Name: Socket Depth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +485,7 @@ GameObject:
   - component: {fileID: 429323565995101430}
   - component: {fileID: 2579704650879281646}
   m_Layer: 8
-  m_Name: Temperature
+  m_Name: Rotary Table Temperature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 7114125230567416744}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 8, z: 2.8}
+  m_LocalPosition: {x: -2.8, y: 16, z: 2.8}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -592,7 +593,7 @@ GameObject:
   - component: {fileID: 3586444383287932726}
   - component: {fileID: 5234660550580511717}
   m_Layer: 8
-  m_Name: DrillBitPosition
+  m_Name: Drill Bit Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
