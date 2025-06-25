@@ -12,7 +12,7 @@ public class PlaneHandler : MonoBehaviour
     private int[] triangles;
     private Vector2[] uvs;
     
-    private float radius = 4.5f;
+    private const float radius = 4.5f;
     private float curDepth = 0f;
 
     

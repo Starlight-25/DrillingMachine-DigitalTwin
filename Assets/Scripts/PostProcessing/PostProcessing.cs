@@ -10,7 +10,7 @@ public class PostProcessing : MonoBehaviour, ISettingsUpdater
 
     [SerializeField] private Light Light;
     
-    private float WaterSurface = 30f;
+    private const float WaterSurface = 30f;
     private Color SurfaceFogColor = new(0xA1 / 255f, 0xBA / 255f, 0xC1 / 255f); //A1BAC1
     private Color UnderwaterFogColor = new(0x56 / 255f, 0xBF / 255f, 0xCF / 255f); //56BFCF
 
