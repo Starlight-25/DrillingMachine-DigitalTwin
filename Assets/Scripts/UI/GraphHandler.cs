@@ -37,7 +37,9 @@ public class GraphHandler : MonoBehaviour
             { "Socket Depth", 0 },
             { "Drill Bit Position", 1 },
             { "Rotary Table Temperature", 2 },
-            { "Slip Table Temperature", 3 }
+            { "Slip Table Temperature", 3 },
+            { "Rotary Table Position", 4 },
+            { "Slip Table Position", 5 }
         };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
@@ -88,6 +90,10 @@ public class GraphHandler : MonoBehaviour
 
         newDatas[3].data[1] = Parameters.WaterTemperature + Parameters.DrillingVelocity * 60 *
             WeightManagement.GetWeightNeeded() * 3 / (DrillingMachineMovements.GetIsDrilling() ? 1 : 2); // ST Temp
+
+        newDatas[4].data[1] = DrillingMachineMovements.GetRTHeight();
+
+        newDatas[5].data[1] = DrillingMachineMovements.GetSTHeight();
         
         return newDatas;
     }

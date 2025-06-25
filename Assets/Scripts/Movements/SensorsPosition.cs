@@ -6,8 +6,8 @@ public class SensorsPosition : MonoBehaviour
     [SerializeField] private Transform Sensors;
     [SerializeField] private Transform DepthSensor;
     [SerializeField] private Transform DrillBitPosSensor;
-    [SerializeField] private Transform RTTempSensor;
-    [SerializeField] private Transform STTempSensor;
+    [SerializeField] private Transform[] RTSensors;
+    [SerializeField] private Transform[] STSensors;
     private MeshRenderer[] SensorMeshes;
 
     private Color SensorColor = new Color(0x00 / 255f, 0xFF / 255f, 0xFF / 255f); //00FFFF
@@ -47,8 +47,8 @@ public class SensorsPosition : MonoBehaviour
         DrillBitSensorPos();
         DepthSensorPos();
         SensorOrientation();
-        RTTempSensorPos();
-        STTempSensorPos();
+        RTSensorsPos();
+        STSensorsPos();
         HandleSensorsRayCast();
     }
 
@@ -70,18 +70,26 @@ public class SensorsPosition : MonoBehaviour
         DepthSensor.position = pos;
     }
 
-    private void RTTempSensorPos()
+    private void RTSensorsPos()
     {
-        Vector3 pos = RTTempSensor.position;
-        pos.y = DrillingMachineMovements.GetRTHeight();
-        RTTempSensor.position = pos;
+        float RTHeight = DrillingMachineMovements.GetRTHeight();
+        foreach (Transform rtSensor in RTSensors)
+        {
+            Vector3 pos = rtSensor.position;
+            pos.y = RTHeight;
+            rtSensor.position = pos;
+        }
     }
 
-    private void STTempSensorPos()
+    private void STSensorsPos()
     {
-        Vector3 pos = STTempSensor.position;
-        pos.y = DrillingMachineMovements.GetSTHeight();
-        STTempSensor.position = pos;
+        float STHeight = DrillingMachineMovements.GetSTHeight();
+        foreach (Transform stSensor in STSensors)
+        {
+            Vector3 pos = stSensor.position;
+            pos.y = STHeight;
+            stSensor.position = pos;
+        }
     }
 
 
