@@ -114,7 +114,7 @@ public class GraphHandler : MonoBehaviour
 
     private void ChangeSensor()
     {
-        serie.ClearData();
+        serie.data.Clear();
         serie.data.AddRange(ListPoints[curSensor]);
     }
 
