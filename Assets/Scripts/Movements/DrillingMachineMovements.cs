@@ -39,8 +39,10 @@ public class DrillingMachineMovements : MonoBehaviour
 
     
     public float GetDepth() => excavatedDepth;
+    public bool GetIsDrilling() => isDigging;
     public float GetDrillBitHeight() => DrillBit.position.y;
     public float GetRTHeight() => RotaryTable.position.y;
+    public float GetSTHeight() => SlipTable.position.y;
     
     
     

@@ -7,6 +7,7 @@ public class SensorsPosition : MonoBehaviour
     [SerializeField] private Transform DepthSensor;
     [SerializeField] private Transform DrillBitPosSensor;
     [SerializeField] private Transform RTTempSensor;
+    [SerializeField] private Transform STTempSensor;
 
     private new Camera camera;
     private DrillingMachineMovements DrillingMachineMovements;
@@ -39,6 +40,7 @@ public class SensorsPosition : MonoBehaviour
         DepthSensorPos();
         SensorOrientation();
         RTTempSensorPos();
+        STTempSensorPos();
         HandleSensorsRayCast();
     }
 
@@ -65,6 +67,13 @@ public class SensorsPosition : MonoBehaviour
         Vector3 pos = RTTempSensor.position;
         pos.y = DrillingMachineMovements.GetRTHeight();
         RTTempSensor.position = pos;
+    }
+
+    private void STTempSensorPos()
+    {
+        Vector3 pos = STTempSensor.position;
+        pos.y = DrillingMachineMovements.GetSTHeight();
+        STTempSensor.position = pos;
     }
 
 

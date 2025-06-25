@@ -36,7 +36,8 @@ public class GraphHandler : MonoBehaviour
         {
             { "Socket Depth", 0 },
             { "Drill Bit Position", 1 },
-            { "Rotary Table Temperature", 2 }
+            { "Rotary Table Temperature", 2 },
+            { "Slip Table Temperature", 3 }
         };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
@@ -70,17 +71,25 @@ public class GraphHandler : MonoBehaviour
 
     private List<SerieData> CreatePoints(float x)
     {
-        SerieData newDepthData = new SerieData();
-        newDepthData.data = new List<double>(){ x, DrillingMachineMovements.GetDepth() };
+        List<SerieData> newDatas = new List<SerieData>();
+        for (int _ = 0; _ < ListPoints.Count; _++)
+        {
+            SerieData newData = new SerieData();
+            newData.data = new List<double>() { x, 0 }; 
+            newDatas.Add(newData);
+        }
+        
+        newDatas[0].data[1] = DrillingMachineMovements.GetDepth(); // depth
+        
+        newDatas[1].data[1] = DrillingMachineMovements.GetDrillBitHeight(); // DB height
 
-        SerieData newDrillBitPosData = new SerieData();
-        newDrillBitPosData.data = new List<double>() { x, DrillingMachineMovements.GetDrillBitHeight() };
+        newDatas[2].data[1] = Parameters.WaterTemperature +
+                              Parameters.RotationVelocity * WeightManagement.GetWeightNeeded() / 20; // RT Temp
 
-        SerieData newDrillBitTempData = new SerieData();
-        newDrillBitTempData.data = new List<double>()
-            { x, Parameters.RotationVelocity * WeightManagement.GetWeightNeeded() / 10 };
-
-        return new List<SerieData>() { newDepthData, newDrillBitPosData , newDrillBitTempData};
+        newDatas[3].data[1] = Parameters.WaterTemperature + Parameters.DrillingVelocity * 60 *
+            WeightManagement.GetWeightNeeded() * 3 / (DrillingMachineMovements.GetIsDrilling() ? 1 : 2); // ST Temp
+        
+        return newDatas;
     }
     
     private void AddPointToList(List<SerieData> newData)
