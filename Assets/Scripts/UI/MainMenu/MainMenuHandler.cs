@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject CreditsMenu;
     
@@ -11,7 +10,13 @@ public class MainMenuHandler : MonoBehaviour
     
     
     
-    public void DMModelButtonClicked() => SceneManager.LoadScene("DrillingMachine");
+    public void DrillingModeButtonClicked() => SceneManager.LoadScene("DrillingMachine");
+
+
+
+
+
+    public void ReplayModeButtonClicked() => SceneManager.LoadScene("Replay");
 
 
 
@@ -20,7 +25,7 @@ public class MainMenuHandler : MonoBehaviour
     public void SettingsButtonClicked()
     {
         SettingsMenu.SetActive(true);
-        MainMenu.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 
@@ -30,7 +35,7 @@ public class MainMenuHandler : MonoBehaviour
     public void CreditsButtonClicked()
     {
         CreditsMenu.SetActive(true);
-        MainMenu.SetActive(false);
+        gameObject.SetActive(false);
     }
     
     
