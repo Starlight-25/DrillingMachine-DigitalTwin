@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -50,13 +51,10 @@ public class FileSelectionMenuHandler : MonoBehaviour
         string path = EditorUtility.OpenFilePanel("Open Drilling Data", "", "csv");
         if (DrillingDataManager.Load(path))
         {
-            SelectedFileText.text = path;
+            SelectedFileText.text = $"Selected File: {Path.GetFileName(path)}";
             ConfimButton.SetActive(true);
         }
-        else
-        {
-            SelectedFileText.text = "Invalid CSV file format";
-        }
+        else SelectedFileText.text = "Invalid CSV file format";
     }
 
 

@@ -15,6 +15,8 @@ public class DrillingDataManager : MonoBehaviour
     
     public bool Load(string path)
     {
+        if (path == "") return false;
+        
         string data = System.IO.File.ReadAllText(path);
         using (StringReader reader = new StringReader(data))
         using (CsvReader csv = new CsvReader(reader, CultureInfo.InvariantCulture))
