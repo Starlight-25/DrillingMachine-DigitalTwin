@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6705872844118107246}
   - component: {fileID: 303451891237214323}
+  - component: {fileID: 94234773829087215}
   m_Layer: 0
   m_Name: DrillingMachine(Replay)
   m_TagString: Untagged
@@ -206,6 +207,27 @@ MonoBehaviour:
   - {fileID: 852300679259282525}
   - {fileID: 8642133055802384101}
   GraphHandler: {fileID: 0}
+--- !u!114 &94234773829087215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471574017191872532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1515714478064cd5878718bd478f71aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DLT_B: {fileID: 3138225353178227831}
+  DLT_C: {fileID: 4228069622480006163}
+  DM:
+  - {fileID: 2345772617577422022}
+  - {fileID: 4779051791859097785}
+  - {fileID: 2724064201734202965}
+  - {fileID: 1585050911146731969}
+  - {fileID: 1754891642945661611}
+  DrillingDataManager: {fileID: 0}
 --- !u!1 &6512033618240434059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1063,16 @@ PrefabInstance:
 --- !u!4 &653388941921165601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
+  m_PrefabInstance: {fileID: 1052704020203587274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3138225353178227831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2672538857748849341, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
+  m_PrefabInstance: {fileID: 1052704020203587274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4228069622480006163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3762452172400634585, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
   m_PrefabInstance: {fileID: 1052704020203587274}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1330112315880771114
