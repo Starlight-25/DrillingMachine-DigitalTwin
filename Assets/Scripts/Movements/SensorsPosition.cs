@@ -11,7 +11,7 @@ public class SensorsPosition : MonoBehaviour
     private MeshRenderer[] SensorMeshes;
 
     private Color SensorColor = new Color(0x00 / 255f, 0xFF / 255f, 0xFF / 255f); //00FFFF
-    private Color SensorHoverColor = new Color(0x00 / 255f, 0xFF / 255f, 0x80 / 255f); //00FF80
+    private Color SensorHoverColor = new Color(0x00 / 255f, 0xFF / 255f, 0x40 / 255f); //00FF80
 
     private new Camera camera;
     private DrillingMachineMovements DrillingMachineMovements;
@@ -123,5 +123,15 @@ public class SensorsPosition : MonoBehaviour
     {
         if (sensor is not null) sensor.GetComponent<MeshRenderer>().material.color = SensorHoverColor;
         else foreach (MeshRenderer sensorMesh in SensorMeshes) sensorMesh.material.color = SensorColor;
+    }
+
+
+
+
+
+    public void ChangeSensorsVisibility(bool visible)
+    {
+        foreach (MeshRenderer sensorMesh in SensorMeshes)
+            sensorMesh.enabled = visible;
     }
 }
