@@ -30396,8 +30396,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ParametersMenuHandler, Assembly-CSharp
+      - m_Target: {fileID: 1052304802803758851}
+        m_TargetAssemblyTypeName: ReplayMainUIHandler, Assembly-CSharp
         m_MethodName: UpdateTimeSpeedDropDown
         m_Mode: 0
         m_Arguments:
@@ -30756,7 +30756,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetitngsMenu: {fileID: 1445754901416754973}
   PlayerInput: {fileID: 5868002756629430052}
+  Parameters: {fileID: 0}
   ReplayDMMovements: {fileID: 0}
+  TimeSlider: {fileID: 2358146501910576072}
 --- !u!1 &7518963134145850193
 GameObject:
   m_ObjectHideFlags: 0

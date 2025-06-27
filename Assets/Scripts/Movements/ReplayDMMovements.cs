@@ -120,6 +120,5 @@ public class ReplayDMMovements : MonoBehaviour
             Vector3.up * (DrillingData[curIndex + 1].DrillBit_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         (DrillBit.position, Kelly.position) = (pos, pos);
-        Debug.Log(pos.y);
     }
 }

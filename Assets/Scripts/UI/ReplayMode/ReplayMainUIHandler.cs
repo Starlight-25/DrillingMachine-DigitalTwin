@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ReplayMainUIHandler : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class ReplayMainUIHandler : MonoBehaviour
     private InputAction ReturnInputAction;
     private InputAction PauseInputAction;
 
+    [SerializeField] private Parameters Parameters;
     [SerializeField] private ReplayDMMovements ReplayDMMovements;
+
+    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600 };
+    [SerializeField] private Slider TimeSlider;
     
     
     
@@ -49,4 +54,10 @@ public class ReplayMainUIHandler : MonoBehaviour
     {
         ReplayDMMovements.PauseButtonClicked();
     }
+    
+    
+    
+    
+    
+    public void UpdateTimeSpeedDropDown(int index) => Parameters.TimeAcceleration = timeAccelerationMap[index];
 }
