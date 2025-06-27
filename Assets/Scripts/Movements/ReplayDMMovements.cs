@@ -92,13 +92,14 @@ public class ReplayDMMovements : MonoBehaviour
     private void Move()
     {
         if (paused || curIndex >= DrillingData.Count - 1) return;
-        
+        Debug.Log(Parameters.TimeAcceleration);
         t += Time.deltaTime * Parameters.TimeAcceleration / timeInterval;
         MoveDrillingMachine();
         MoveST();
         MoveRT();
         if (t >= 1f)
         {
+            t = 0f;
             if (curIndex >= DrillingData.Count - 1)
             {
                 paused = true;
