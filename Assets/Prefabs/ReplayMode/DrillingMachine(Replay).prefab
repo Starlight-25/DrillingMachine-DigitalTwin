@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8887240384633491378}
   - component: {fileID: 7017157973979177987}
   m_Layer: 8
-  m_Name: Slip Table Position
+  m_Name: Slip Table Load
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,8 +140,8 @@ Transform:
   - {fileID: 587064763796244823}
   - {fileID: 3150508054390629465}
   - {fileID: 7278421893493281715}
-  - {fileID: 852300679259282525}
   - {fileID: 428104751509164349}
+  - {fileID: 852300679259282525}
   - {fileID: 8642133055802384101}
   m_Father: {fileID: 6705872844118107246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,8 +154,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6705872844118107246}
-  - component: {fileID: 303451891237214323}
   - component: {fileID: 94234773829087215}
+  - component: {fileID: 7822267271389159013}
   m_Layer: 0
   m_Name: DrillingMachine(Replay)
   m_TagString: Untagged
@@ -185,28 +185,6 @@ Transform:
   - {fileID: 1754891642945661611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &303451891237214323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471574017191872532}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b643a16441c04332b02224d0ac39a216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sensors: {fileID: 1754891642945661611}
-  DepthSensor: {fileID: 587064763796244823}
-  DrillBitPosSensor: {fileID: 3150508054390629465}
-  RTSensors:
-  - {fileID: 7278421893493281715}
-  - {fileID: 428104751509164349}
-  STSensors:
-  - {fileID: 852300679259282525}
-  - {fileID: 8642133055802384101}
-  GraphHandler: {fileID: 0}
 --- !u!114 &94234773829087215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +205,30 @@ MonoBehaviour:
   RotaryTable: {fileID: 2724064201734202965}
   DrillingDataManager: {fileID: 0}
   Parameters: {fileID: 0}
+--- !u!114 &7822267271389159013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471574017191872532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3949086b41242c38206fc69501a80bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sensors: {fileID: 1754891642945661611}
+  DrillBitSensors:
+  - {fileID: 587064763796244823}
+  - {fileID: 3150508054390629465}
+  RTSensors:
+  - {fileID: 7278421893493281715}
+  - {fileID: 428104751509164349}
+  STSensors:
+  - {fileID: 852300679259282525}
+  - {fileID: 8642133055802384101}
+  DrillingDataManager: {fileID: 0}
+  GraphHandler: {fileID: 0}
 --- !u!1 &6512033618240434059
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ GameObject:
   - component: {fileID: 8338210387406932731}
   - component: {fileID: 6206739834610183730}
   m_Layer: 8
-  m_Name: Socket Depth
+  m_Name: Weight On Bit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,7 +566,7 @@ GameObject:
   - component: {fileID: 8603365770698604044}
   - component: {fileID: 186467557907869315}
   m_Layer: 8
-  m_Name: Drill Bit Position
+  m_Name: Drill Bit Velocity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,7 +674,7 @@ GameObject:
   - component: {fileID: 4644889968120595034}
   - component: {fileID: 8696754342553428352}
   m_Layer: 8
-  m_Name: Rotary Table Position
+  m_Name: Rotary Table Load
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

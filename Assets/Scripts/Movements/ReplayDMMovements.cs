@@ -14,7 +14,6 @@ public class ReplayDMMovements : MonoBehaviour
     
     [SerializeField] private DrillingDataManager DrillingDataManager;
     private List<DrillingDataCSV> DrillingData;
-    private int curIndex = 0;
     private float t = 0f;
     private float timeInterval;
     [SerializeField] private Parameters Parameters;
@@ -27,11 +26,10 @@ public class ReplayDMMovements : MonoBehaviour
     
     
     
-    public int GetCurrentIndex() => curIndex;
 
     public void SetCurrentIndex(int index)
     {
-        curIndex = index;
+        DrillingDataManager.Index = index;
         SetTimeFields();
     }
     
@@ -91,8 +89,7 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void Move()
     {
-        if (paused || curIndex >= DrillingData.Count - 1) return;
-        Debug.Log(Parameters.TimeAcceleration);
+        if (paused || DrillingDataManager.Index >= DrillingData.Count - 1) return;
         t += Time.deltaTime * Parameters.TimeAcceleration / timeInterval;
         MoveDrillingMachine();
         MoveST();
@@ -100,12 +97,12 @@ public class ReplayDMMovements : MonoBehaviour
         if (t >= 1f)
         {
             t = 0f;
-            if (curIndex >= DrillingData.Count - 1)
+            if (DrillingDataManager.Index >= DrillingData.Count - 1)
             {
                 paused = true;
                 return;
             }
-            curIndex++;
+            DrillingDataManager.Index++;
             SetTimeFields();
         }
     }
@@ -116,11 +113,11 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void SetTimeFields()
     {
-        DrillingDataCSV curDrillingData = DrillingData[curIndex];
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         DateTime curTime =
             DateTime.ParseExact(curDrillingData.Date, dateFormat, CultureInfo.InvariantCulture);
         DateTime nextTime =
-            DateTime.ParseExact(DrillingData[curIndex + 1].Date, dateFormat, CultureInfo.InvariantCulture);
+            DateTime.ParseExact(DrillingData[DrillingDataManager.Index + 1].Date, dateFormat, CultureInfo.InvariantCulture);
         timeInterval = (float)(nextTime - curTime).TotalSeconds;
     }
 
@@ -130,27 +127,27 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void MoveDrillingMachine()
     {
-        DrillingDataCSV curDrillingData = DrillingData[curIndex];
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.DrillBit_Height / 1000),
-            Vector3.up * (DrillingData[curIndex + 1].DrillBit_Height / 1000));
+            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].DrillBit_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         (DrillBit.position, Kelly.position) = (pos, pos);
     }
 
     private void MoveST()
     {
-        DrillingDataCSV curDrillingData = DrillingData[curIndex];
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.ST_Height / 1000),
-            Vector3.up * (DrillingData[curIndex + 1].ST_Height / 1000));
+            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].ST_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         SlipTable.position = pos;
     }
 
     private void MoveRT()
     {
-        DrillingDataCSV curDrillingData = DrillingData[curIndex];
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.RT_Height / 1000),
-            Vector3.up * (DrillingData[curIndex + 1].RT_Height / 1000));
+            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].RT_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         RotaryTable.position = pos;
     }

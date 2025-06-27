@@ -74,8 +74,8 @@ public class ReplayMainUIHandler : MonoBehaviour
 
     private void UpdateTimeSliderAndText()
     {
-        int curIndex = ReplayDMMovements.GetCurrentIndex();
-        TimeSlider.value = curIndex;
+        int curIndex = DrillingDataManager.Index;
+        TimeSlider.value = DrillingDataManager.Index;
         string date = DrillingData[curIndex].Date;
         CurrentTimeText.text = date.Replace(' ', '\n');
     }

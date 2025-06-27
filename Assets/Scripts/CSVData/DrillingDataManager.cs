@@ -8,6 +8,7 @@ using UnityEngine;
 public class DrillingDataManager : MonoBehaviour
 {
     public List<DrillingDataCSV> DrillingData = new List<DrillingDataCSV>();
+    public int Index = 0;
 
     
     

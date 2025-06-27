@@ -30866,6 +30866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5435381355226422673}
   - component: {fileID: 1052304802803758851}
+  - component: {fileID: 200117408006500690}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -30916,6 +30917,21 @@ MonoBehaviour:
   ReplayDMMovements: {fileID: 0}
   TimeSlider: {fileID: 2358146501910576072}
   CurrentTimeText: {fileID: 7894018563557693576}
+--- !u!114 &200117408006500690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516381357018554717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae76941de5546658528573db8da316c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrillingDataManager: {fileID: 0}
+  ReplayDMMovements: {fileID: 0}
+  lineChart: {fileID: 1160662375505156106}
 --- !u!1 &7518963134145850193
 GameObject:
   m_ObjectHideFlags: 0
