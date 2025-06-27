@@ -13,6 +13,7 @@ public class SensorGraphHandler : MonoBehaviour
     private Serie serie;
     private const int MaxVisiblePoints = 60;
     private Dictionary<string, int> SensorIndexMap;
+    private float[] SensorValueMap;
     private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private DateTime startTime;
@@ -41,6 +42,12 @@ public class SensorGraphHandler : MonoBehaviour
             { "Slip Table Temperature", 4 },
             { "Slip Table Load", 5 },
         };
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
+        SensorValueMap = new[]
+        {
+            curDrillingData.WeightOnBit, curDrillingData.DrillingVelocity, curDrillingData.RT_Temp,
+            curDrillingData.RT_Load, curDrillingData.ST_Temp, curDrillingData.ST_Load
+        };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
             ListPoints.Add(new List<SerieData>());
@@ -55,15 +62,16 @@ public class SensorGraphHandler : MonoBehaviour
         int curIndex = DrillingDataManager.Index;
         if (curIndex > prevIndex)
         {
-            prevIndex = DrillingDataManager.Index;
-            DateTime curTime = DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat,
+            prevIndex = curIndex;
+            DateTime curTime = DateTime.ParseExact(DrillingData[curIndex].Date, dateFormat,
                 CultureInfo.InvariantCulture);
             int sec = (int)(curTime - startTime).TotalSeconds;
             AddPoint( sec - 3600);
         }
         else if (curIndex < prevIndex)
         {
-            
+            prevIndex = curIndex;
+            SetPoints();
         }
     }
 
@@ -81,26 +89,12 @@ public class SensorGraphHandler : MonoBehaviour
     private List<SerieData> CreatePoints(float x)
     {
         List<SerieData> newDatas = new List<SerieData>();
-        for (int _ = 0; _ < ListPoints.Count; _++)
+        for (int i = 0; i < ListPoints.Count; i++)
         {
             SerieData newData = new SerieData();
-            newData.data = new List<double>() { x, 0 }; 
+            newData.data = new List<double>() { x, SensorValueMap[i] }; 
             newDatas.Add(newData);
         }
-
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        
-        newDatas[0].data[1] = curDrillingData.WeightOnBit;
-        
-        newDatas[1].data[1] = curDrillingData.DrillingVelocity;
-        
-        newDatas[2].data[1] = curDrillingData.RT_Temp;
-        
-        newDatas[3].data[1] = curDrillingData.RT_Load;
-        
-        newDatas[4].data[1] = curDrillingData.ST_Temp;
-        
-        newDatas[5].data[1] = curDrillingData.ST_Load;
         
         return newDatas;
     }
@@ -152,6 +146,41 @@ public class SensorGraphHandler : MonoBehaviour
                 selectedSensor < 4 ? "Temperature (°C)" : "Height (m)"; 
             lineChart.gameObject.SetActive(true);
             ChangeSensor();
+        }
+    }
+
+
+
+
+
+    private void SetPoints()
+    {
+        CreateRangePoints();
+        curSensor = -1;
+        lineChart.gameObject.SetActive(false);
+    }
+
+    private void CreateRangePoints()
+    {
+        ListPoints = new List<List<SerieData>>();
+        for (int _ = 0; _ < SensorIndexMap.Count; _++)
+            ListPoints.Add(new List<SerieData>());
+
+        int curIndex = DrillingDataManager.Index;
+        int startIndex = curIndex >= MaxVisiblePoints ? 0 : curIndex - MaxVisiblePoints;
+
+        for (int i = 0; i < ListPoints.Count; i++)
+        {
+            List<SerieData> listPoint = ListPoints[i];
+            for (int _ = startIndex; _ < curIndex; _++)
+            {
+                SerieData newData = new SerieData();
+                DateTime curTime = DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat,
+                    CultureInfo.InvariantCulture);
+                int x = (int)(curTime - startTime).TotalSeconds;
+                newData.data = new List<double>() { x, SensorValueMap[i] }; 
+                listPoint.Add(newData);
+            }
         }
     }
 }
