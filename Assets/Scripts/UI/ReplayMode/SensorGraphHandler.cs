@@ -156,8 +156,7 @@ public class SensorGraphHandler : MonoBehaviour
     private void SetPoints()
     {
         CreateRangePoints();
-        curSensor = -1;
-        lineChart.gameObject.SetActive(false);
+        ChangeSensor();
     }
 
     private void CreateRangePoints()
