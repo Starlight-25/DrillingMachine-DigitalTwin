@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,10 +12,12 @@ public class ReplayMainUIHandler : MonoBehaviour
     private InputAction PauseInputAction;
 
     [SerializeField] private Parameters Parameters;
+    [SerializeField] private DrillingDataManager DrillingDataManager;
+    private List<DrillingDataCSV> DrillingData;
     [SerializeField] private ReplayDMMovements ReplayDMMovements;
-
     private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600 };
     [SerializeField] private Slider TimeSlider;
+    [SerializeField] private TextMeshProUGUI CurrentTimeText;
     
     
     
@@ -21,6 +25,9 @@ public class ReplayMainUIHandler : MonoBehaviour
     
     private void Start()
     {
+        DrillingData = DrillingDataManager.DrillingData;
+        TimeSlider.maxValue = DrillingData.Count;
+        
         ReturnInputAction = PlayerInput.actions["Return"];
         PauseInputAction = PlayerInput.actions["Pause"];
     }
@@ -33,6 +40,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     {
         if (ReturnInputAction.triggered) SettingsButtonClicked();
         if (PauseInputAction.triggered) PauseButtonClicked();
+        UpdateTimeSliderAndText();
     }
 
     
@@ -60,4 +68,23 @@ public class ReplayMainUIHandler : MonoBehaviour
     
     
     public void UpdateTimeSpeedDropDown(int index) => Parameters.TimeAcceleration = timeAccelerationMap[index];
+
+
+
+
+    private void UpdateTimeSliderAndText()
+    {
+        int curIndex = ReplayDMMovements.GetCurrentIndex();
+        TimeSlider.value = curIndex;
+        string date = DrillingData[curIndex].Date;
+        CurrentTimeText.text = date.Replace(' ', '\n');
+    }
+
+
+
+
+    public void UpdateTimeSliderValueChanged(float val)
+    {
+        ReplayDMMovements.SetCurrentIndex((int)val);
+    }
 }

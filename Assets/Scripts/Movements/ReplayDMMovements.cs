@@ -27,9 +27,21 @@ public class ReplayDMMovements : MonoBehaviour
     
     
     
+    public int GetCurrentIndex() => curIndex;
+
+    public void SetCurrentIndex(int index)
+    {
+        curIndex = index;
+        SetTimeFields();
+    }
+    
+    
+    
+    
+    
     private void Start()
     {
-        DrillingDataManager.Load(@"C:\\Users\\linje\\EPITA\\Res\\DrillDigitalTwin\\Data\\DrillingReplayExample.csv");
+        //DrillingDataManager.Load(@"C:\\Users\\linje\\EPITA\\Res\\DrillDigitalTwin\\Data\\DrillingReplayExample.csv");
         DrillingData = DrillingDataManager.DrillingData;
         // DrillingData = new List<DrillingDataCSV>();
         // DrillingData.Add(new DrillingDataCSV()

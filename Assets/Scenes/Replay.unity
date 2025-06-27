@@ -476,6 +476,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 194, z: 0}
+--- !u!1 &556803124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6471574017191872532, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+  m_PrefabInstance: {fileID: 3049750729019191024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013653645
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +782,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2060053459}
     - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
       propertyPath: Parameters
       value: 
       objectReference: {fileID: 288865097}
@@ -881,45 +890,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1052304802803758851, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: Parameters
+      value: 
+      objectReference: {fileID: 288865097}
+    - target: {fileID: 1052304802803758851, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: ReplayDMMovements
       value: 
       objectReference: {fileID: 3049750729019191028}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 1052304802803758851, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: DrillingDataManager
       value: 
-      objectReference: {fileID: 847110903815122846}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseButtonClicked
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ReplayMainUIHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590890242711005201, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 288865096}
     - target: {fileID: 2365606434154244028, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 288865095}
-    - target: {fileID: 3889622290785626057, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5506137166985153219, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1000,38 +985,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5755974234231596321, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7122613601335553921, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: m_Name
       value: UI(Replay)
       objectReference: {fileID: 0}
     - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: DrillingMachine
+      value: 
+      objectReference: {fileID: 556803124}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
-    - target: {fileID: 8655898882886262647, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
---- !u!114 &847110903815122846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1052304802803758851, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-  m_PrefabInstance: {fileID: 847110903815122845}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5508f6e5315425a9426835bd6202eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3049750729019191024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1041,25 +1011,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-      propertyPath: Kelly
-      value: 
-      objectReference: {fileID: 3049750729019191027}
-    - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-      propertyPath: DrillBit
-      value: 
-      objectReference: {fileID: 2060053459}
-    - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-      propertyPath: SlipTable
-      value: 
-      objectReference: {fileID: 3049750729019191026}
-    - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
       propertyPath: Parameters
       value: 
       objectReference: {fileID: 288865097}
-    - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-      propertyPath: RotaryTable
-      value: 
-      objectReference: {fileID: 3049750729019191025}
     - target: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
       propertyPath: DrillingDataManager
       value: 
@@ -1125,27 +1079,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
---- !u!4 &3049750729019191025 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2724064201734202965, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-  m_PrefabInstance: {fileID: 3049750729019191024}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3049750729019191026 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4779051791859097785, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-  m_PrefabInstance: {fileID: 3049750729019191024}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3049750729019191027 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2345772617577422022, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-  m_PrefabInstance: {fileID: 3049750729019191024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3049750729019191028 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 94234773829087215, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
   m_PrefabInstance: {fileID: 3049750729019191024}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 556803124}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1515714478064cd5878718bd478f71aa, type: 3}

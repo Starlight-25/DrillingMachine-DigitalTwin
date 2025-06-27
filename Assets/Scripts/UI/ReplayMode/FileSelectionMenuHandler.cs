@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class FileSelectionMenuHandler : MonoBehaviour
 {
     [SerializeField] private GameObject MainUI;
+    [SerializeField] private GameObject DrillingMachine;
     [SerializeField] private GameObject ConfimButton;
     [SerializeField] private TextMeshProUGUI SelectedFileText;
     
@@ -65,6 +66,7 @@ public class FileSelectionMenuHandler : MonoBehaviour
     {
         Time.timeScale = 1f;
         MainUI.SetActive(true);
+        DrillingMachine.SetActive(true);
         gameObject.SetActive(false);
     }
 }
