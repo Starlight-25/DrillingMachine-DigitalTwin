@@ -4,7 +4,13 @@ public class DrillingDataCSV
     public float DLT_B { get; set; }
     public float DLT_C { get; set; }
     public float DM { get; set; }
-    public float Depth { get; set; }
-    public float ST_height { get; set; }
-    public float RT_height { get; set; }
+    public float ST_Height { get; set; }
+    public float RT_Height { get; set; }
+    public float DrillBit_Height { get; set; }
+    public float ST_Load { get; set; }
+    public float ST_Temp { get; set; }
+    public float RT_Load { get; set; }
+    public float RT_Temp { get; set; }
+    public float WeightOnBit { get; set; }
+    public float DrillingVelocity { get; set; }
 }

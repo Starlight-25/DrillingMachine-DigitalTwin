@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +6,9 @@ public class ReplayMainUIHandler : MonoBehaviour
     [SerializeField] private GameObject SetitngsMenu;
     [SerializeField] private PlayerInput PlayerInput;
     private InputAction ReturnInputAction;
+    private InputAction PauseInputAction;
+
+    [SerializeField] private ReplayDMMovements ReplayDMMovements;
     
     
     
@@ -15,6 +17,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     private void Start()
     {
         ReturnInputAction = PlayerInput.actions["Return"];
+        PauseInputAction = PlayerInput.actions["Pause"];
     }
 
     
@@ -24,6 +27,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     private void Update()
     {
         if (ReturnInputAction.triggered) SettingsButtonClicked();
+        if (PauseInputAction.triggered) PauseButtonClicked();
     }
 
     
@@ -35,5 +39,14 @@ public class ReplayMainUIHandler : MonoBehaviour
         Time.timeScale = 0f;
         SetitngsMenu.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+
+    
+
+
+    public void PauseButtonClicked()
+    {
+        ReplayDMMovements.PauseButtonClicked();
     }
 }
