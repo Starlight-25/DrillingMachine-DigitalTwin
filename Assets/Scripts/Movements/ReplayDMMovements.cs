@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 public class ReplayDMMovements : MonoBehaviour
@@ -26,11 +27,18 @@ public class ReplayDMMovements : MonoBehaviour
     
     
     
-
+    
     public void SetCurrentIndex(int index)
     {
         DrillingDataManager.Index = index;
         SetTimeFields();
+    }
+
+    public float GetDepth()
+    {
+        return DrillingDataManager.Index != 0
+            ? DrillingData.GetRange(0, DrillingDataManager.Index).Min(data => data.DrillBit_Height) / 1000
+            : 0;
     }
     
     
@@ -39,17 +47,7 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void Start()
     {
-        //DrillingDataManager.Load(@"C:\\Users\\linje\\EPITA\\Res\\DrillDigitalTwin\\Data\\DrillingReplayExample.csv");
         DrillingData = DrillingDataManager.DrillingData;
-        // DrillingData = new List<DrillingDataCSV>();
-        // DrillingData.Add(new DrillingDataCSV()
-        // {
-        //     Date = "01/01/2020 00:00", DLT_B = 0, DLT_C = 0, DM = 0, DrillBit_Height = 0, DrillingVelocity = 0, RT_Height = 0, RT_Load = 0, RT_Temp = 0, ST_Height = 0, ST_Load = 0, ST_Temp = 0, WeightOnBit = 0
-        // });
-        // DrillingData.Add(new DrillingDataCSV()
-        // {
-        //     Date = "01/01/2020 00:01", DLT_B = 0, DLT_C = 0, DM = 0, DrillBit_Height = 10, DrillingVelocity = 0, RT_Height = 0, RT_Load = 0, RT_Temp = 0, ST_Height = 0, ST_Load = 0, ST_Temp = 0, WeightOnBit = 0
-        // });
         SetTimeFields();
         //InitEquipmentPostition();
     }

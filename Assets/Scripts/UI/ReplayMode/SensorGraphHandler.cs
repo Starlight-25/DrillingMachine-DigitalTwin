@@ -13,7 +13,7 @@ public class SensorGraphHandler : MonoBehaviour
     private Serie serie;
     private const int MaxVisiblePoints = 60;
     private Dictionary<string, int> SensorIndexMap;
-    private float[] SensorValueMap;
+    private Func<double>[] SensorValueMap;
     private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private DateTime startTime;
@@ -41,12 +41,18 @@ public class SensorGraphHandler : MonoBehaviour
             { "Rotary Table Load", 3 },
             { "Slip Table Temperature", 4 },
             { "Slip Table Load", 5 },
+            { "Depth", 6 }
         };
         DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         SensorValueMap = new[]
         {
-            curDrillingData.WeightOnBit, curDrillingData.DrillingVelocity, curDrillingData.RT_Temp,
-            curDrillingData.RT_Load, curDrillingData.ST_Temp, curDrillingData.ST_Load
+            (Func<double>)(() => curDrillingData.WeightOnBit),
+            (Func<double>)(() => curDrillingData.DrillingVelocity),
+            (Func<double>)(() => curDrillingData.RT_Temp),
+            (Func<double>)(() => curDrillingData.RT_Load),
+            (Func<double>)(() => curDrillingData.ST_Temp),
+            (Func<double>)(() => curDrillingData.ST_Load),
+            (Func<double>)(() => ReplayDMMovements.GetDepth())
         };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
@@ -92,7 +98,7 @@ public class SensorGraphHandler : MonoBehaviour
         for (int i = 0; i < ListPoints.Count; i++)
         {
             SerieData newData = new SerieData();
-            newData.data = new List<double>() { x, SensorValueMap[i] }; 
+            newData.data = new List<double>() { x, SensorValueMap[i]() }; 
             newDatas.Add(newData);
         }
         
@@ -122,7 +128,7 @@ public class SensorGraphHandler : MonoBehaviour
     private void ChangeSensor()
     {
         serie.data.Clear();
-        serie.data.AddRange(ListPoints[curSensor]);
+        if (curSensor != -1) serie.data.AddRange(ListPoints[curSensor]);
     }
 
     
@@ -177,7 +183,7 @@ public class SensorGraphHandler : MonoBehaviour
                 DateTime curTime = DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat,
                     CultureInfo.InvariantCulture);
                 int x = (int)(curTime - startTime).TotalSeconds;
-                newData.data = new List<double>() { x, SensorValueMap[i] }; 
+                newData.data = new List<double>() { x, SensorValueMap[i]() }; 
                 listPoint.Add(newData);
             }
         }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ReplaySensorPosition : MonoBehaviour
 {
     [SerializeField] private Transform Sensors;
-    // [SerializeField] private Transform DepthSensor;
+    [SerializeField] private Transform DepthSensor;
     [SerializeField] private Transform[] DrillBitSensors;
     [SerializeField] private Transform[] RTSensors;
     [SerializeField] private Transform[] STSensors;
@@ -49,7 +50,7 @@ public class ReplaySensorPosition : MonoBehaviour
     private void Update()
     {
         DrillBitSensorPos();
-        // DepthSensorPos();
+        DepthSensorPos();
         SensorOrientation();
         RTSensorsPos();
         STSensorsPos();
@@ -71,12 +72,12 @@ public class ReplaySensorPosition : MonoBehaviour
         }
     }
 
-    // private void DepthSensorPos()
-    // {
-    //     Vector3 pos = DepthSensor.position;
-    //     pos.y = 
-    //     DepthSensor.position = pos;
-    // }
+    private void DepthSensorPos()
+    {
+        Vector3 pos = DepthSensor.position;
+        pos.y = ReplayDMMovements.GetDepth();
+        DepthSensor.position = pos;
+    }
 
     private void RTSensorsPos()
     {
