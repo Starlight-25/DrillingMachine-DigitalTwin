@@ -7,6 +7,7 @@ public class DrillingDataCSV
     public float ST_Height { get; set; }
     public float RT_Height { get; set; }
     public float DrillBit_Height { get; set; }
+    public float DrillBit_Rotation { get; set; }
     public float ST_Load { get; set; }
     public float ST_Temp { get; set; }
     public float RT_Load { get; set; }
