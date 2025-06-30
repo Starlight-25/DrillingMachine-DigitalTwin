@@ -92,6 +92,7 @@ public class ReplayDMMovements : MonoBehaviour
         MoveDrillingMachine();
         MoveST();
         MoveRT();
+        RotateDrillingMachine();
         if (t >= 1f)
         {
             t = 0f;
@@ -148,5 +149,15 @@ public class ReplayDMMovements : MonoBehaviour
             Vector3.up * (DrillingData[DrillingDataManager.Index + 1].RT_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         RotaryTable.position = pos;
+    }
+
+    private void RotateDrillingMachine()
+    {
+        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
+        (float starRot, float nextRot) = (curDrillingData.DrillBit_Rotation,
+            DrillingData[DrillingDataManager.Index + 1].DrillBit_Rotation);
+        float rotation = Mathf.Lerp(starRot, nextRot, t) * 360 / 60 * Time.deltaTime * Parameters.TimeAcceleration;
+        DrillBit.Rotate(0,0, rotation);
+        Kelly.Rotate(0,0, rotation);
     }
 }
