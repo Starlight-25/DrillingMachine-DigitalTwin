@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
@@ -13,6 +14,7 @@ public class GraphHandler : MonoBehaviour
     private Serie serie;
     private const int MaxVisiblePoints = 60;
     private Dictionary<string, int> SensorIndexMap;
+    private Func<double>[] SensorValueMap;
     private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private float prevTime;
@@ -40,6 +42,17 @@ public class GraphHandler : MonoBehaviour
             { "Slip Table Temperature", 3 },
             { "Rotary Table Position", 4 },
             { "Slip Table Position", 5 }
+        };
+        SensorValueMap = new[]
+        {
+            (Func<double>)(() => DrillingMachineMovements.GetDepth()),
+            (Func<double>)(() => DrillingMachineMovements.GetDrillBitHeight()),
+            (Func<double>)(() => Parameters.WaterTemperature +
+                                 Parameters.RotationVelocity * WeightManagement.GetWeightNeeded() / 20),
+            (Func<double>)(() => Parameters.WaterTemperature + Parameters.DrillingVelocity * 60 *
+                WeightManagement.GetWeightNeeded() * 3 / (DrillingMachineMovements.GetIsDrilling() ? 1 : 2)),
+            (Func<double>)(() => DrillingMachineMovements.GetRTHeight()),
+            (Func<double>)(() => DrillingMachineMovements.GetSTHeight())
         };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
@@ -74,27 +87,12 @@ public class GraphHandler : MonoBehaviour
     private List<SerieData> CreatePoints(float x)
     {
         List<SerieData> newDatas = new List<SerieData>();
-        for (int _ = 0; _ < ListPoints.Count; _++)
+        for (int i = 0; i < ListPoints.Count; i++)
         {
             SerieData newData = new SerieData();
-            newData.data = new List<double>() { x, 0 }; 
+            newData.data = new List<double>() { x, SensorValueMap[i]() }; 
             newDatas.Add(newData);
         }
-        
-        newDatas[0].data[1] = DrillingMachineMovements.GetDepth(); // depth
-        
-        newDatas[1].data[1] = DrillingMachineMovements.GetDrillBitHeight(); // DB height
-
-        newDatas[2].data[1] = Parameters.WaterTemperature +
-                              Parameters.RotationVelocity * WeightManagement.GetWeightNeeded() / 20; // RT Temp
-
-        newDatas[3].data[1] = Parameters.WaterTemperature + Parameters.DrillingVelocity * 60 *
-            WeightManagement.GetWeightNeeded() * 3 / (DrillingMachineMovements.GetIsDrilling() ? 1 : 2); // ST Temp
-
-        newDatas[4].data[1] = DrillingMachineMovements.GetRTHeight();
-
-        newDatas[5].data[1] = DrillingMachineMovements.GetSTHeight();
-        
         return newDatas;
     }
     
