@@ -26,7 +26,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     private void Start()
     {
         DrillingData = DrillingDataManager.DrillingData;
-        TimeSlider.maxValue = DrillingData.Count;
+        TimeSlider.maxValue = DrillingData.Count - 2;
         
         ReturnInputAction = PlayerInput.actions["Return"];
         PauseInputAction = PlayerInput.actions["Pause"];

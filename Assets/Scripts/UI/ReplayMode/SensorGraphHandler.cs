@@ -14,6 +14,7 @@ public class SensorGraphHandler : MonoBehaviour
     private const int MaxVisiblePoints = 60;
     private Dictionary<string, int> SensorIndexMap;
     private Func<double>[] SensorValueMap;
+    private string[] YAxisNameMap;
     private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private DateTime startTime;
@@ -53,6 +54,16 @@ public class SensorGraphHandler : MonoBehaviour
             (Func<double>)(() => curDrillingData.ST_Temp),
             (Func<double>)(() => curDrillingData.ST_Load),
             (Func<double>)(() => ReplayDMMovements.GetDepth())
+        };
+        YAxisNameMap = new[]
+        {
+            "Weight (tons)",
+            "Velocity (mm/s)",
+            "Temperature (°C)",
+            "Load (tons)",
+            "Temperature (°C)",
+            "Load (tons)",
+            "Depth (m)"
         };
         
         for (int _ = 0; _ < SensorIndexMap.Count; _++)
@@ -148,8 +159,7 @@ public class SensorGraphHandler : MonoBehaviour
             curSensor = selectedSensor;
             Title title = lineChart.EnsureChartComponent<Title>();
             title.text = sensor;
-            lineChart.EnsureChartComponent<YAxis>().axisName.name = selectedSensor < 2 ? "Depth (m)" :
-                selectedSensor < 4 ? "Temperature (°C)" : "Height (m)"; 
+            lineChart.EnsureChartComponent<YAxis>().axisName.name = YAxisNameMap[curSensor];
             lineChart.gameObject.SetActive(true);
             ChangeSensor();
         }
