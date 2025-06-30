@@ -83,8 +83,5 @@ public class ReplayMainUIHandler : MonoBehaviour
 
 
 
-    public void UpdateTimeSliderValueChanged(float val)
-    {
-        ReplayDMMovements.SetCurrentIndex((int)val);
-    }
+    public void UpdateTimeSliderValueChanged(float val) => ReplayDMMovements.SetCurrentIndex((int)val);
 }

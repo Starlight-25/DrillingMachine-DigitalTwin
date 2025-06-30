@@ -32,9 +32,7 @@ public class WeightManagement : MonoBehaviour
         
         MeshRenderers = new MeshRenderer[transform.childCount - 1];
         for (int i = 0; i < MeshRenderers.Length; i++)
-        {
             MeshRenderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
-        }
 
         Camera = UnityEngine.Camera.main.transform;
         
@@ -139,7 +137,7 @@ public class WeightManagement : MonoBehaviour
     private void InfoCanvasLookAtCamera()
     {
         InfoCanvas.LookAt(Camera);
-        var angles = InfoCanvas.rotation.eulerAngles;
+        Vector3 angles = InfoCanvas.rotation.eulerAngles;
         angles.x = 0f;
         InfoCanvas.rotation = Quaternion.Euler(angles);
     }

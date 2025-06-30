@@ -34,12 +34,9 @@ public class ReplayDMMovements : MonoBehaviour
         SetTimeFields();
     }
 
-    public float GetDepth()
-    {
-        return DrillingDataManager.Index != 0
-            ? DrillingData.GetRange(0, DrillingDataManager.Index).Min(data => data.DrillBit_Height) / 1000
-            : 0;
-    }
+    public float GetDepth() => DrillingDataManager.Index != 0
+        ? DrillingData.GetRange(0, DrillingDataManager.Index).Min(data => data.DrillBit_Height) / 1000
+        : 0;
     
     
     
@@ -89,10 +86,13 @@ public class ReplayDMMovements : MonoBehaviour
     {
         if (paused || DrillingDataManager.Index >= DrillingData.Count - 1) return;
         t += Time.deltaTime * Parameters.TimeAcceleration / timeInterval;
-        MoveDrillingMachine();
-        MoveST();
-        MoveRT();
-        RotateDrillingMachine();
+
+        (DrillingDataCSV curData, DrillingDataCSV nextData) = (DrillingData[DrillingDataManager.Index],
+            DrillingData[DrillingDataManager.Index + 1]);
+        MoveDrillingMachine(curData, nextData);
+        MoveST(curData, nextData);
+        MoveRT(curData, nextData);
+        RotateDrillingMachine(curData, nextData);
         if (t >= 1f)
         {
             t = 0f;
@@ -112,9 +112,8 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void SetTimeFields()
     {
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         DateTime curTime =
-            DateTime.ParseExact(curDrillingData.Date, dateFormat, CultureInfo.InvariantCulture);
+            DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat, CultureInfo.InvariantCulture);
         DateTime nextTime =
             DateTime.ParseExact(DrillingData[DrillingDataManager.Index + 1].Date, dateFormat, CultureInfo.InvariantCulture);
         timeInterval = (float)(nextTime - curTime).TotalSeconds;
@@ -124,38 +123,33 @@ public class ReplayDMMovements : MonoBehaviour
     
     
     
-    private void MoveDrillingMachine()
+    private void MoveDrillingMachine(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.DrillBit_Height / 1000),
-            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].DrillBit_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.DrillBit_Height / 1000),
+            Vector3.up * (nextData.DrillBit_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         (DrillBit.position, Kelly.position) = (pos, pos);
     }
 
-    private void MoveST()
+    private void MoveST(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.ST_Height / 1000),
-            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].ST_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.ST_Height / 1000),
+            Vector3.up * (nextData.ST_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         SlipTable.position = pos;
     }
 
-    private void MoveRT()
+    private void MoveRT(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curDrillingData.RT_Height / 1000),
-            Vector3.up * (DrillingData[DrillingDataManager.Index + 1].RT_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.RT_Height / 1000),
+            Vector3.up * (nextData.RT_Height / 1000));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         RotaryTable.position = pos;
     }
 
-    private void RotateDrillingMachine()
+    private void RotateDrillingMachine(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        (float starRot, float nextRot) = (curDrillingData.DrillBit_Rotation,
-            DrillingData[DrillingDataManager.Index + 1].DrillBit_Rotation);
+        (float starRot, float nextRot) = (curData.DrillBit_Rotation, nextData.DrillBit_Rotation);
         float rotation = Mathf.Lerp(starRot, nextRot, t) * 360 / 60 * Time.deltaTime * Parameters.TimeAcceleration;
         DrillBit.Rotate(0,0, rotation);
         Kelly.Rotate(0,0, rotation);
