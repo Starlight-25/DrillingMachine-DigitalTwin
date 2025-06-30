@@ -98,7 +98,7 @@ public class SensorsPosition : MonoBehaviour
     private void SensorOrientation()
     {
         Sensors.LookAt(camera.transform);
-        var angles = Sensors.rotation.eulerAngles;
+        Vector3 angles = Sensors.rotation.eulerAngles;
         angles.x = 0f;
         Sensors.rotation = Quaternion.Euler(angles);
     }
