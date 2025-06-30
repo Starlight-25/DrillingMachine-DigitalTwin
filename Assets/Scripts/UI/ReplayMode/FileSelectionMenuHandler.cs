@@ -1,7 +1,6 @@
-using System;
 using System.IO;
+using SFB;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -49,13 +48,22 @@ public class FileSelectionMenuHandler : MonoBehaviour
 
     public void OpenCSVFileButtonClicked()
     {
-        string path = EditorUtility.OpenFilePanel("Open Drilling Data", "", "csv");
+        string path = OpenFileDialog();
         if (DrillingDataManager.Load(path))
         {
             SelectedFileText.text = $"Selected File: {Path.GetFileName(path)}";
             ConfimButton.SetActive(true);
         }
         else SelectedFileText.text = "Invalid CSV file format";
+    }
+
+    private string OpenFileDialog()
+    {
+        var extensions = new[] {
+            new ExtensionFilter("CSV Files", "csv")
+        };
+        string[] paths = StandaloneFileBrowser.OpenFilePanel("Open Drilling Data", "", extensions, false);
+        return paths.Length != 0 ? paths[0] : "";
     }
 
 
