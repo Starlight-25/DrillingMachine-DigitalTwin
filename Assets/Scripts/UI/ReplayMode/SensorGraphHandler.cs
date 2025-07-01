@@ -36,28 +36,24 @@ public class SensorGraphHandler : MonoBehaviour
 
         SensorIndexMap = new Dictionary<string, int>()
         {
-            { "Weight On Bit", 0 },
-            { "Drill Bit Velocity", 1 },
-            { "Rotary Table Temperature", 2 },
-            { "Rotary Table Load", 3 },
-            { "Slip Table Temperature", 4 },
-            { "Slip Table Load", 5 },
-            { "Depth", 6 }
+            { "Drill Bit Velocity", 0 },
+            { "Rotary Table Temperature", 1 },
+            { "Rotary Table Load", 2 },
+            { "Slip Table Temperature", 3 },
+            { "Slip Table Load", 4 },
+            { "Depth", 5 }
         };
-        DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
         SensorValueMap = new[]
         {
-            (Func<double>)(() => curDrillingData.WeightOnBit),
-            (Func<double>)(() => curDrillingData.DrillingVelocity),
-            (Func<double>)(() => curDrillingData.RT_Temp),
-            (Func<double>)(() => curDrillingData.RT_Load),
-            (Func<double>)(() => curDrillingData.ST_Temp),
-            (Func<double>)(() => curDrillingData.ST_Load),
+            (Func<double>)(() => DrillingData[DrillingDataManager.Index].DrillingVelocity),
+            (Func<double>)(() => DrillingData[DrillingDataManager.Index].RT_Temp),
+            (Func<double>)(() => DrillingData[DrillingDataManager.Index].RT_Load),
+            (Func<double>)(() => DrillingData[DrillingDataManager.Index].ST_Temp),
+            (Func<double>)(() => DrillingData[DrillingDataManager.Index].ST_Load),
             (Func<double>)(() => ReplayDMMovements.GetDepth())
         };
         YAxisNameMap = new[]
         {
-            "Weight (tons)",
             "Velocity (mm/s)",
             "Temperature (°C)",
             "Load (tons)",
