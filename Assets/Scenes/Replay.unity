@@ -816,11 +816,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1585050911146731969, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
   m_PrefabInstance: {fileID: 3049750729019191024}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2070002342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8920201546689798200, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
-  m_PrefabInstance: {fileID: 757534109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073857782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI(Replay)
       objectReference: {fileID: 0}
+    - target: {fileID: 7217471695953473794, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3049750729019191032}
     - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: DrillingMachine
       value: 
@@ -1031,18 +1030,10 @@ PrefabInstance:
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
-    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: DrillingMachine.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: 'DrillingMachine.Array.data[0]'
+    - target: {fileID: 8372915279656055650, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 556803124}
-    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: 'DrillingMachine.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2070002342}
+      objectReference: {fileID: 3049750729019191032}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1087,6 +1078,10 @@ PrefabInstance:
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 288865095}
+    - target: {fileID: 2633358245888717265, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+      propertyPath: DrillingDataManager
+      value: 
+      objectReference: {fileID: 288865096}
     - target: {fileID: 6471574017191872532, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
       propertyPath: m_Name
       value: DrillingMachine(Replay)
@@ -1168,6 +1163,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3949086b41242c38206fc69501a80bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3049750729019191032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2633358245888717265, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+  m_PrefabInstance: {fileID: 3049750729019191024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556803124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f55761bfaf4fb5bef2c18ca9039a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
