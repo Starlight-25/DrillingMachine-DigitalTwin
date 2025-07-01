@@ -490,9 +490,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2705180019359337089, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
+      propertyPath: ReplayDMMovements
+      value: 
+      objectReference: {fileID: 3049750729019191028}
+    - target: {fileID: 2705180019359337089, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
+      propertyPath: DrillingDataManager
+      value: 
+      objectReference: {fileID: 288865096}
     - target: {fileID: 8920201546689798200, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
       propertyPath: m_Name
       value: Plane(Replay)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920201546689798200, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9145909200755556749, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -804,6 +816,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1585050911146731969, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
   m_PrefabInstance: {fileID: 3049750729019191024}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2070002342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8920201546689798200, guid: e382cff20dc18e64a8c18f6882ec20f8, type: 3}
+  m_PrefabInstance: {fileID: 757534109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073857782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1014,6 +1031,18 @@ PrefabInstance:
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: DrillingMachine.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: 'DrillingMachine.Array.data[0]'
+      value: 
+      objectReference: {fileID: 556803124}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: 'DrillingMachine.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2070002342}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
