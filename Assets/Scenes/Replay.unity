@@ -1118,6 +1118,10 @@ PrefabInstance:
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
+    - target: {fileID: 7870829277396229920, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+      propertyPath: DrillingDataManager
+      value: 
+      objectReference: {fileID: 288865096}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
