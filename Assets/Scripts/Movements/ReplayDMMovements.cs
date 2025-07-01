@@ -73,9 +73,10 @@ public class ReplayDMMovements : MonoBehaviour
     }
 
 
-    
-    
-    
+
+
+
+    public bool IsPaused() => paused;
     public void PauseButtonClicked() => paused = !paused;
 
 
