@@ -9067,7 +9067,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SensorsPosition, Assembly-CSharp
+        m_TargetAssemblyTypeName: ReplaySensorPosition, Assembly-CSharp
         m_MethodName: ChangeSensorsVisibility
         m_Mode: 0
         m_Arguments:
