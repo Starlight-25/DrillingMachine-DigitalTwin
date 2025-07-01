@@ -1,7 +1,13 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneHandler : MonoBehaviour
+public class ReplayPlaneHandler : MonoBehaviour
 {
+    [SerializeField] private DrillingDataManager DrillingDataManager;
+    private List<DrillingDataCSV> DrillingData;
+    [SerializeField] private ReplayDMMovements ReplayDMMovements;
+    
     private Mesh Mesh;
     private MeshFilter MeshFilter;
     private MeshCollider MeshCollider;
@@ -14,6 +20,7 @@ public class PlaneHandler : MonoBehaviour
     
     private const float radius = 4.5f;
     private float curDepth = 0f;
+    private int prevIndex = -1;
 
     
     
@@ -32,16 +39,32 @@ public class PlaneHandler : MonoBehaviour
     
     
     
+    private void Update()
+    {
+        if(prevIndex > DrillingDataManager.Index) UpdateHole();
+        prevIndex = DrillingDataManager.Index;
+    }
+    
+    
+    
+    
+    
     private void OnCollisionEnter(Collision other)
     {
         Hole(other.transform.position.y);
         AssignMesh();
     }
 
-    
-    
-    
+    private void UpdateHole()
+    {
+        ForceHole(ReplayDMMovements.GetDepth());
+        AssignMesh();
+    }
 
+
+
+    
+    
     private void GeneratePlane(Vector2 size, int resolution)
     {
         int vertCount = (resolution + 1) * (resolution + 1);
@@ -103,6 +126,18 @@ public class PlaneHandler : MonoBehaviour
     private void Hole(float depth)
     {
         if (curDepth > depth) curDepth = depth;
+        for (int i = 0; i < verticles.Length; i++)
+        {
+            Vector3 vertex = verticles[i];
+            float distance = new Vector2(vertex.x, vertex.z).magnitude;
+            if (distance < radius) vertex.y = curDepth;
+            verticles[i] = vertex;
+        }
+    }
+    
+    private void ForceHole(float depth)
+    {
+        curDepth = depth;
         for (int i = 0; i < verticles.Length; i++)
         {
             Vector3 vertex = verticles[i];
