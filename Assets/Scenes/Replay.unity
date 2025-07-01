@@ -918,6 +918,18 @@ PrefabInstance:
       propertyPath: SettingsHandler
       value: 
       objectReference: {fileID: 288865095}
+    - target: {fileID: 5365847271427905868, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3049750729019191030}
+    - target: {fileID: 5365847271427905868, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSensorsVisibility
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365847271427905868, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ReplaySensorPosition, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5506137166985153219, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1120,6 +1132,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1515714478064cd5878718bd478f71aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3049750729019191030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7822267271389159013, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+  m_PrefabInstance: {fileID: 3049750729019191024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556803124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3949086b41242c38206fc69501a80bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
