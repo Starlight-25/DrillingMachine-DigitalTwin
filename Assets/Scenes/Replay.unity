@@ -630,6 +630,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1347076471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8507522202706587957, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+  m_PrefabInstance: {fileID: 194830305579510341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541980204
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,84 +743,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541980204}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1796969795
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 423447446132166048, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_Name
-      value: TerrainLayers
-      objectReference: {fileID: 0}
-    - target: {fileID: 423447446132166048, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946587288913969717, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: DrillBit
-      value: 
-      objectReference: {fileID: 2060053459}
-    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
-      propertyPath: Parameters
-      value: 
-      objectReference: {fileID: 288865097}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
---- !u!4 &2060053459 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1585050911146731969, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-  m_PrefabInstance: {fileID: 3049750729019191024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073857782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -898,6 +825,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6253672571539168574, guid: 031b4a1becb1fd74f85d0ee564e04bbf, type: 3}
   m_PrefabInstance: {fileID: 2073857782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &194830305579510341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7073899254177190919, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: DrillingDataManager
+      value: 
+      objectReference: {fileID: 288865096}
+    - target: {fileID: 8507522202706587957, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_Name
+      value: TerrainLayers(Replay)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713834517550403849, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ce723deeb4e12541b335d90706e2e91, type: 3}
 --- !u!1001 &847110903815122845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,13 +1011,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3049750729019191032}
     - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: DrillingMachine
-      value: 
-      objectReference: {fileID: 556803124}
-    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: 'DrillingMachine.Array.data[0]'
+      value: 
+      objectReference: {fileID: 556803124}
+    - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: 'DrillingMachine.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1347076471}
     - target: {fileID: 8372915279656055650, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1187,4 +1179,4 @@ SceneRoots:
   - {fileID: 3049750729019191024}
   - {fileID: 757534109}
   - {fileID: 250725309}
-  - {fileID: 1796969795}
+  - {fileID: 194830305579510341}
