@@ -11,15 +11,15 @@ public class SensorGraphHandler : MonoBehaviour
     [SerializeField] private ReplayDMMovements ReplayDMMovements;
     [SerializeField] private LineChart lineChart;
     private Serie serie;
-    private const int MaxVisiblePoints = 60;
     private Dictionary<string, int> SensorIndexMap;
-    private Func<double>[] SensorValueMap;
+    private Func<int, double>[] SensorValueMap;
     private string[] YAxisNameMap;
     private List<List<SerieData>> ListPoints = new List<List<SerieData>>();
     
     private DateTime startTime;
     private const string dateFormat = "dd/MM/yyyy HH:mm";
     private int prevIndex = -1;
+    private int curIndex;
     private int curSensor = -1;
     
     
@@ -45,12 +45,12 @@ public class SensorGraphHandler : MonoBehaviour
         };
         SensorValueMap = new[]
         {
-            (Func<double>)(() => DrillingData[DrillingDataManager.Index].DrillingVelocity),
-            (Func<double>)(() => DrillingData[DrillingDataManager.Index].RT_Temp),
-            (Func<double>)(() => DrillingData[DrillingDataManager.Index].RT_Load),
-            (Func<double>)(() => DrillingData[DrillingDataManager.Index].ST_Temp),
-            (Func<double>)(() => DrillingData[DrillingDataManager.Index].ST_Load),
-            (Func<double>)(() => ReplayDMMovements.GetDepth())
+            (Func<int, double>)((index) => DrillingData[index].DrillingVelocity),
+            (Func<int, double>)((index) => DrillingData[index].RT_Temp),
+            (Func<int, double>)((index) => DrillingData[index].RT_Load),
+            (Func<int, double>)((index) => DrillingData[index].ST_Temp),
+            (Func<int, double>)((index) => DrillingData[index].ST_Load),
+            (Func<int, double>)((index) => ReplayDMMovements.GetDepth(index))
         };
         YAxisNameMap = new[]
         {
@@ -72,76 +72,20 @@ public class SensorGraphHandler : MonoBehaviour
     
     private void Update()
     {
-        int curIndex = DrillingDataManager.Index;
+        curIndex = DrillingDataManager.Index;
         if (curIndex > prevIndex)
         {
-            prevIndex = curIndex;
-            DateTime curTime = DateTime.ParseExact(DrillingData[curIndex].Date, dateFormat,
-                CultureInfo.InvariantCulture);
-            int sec = (int)(curTime - startTime).TotalSeconds;
-            AddPoint( sec - 3600);
+            if (curIndex - prevIndex == 1) AddPoint();
+            else AddRangePoints();
         }
-        else if (curIndex < prevIndex)
-        {
-            prevIndex = curIndex;
-            SetPoints();
-        }
+        else if (curIndex < prevIndex) DeleteRangePoints();
+        prevIndex = curIndex;
     }
 
 
     
     
-
-    private void AddPoint(float x)
-    {
-        List<SerieData> newData = CreatePoints(x);
-        AddPointToList(newData);
-        if (curSensor != -1) ShowPoint(newData[curSensor]);
-    }
-
-    private List<SerieData> CreatePoints(float x)
-    {
-        List<SerieData> newDatas = new List<SerieData>();
-        for (int i = 0; i < ListPoints.Count; i++)
-        {
-            SerieData newData = new SerieData();
-            newData.data = new List<double>() { x, SensorValueMap[i]() }; 
-            newDatas.Add(newData);
-        }
-        
-        return newDatas;
-    }
     
-    private void AddPointToList(List<SerieData> newData)
-    {
-        for (int i = 0; i < newData.Count; i++)
-            ListPoints[i].Add(newData[i]);
-        
-        if (ListPoints[0].Count > MaxVisiblePoints)
-            foreach (List<SerieData> listPoint in ListPoints)
-                listPoint.RemoveAt(0);
-    }
-    
-    private void ShowPoint(SerieData newPoint)
-    {
-        serie.data.Add(newPoint);
-        if (serie.data.Count > MaxVisiblePoints) serie.data.RemoveAt(0);
-    }
-
-
-    
-    
-
-    private void ChangeSensor()
-    {
-        serie.data.Clear();
-        if (curSensor != -1) serie.data.AddRange(ListPoints[curSensor]);
-    }
-
-    
-    
-    
-
     public void HandleSensorsInteraction(string sensor)
     {
         int selectedSensor = SensorIndexMap[sensor];
@@ -160,38 +104,89 @@ public class SensorGraphHandler : MonoBehaviour
             ChangeSensor();
         }
     }
-
-
-
-
-
-    private void SetPoints()
+    
+    
+    
+    
+    
+    private void ChangeSensor()
     {
-        CreateRangePoints();
+        serie.data.Clear();
+        if (curSensor != -1) serie.data.AddRange(ListPoints[curSensor]);
+    }
+
+    
+    
+    
+
+    private void AddPoint()
+    {
+        List<SerieData> newData = CreatePoints();
+        AddPointToList(newData);
+        if (curSensor != -1) ShowPoint(newData[curSensor]);
+    }
+
+    private List<SerieData> CreatePoints()
+    {
+        DateTime curTime = DateTime.ParseExact(DrillingData[curIndex].Date, dateFormat,
+            CultureInfo.InvariantCulture);
+        int sec = (int)(curTime - startTime).TotalSeconds - 3600;
+
+        List<SerieData> newDatas = new List<SerieData>();
+        for (int i = 0; i < ListPoints.Count; i++)
+        {
+            SerieData newData = new SerieData();
+            newData.data = new List<double>() { sec, SensorValueMap[i](curIndex) }; 
+            newDatas.Add(newData);
+        }
+        
+        return newDatas;
+    }
+    
+    private void AddPointToList(List<SerieData> newData)
+    {
+        for (int i = 0; i < newData.Count; i++)
+            ListPoints[i].Add(newData[i]);
+    }
+    
+    private void ShowPoint(SerieData newPoint) => serie.data.Add(newPoint);
+
+
+    
+    
+
+    private void AddRangePoints()
+    {
+        int startIndex = ListPoints[0].Count;
+        for (int i = 0; i < ListPoints.Count; i++)
+        {
+            List<SerieData> list = ListPoints[i];
+            for (int j = startIndex; j <= curIndex; j++)
+            {
+                DateTime curTime = DateTime.ParseExact(DrillingData[j].Date, dateFormat,
+                    CultureInfo.InvariantCulture);
+                int sec = (int)(curTime - startTime).TotalSeconds - 3600;
+                
+                SerieData newData = new SerieData();
+                newData.data = new List<double>() { sec, SensorValueMap[i](j) }; 
+                list.Add(newData);
+            }
+        }
+        
         ChangeSensor();
     }
 
-    private void CreateRangePoints()
+
+
+    
+
+    private void DeleteRangePoints()
     {
-        ListPoints = new List<List<SerieData>>();
-        for (int _ = 0; _ < SensorIndexMap.Count; _++)
-            ListPoints.Add(new List<SerieData>());
+        int startIndex = curIndex + 1;
+        int numToRemove = ListPoints[0].Count - startIndex;
+        foreach (List<SerieData> list in ListPoints) 
+            list.RemoveRange(startIndex, numToRemove);
 
-        int curIndex = DrillingDataManager.Index;
-        int startIndex = curIndex >= MaxVisiblePoints ? 0 : curIndex - MaxVisiblePoints;
-
-        for (int i = 0; i < ListPoints.Count; i++)
-        {
-            List<SerieData> listPoint = ListPoints[i];
-            for (int _ = startIndex; _ < curIndex; _++)
-            {
-                SerieData newData = new SerieData();
-                DateTime curTime = DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat,
-                    CultureInfo.InvariantCulture);
-                int x = (int)(curTime - startTime).TotalSeconds;
-                newData.data = new List<double>() { x, SensorValueMap[i]() }; 
-                listPoint.Add(newData);
-            }
-        }
+        ChangeSensor();
     }
 }

@@ -37,6 +37,9 @@ public class ReplayDMMovements : MonoBehaviour
     public float GetDepth() => DrillingDataManager.Index != 0
         ? DrillingData.GetRange(0, DrillingDataManager.Index).Min(data => data.DrillBit_Height) / 1000
         : 0;
+    public float GetDepth(int index) => index != 0
+        ? DrillingData.GetRange(0, index).Min(data => data.DrillBit_Height) / 1000
+        : 0;
     
     
     
