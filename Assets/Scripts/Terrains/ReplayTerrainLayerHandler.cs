@@ -39,10 +39,15 @@ public class ReplayTerrainLayerHandler : MonoBehaviour
     private void SetTerrainLayers()
     {
         TerrainLayers = new TerrainLayer[transform.childCount - 1]; //6 layers
+        MeshRenderers = new MeshRenderer[transform.childCount - 1];
         Transform terrainLayerNames = InfoCanvas.Find("TerrainLayersNames");
         for (int i = 0; i < TerrainLayers.Length; i++)
-            TerrainLayers[i] = new TerrainLayer(transform.GetChild(i), 0,
+        {
+            Transform layer = transform.GetChild(i);
+            TerrainLayers[i] = new TerrainLayer(layer, 0,
                 terrainLayerNames.GetChild(i).GetComponent<RectTransform>());
+            MeshRenderers[i] = layer.GetComponent<MeshRenderer>();
+        }
     }
 
     

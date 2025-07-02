@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ReplayDMMovements : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ReplayDMMovements : MonoBehaviour
     
     [SerializeField] private DrillingDataManager DrillingDataManager;
     private List<DrillingDataCSV> DrillingData;
+    
+    private InputAction DLTDetailsVisibleInputAction;
+    private MeshRenderer DLTDetailsMeshRenderer;
     private float t = 0f;
     private float timeInterval;
     [SerializeField] private Parameters Parameters;
@@ -49,6 +53,10 @@ public class ReplayDMMovements : MonoBehaviour
     {
         DrillingData = DrillingDataManager.DrillingData;
         SetTimeFields();
+        
+        DLTDetailsVisibleInputAction = GetComponent<PlayerInput>().actions["DLTDetailsVisible"];
+        DLTDetailsMeshRenderer = DLT_B.GetChild(0).GetComponent<MeshRenderer>();
+        
         //InitEquipmentPostition();
     }
 
@@ -72,6 +80,7 @@ public class ReplayDMMovements : MonoBehaviour
 
     private void Update()
     {
+        if (DLTDetailsVisibleInputAction.triggered) SwitchDLTDetailsVisibility();
         Move();
     }
 
@@ -83,6 +92,12 @@ public class ReplayDMMovements : MonoBehaviour
     public void PauseButtonClicked() => paused = !paused;
 
 
+
+    
+
+    private void SwitchDLTDetailsVisibility() => DLTDetailsMeshRenderer.enabled = !DLTDetailsMeshRenderer.enabled;
+    
+    
     
     
     
