@@ -131,8 +131,11 @@ public class ReplayDMMovements : MonoBehaviour
         if (paused || DrillingDataManager.Index >= DrillingData.Count - 1) return;
         t += Time.deltaTime * Parameters.TimeAcceleration / timeInterval;
 
+        int nextIndex = DrillingDataManager.Index + (int)t + 1 >= DrillingData.Count
+            ? DrillingData.Count - 1
+            : DrillingDataManager.Index + (int)t + 1;
         (DrillingDataCSV curData, DrillingDataCSV nextData) = (DrillingData[DrillingDataManager.Index],
-            DrillingData[DrillingDataManager.Index + 1]);
+            DrillingData[nextIndex]);
         
         if (!IsInstalled(curData)) MoveInstallation(curData, nextData);
         else MoveDrill(curData, nextData);
@@ -140,14 +143,14 @@ public class ReplayDMMovements : MonoBehaviour
         
         if (t >= 1f)
         {
-            t = 0f;
-            if (DrillingDataManager.Index >= DrillingData.Count - 1)
+            if (DrillingDataManager.Index >= DrillingData.Count - 2)
             {
                 paused = true;
                 return;
             }
-            DrillingDataManager.Index++;
-            SetTimeFields();
+            DrillingDataManager.Index = nextIndex;
+            t = 0f;
+            SetTimeFields(nextIndex);
         }
     }
 
@@ -155,12 +158,12 @@ public class ReplayDMMovements : MonoBehaviour
     
     
     
-    private void SetTimeFields()
+    private void SetTimeFields(int nextIndex = -1)
     {
         DateTime curTime =
             DateTime.ParseExact(DrillingData[DrillingDataManager.Index].Date, dateFormat, CultureInfo.InvariantCulture);
         DateTime nextTime =
-            DateTime.ParseExact(DrillingData[DrillingDataManager.Index + 1].Date, dateFormat, CultureInfo.InvariantCulture);
+            DateTime.ParseExact(DrillingData[nextIndex == -1 ? DrillingDataManager.Index + 1 : nextIndex].Date, dateFormat, CultureInfo.InvariantCulture);
         timeInterval = (float)(nextTime - curTime).TotalSeconds;
     }
 

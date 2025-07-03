@@ -15,7 +15,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     [SerializeField] private DrillingDataManager DrillingDataManager;
     private List<DrillingDataCSV> DrillingData;
     [SerializeField] private ReplayDMMovements ReplayDMMovements;
-    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000 };
+    private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
     [SerializeField] private Slider TimeSlider;
     [SerializeField] private TextMeshProUGUI CurrentTimeText;
     
