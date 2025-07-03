@@ -129,6 +129,7 @@ public class ReplayDMMovements : MonoBehaviour
         
         if (!IsInstalled(curData)) MoveInstallation(curData, nextData);
         else MoveDrill(curData, nextData);
+        EquipmentVisibilityPositionHandler(curData);
         
         if (t >= 1f)
         {
@@ -178,10 +179,6 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void MoveDLTB(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        bool visible = curData.DLT_B != 0f;
-            foreach (MeshRenderer mesh in DLT_BMesh)
-                mesh.enabled = visible;
-
         (Vector3 startPos, Vector3 nextPos) = (GetPosInstallation(curData.DLT_B), GetPosInstallation(nextData.DLT_B));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         DLT_B.position = pos;
@@ -189,8 +186,6 @@ public class ReplayDMMovements : MonoBehaviour
 
     private void MoveDLTC(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        DLT_CMesh.enabled = curData.DLT_C != 0f;
-        
         (Vector3 startPos, Vector3 nextPos) = (GetPosInstallation(curData.DLT_C), GetPosInstallation(nextData.DLT_C));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         DLT_C.position = pos;
@@ -198,14 +193,26 @@ public class ReplayDMMovements : MonoBehaviour
 
     private void MoveDM(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        bool visible = curData.DM != 0f;
-        foreach (MeshRenderer mesh in DMMesh)
-            mesh.enabled = visible;
-
         (Vector3 startPos, Vector3 nextPos) = (GetPosInstallation(curData.DM), GetPosInstallation(nextData.DM));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         (DrillBit.position, Kelly.position) = (pos, pos);
         (RotaryTable.position, SlipTable.position) = (pos + Vector3.up * 16, pos + Vector3.up * 22);
+    }
+
+    private void EquipmentVisibilityPositionHandler(DrillingDataCSV curData)
+    {
+        bool visible = curData.DLT_B != 0f;
+        foreach (MeshRenderer mesh in DLT_BMesh)
+            mesh.enabled = visible;
+        if (visible) DLT_B.position = Vector3.zero;
+        
+        visible = curData.DLT_C != 0f;
+        DLT_CMesh.enabled = visible;
+        DLT_C.position = Vector3.zero;
+        
+        visible = curData.DM != 0f;
+        foreach (MeshRenderer mesh in DMMesh)
+            mesh.enabled = visible;
     }
 
     
