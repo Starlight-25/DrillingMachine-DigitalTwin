@@ -108,8 +108,13 @@ public class ReplayDMMovements : MonoBehaviour
 
     public bool IsPaused() => paused;
     public void PauseButtonClicked() => paused = !paused;
-
-
+    public void SetEquipmentPosition()
+    {
+        DrillingDataCSV curData = DrillingData[DrillingDataManager.Index];
+        DrillBit.position = curData.DrillBit_Height / 1000 * Vector3.up;
+        SlipTable.position = curData.ST_Height / 1000 * Vector3.up;
+        RotaryTable.position = curData.RT_Height / 1000 * Vector3.up;
+    }
 
     
 
