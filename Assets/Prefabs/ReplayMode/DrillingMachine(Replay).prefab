@@ -4956,7 +4956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1754891642945661611
 Transform:
   m_ObjectHideFlags: 0
@@ -5069,6 +5069,7 @@ MonoBehaviour:
   DrillBit: {fileID: 1585050911146731969}
   SlipTable: {fileID: 4779051791859097785}
   RotaryTable: {fileID: 2724064201734202965}
+  Sensors: {fileID: 6458099273752049186}
   DrillingDataManager: {fileID: 0}
   Parameters: {fileID: 0}
 --- !u!114 &7822267271389159013

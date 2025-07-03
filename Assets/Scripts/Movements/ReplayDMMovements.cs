@@ -13,6 +13,7 @@ public class ReplayDMMovements : MonoBehaviour
     [SerializeField] private Transform DrillBit;
     [SerializeField] private Transform SlipTable;
     [SerializeField] private Transform RotaryTable;
+    [SerializeField] private GameObject Sensors;
     private MeshRenderer[] DLT_BMesh;
     private MeshRenderer DLT_CMesh;
     private MeshRenderer[] DMMesh;
@@ -167,6 +168,7 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void MoveInstallation(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
+        Sensors.SetActive(false);
         MoveDLTB(curData, nextData);
         MoveDLTC(curData, nextData);
         MoveDM(curData, nextData);
@@ -212,6 +214,7 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void MoveDrill(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
+        Sensors.SetActive(true);
         MoveDrillingMachine(curData, nextData);
         MoveST(curData, nextData);
         MoveRT(curData, nextData);
