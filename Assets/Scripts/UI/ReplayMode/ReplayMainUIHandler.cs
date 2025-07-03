@@ -75,10 +75,11 @@ public class ReplayMainUIHandler : MonoBehaviour
     private void UpdateTimeSliderAndText()
     {
         int curIndex = DrillingDataManager.Index;
-        TimeSlider.value = DrillingDataManager.Index;
-        string date = DrillingData[curIndex].Date;
+        TimeSlider.value = curIndex;
+        DrillingDataCSV curData = DrillingData[curIndex];
+        string date = curData.Date;
         CurrentTimeText.text = date.Replace(' ', '\n');
-        ReplayDMMovements.SetEquipmentPosition();
+        ReplayDMMovements.SetEquipmentPosition(curData);
     }
 
 

@@ -108,12 +108,14 @@ public class ReplayDMMovements : MonoBehaviour
 
     public bool IsPaused() => paused;
     public void PauseButtonClicked() => paused = !paused;
-    public void SetEquipmentPosition()
+    public void SetEquipmentPosition(DrillingDataCSV curData)
     {
-        DrillingDataCSV curData = DrillingData[DrillingDataManager.Index];
         DrillBit.position = curData.DrillBit_Height / 1000 * Vector3.up;
+        Kelly.position = curData.DrillBit_Height / 1000 * Vector3.up;
         SlipTable.position = curData.ST_Height / 1000 * Vector3.up;
         RotaryTable.position = curData.RT_Height / 1000 * Vector3.up;
+        EquipmentVisibilityPositionHandler(curData);
+        Sensors.SetActive(IsInstalled(curData));
     }
 
     
@@ -209,11 +211,11 @@ public class ReplayDMMovements : MonoBehaviour
         bool visible = curData.DLT_B != 0f;
         foreach (MeshRenderer mesh in DLT_BMesh)
             mesh.enabled = visible;
-        if (visible) DLT_B.position = Vector3.zero;
+        if (curData.DLT_B == 1f) DLT_B.position = Vector3.zero;
         
         visible = curData.DLT_C != 0f;
         DLT_CMesh.enabled = visible;
-        DLT_C.position = Vector3.zero;
+        if (curData.DLT_C == 1f) DLT_C.position = Vector3.zero;
         
         visible = curData.DM != 0f;
         foreach (MeshRenderer mesh in DMMesh)
