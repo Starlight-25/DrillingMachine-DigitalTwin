@@ -18,7 +18,7 @@ public class ReplayMainUIHandler : MonoBehaviour
     private int[] timeAccelerationMap = { 1, 30, 60, 300, 900, 1800, 3600, 7200, 18000, 43200, 86400 };
     [SerializeField] private Slider TimeSlider;
     [SerializeField] private TextMeshProUGUI CurrentTimeText;
-    
+    [SerializeField] private TextMeshProUGUI SocketDepthText;
     
     
     
@@ -41,6 +41,7 @@ public class ReplayMainUIHandler : MonoBehaviour
         if (ReturnInputAction.triggered) SettingsButtonClicked();
         if (PauseInputAction.triggered) PauseButtonClicked();
         UpdateTimeSliderAndText();
+        UpdateSocketDepthText(ReplayDMMovements.GetDepth(DrillingDataManager.Index));
     }
 
     
@@ -86,4 +87,10 @@ public class ReplayMainUIHandler : MonoBehaviour
 
 
     public void UpdateTimeSliderValueChanged(float val) => ReplayDMMovements.SetCurrentIndex((int)val);
+    
+    
+    
+    
+    
+    public void UpdateSocketDepthText(float depth) => SocketDepthText.text = $"Socket depth: {string.Format("{0:0.##}", -depth)}m";
 }

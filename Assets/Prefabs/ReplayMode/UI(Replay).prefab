@@ -22250,7 +22250,7 @@ GameObject:
   - component: {fileID: 2986477540068481854}
   - component: {fileID: 3535220001140623459}
   m_Layer: 5
-  m_Name: ExcavatedDepth Text
+  m_Name: SocketDepth Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31507,6 +31507,7 @@ MonoBehaviour:
   ReplayDMMovements: {fileID: 0}
   TimeSlider: {fileID: 2358146501910576072}
   CurrentTimeText: {fileID: 7894018563557693576}
+  SocketDepthText: {fileID: 3535220001140623459}
 --- !u!114 &200117408006500690
 MonoBehaviour:
   m_ObjectHideFlags: 0
