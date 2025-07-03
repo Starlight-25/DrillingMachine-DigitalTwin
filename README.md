@@ -19,7 +19,7 @@ This integration of monitoring and virtual modeling offers a safe and controlled
   * Choose whether to create a desktop shortcut or not by checking/unchecking the option
   * Click Install
 * After installation:
-  * Optionally check ”Launch An Era Of The Seas”
+  * Optionally check ”Launch Drilling Machine Digital Twin”
   * Click Finish to close the installer
 
 You can launch the software in two ways:
