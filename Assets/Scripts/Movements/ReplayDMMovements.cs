@@ -31,7 +31,6 @@ public class ReplayDMMovements : MonoBehaviour
     private const float EquipmentStarPos = 40f;
     private const string dateFormat = "dd/MM/yyyy HH:mm";
 
-
     
     
     
@@ -110,14 +109,16 @@ public class ReplayDMMovements : MonoBehaviour
     public void PauseButtonClicked() => paused = !paused;
     public void SetEquipmentPosition(DrillingDataCSV curData)
     {
-        DrillBit.position = curData.DrillBit_Height / 1000 * Vector3.up;
-        Kelly.position = curData.DrillBit_Height / 1000 * Vector3.up;
-        SlipTable.position = curData.ST_Height / 1000 * Vector3.up;
-        RotaryTable.position = curData.RT_Height / 1000 * Vector3.up;
+        DrillBit.position = GetPosMove(curData.DrillBit_Height);
+        Kelly.position = GetPosMove(curData.DrillBit_Height);
+        SlipTable.position = GetPosMove(curData.ST_Height);
+        RotaryTable.position = GetPosMove(curData.RT_Height);
         EquipmentVisibilityPositionHandler(curData);
         Sensors.SetActive(IsInstalled(curData));
     }
 
+    
+    
     
 
     private void SwitchDLTDetailsVisibility() => DLTDetailsMeshRenderer.enabled = !DLTDetailsMeshRenderer.enabled;
@@ -237,27 +238,27 @@ public class ReplayDMMovements : MonoBehaviour
         MoveRT(curData, nextData);
         RotateDrillingMachine(curData, nextData);
     }
+
+    private Vector3 GetPosMove(float val) => val / 1000 * Vector3.up;
     
     private void MoveDrillingMachine(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.DrillBit_Height / 1000),
-            Vector3.up * (nextData.DrillBit_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) =
+            (GetPosMove(curData.DrillBit_Height), GetPosMove(nextData.DrillBit_Height));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         (DrillBit.position, Kelly.position) = (pos, pos);
     }
 
     private void MoveST(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.ST_Height / 1000),
-            Vector3.up * (nextData.ST_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) = (GetPosMove(curData.ST_Height), GetPosMove(nextData.ST_Height));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         SlipTable.position = pos;
     }
 
     private void MoveRT(DrillingDataCSV curData, DrillingDataCSV nextData)
     {
-        (Vector3 startPos, Vector3 nextPos) = (Vector3.up * (curData.RT_Height / 1000),
-            Vector3.up * (nextData.RT_Height / 1000));
+        (Vector3 startPos, Vector3 nextPos) = (GetPosMove(curData.RT_Height), GetPosMove(nextData.RT_Height));
         Vector3 pos = Vector3.Lerp(startPos, nextPos, t);
         RotaryTable.position = pos;
     }
