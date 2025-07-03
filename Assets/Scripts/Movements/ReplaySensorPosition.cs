@@ -57,6 +57,17 @@ public class ReplaySensorPosition : MonoBehaviour
         HandleSensorsRayCast();
     }
 
+
+
+
+
+    private void ChangeSensorPosition(Transform sensor, float height)
+    {
+        Vector3 pos = sensor.position;
+        pos.y = height;
+        sensor.position = pos;
+    }
+    
     
     
     
@@ -65,40 +76,23 @@ public class ReplaySensorPosition : MonoBehaviour
     {
         float DB_Height = DrillingData[DrillingDataManager.Index].DrillBit_Height / 1000;
         foreach (Transform drillBitSensor in DrillBitSensors)
-        {
-            Vector3 pos = drillBitSensor.position;
-            pos.y = DB_Height;
-            drillBitSensor.position = pos;
-        }
+            ChangeSensorPosition(drillBitSensor, DB_Height);
     }
 
-    private void DepthSensorPos()
-    {
-        Vector3 pos = DepthSensor.position;
-        pos.y = ReplayDMMovements.GetDepth();
-        DepthSensor.position = pos;
-    }
+    private void DepthSensorPos() => ChangeSensorPosition(DepthSensor, ReplayDMMovements.GetDepth());
 
     private void RTSensorsPos()
     {
         float RTHeight = DrillingData[DrillingDataManager.Index].RT_Height / 1000;
         foreach (Transform rtSensor in RTSensors)
-        {
-            Vector3 pos = rtSensor.position;
-            pos.y = RTHeight;
-            rtSensor.position = pos;
-        }
+            ChangeSensorPosition(rtSensor, RTHeight);
     }
 
     private void STSensorsPos()
     {
         float STHeight = DrillingData[DrillingDataManager.Index].ST_Height / 1000;
         foreach (Transform stSensor in STSensors)
-        {
-            Vector3 pos = stSensor.position;
-            pos.y = STHeight;
-            stSensor.position = pos;
-        }
+            ChangeSensorPosition(stSensor, STHeight);
     }
 
 

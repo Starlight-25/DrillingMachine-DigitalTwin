@@ -56,40 +56,34 @@ public class SensorsPosition : MonoBehaviour
     
     
     
-    private void DrillBitSensorPos()
+    private void ChangeSensorPosition(Transform sensor, float height)
     {
-        Vector3 pos = DrillBitPosSensor.position;
-        pos.y = DrillingMachineMovements.GetDrillBitHeight();
-        DrillBitPosSensor.position = pos;
+        Vector3 pos = sensor.position;
+        pos.y = height;
+        sensor.position = pos;
     }
 
-    private void DepthSensorPos()
-    {
-        Vector3 pos = DepthSensor.position;
-        pos.y = DrillingMachineMovements.GetDepth();
-        DepthSensor.position = pos;
-    }
+
+
+
+
+    private void DrillBitSensorPos() =>
+        ChangeSensorPosition(DrillBitPosSensor, DrillingMachineMovements.GetDrillBitHeight());
+
+    private void DepthSensorPos() => ChangeSensorPosition(DepthSensor, DrillingMachineMovements.GetDepth());
 
     private void RTSensorsPos()
     {
         float RTHeight = DrillingMachineMovements.GetRTHeight();
         foreach (Transform rtSensor in RTSensors)
-        {
-            Vector3 pos = rtSensor.position;
-            pos.y = RTHeight;
-            rtSensor.position = pos;
-        }
+            ChangeSensorPosition(rtSensor, RTHeight);
     }
 
     private void STSensorsPos()
     {
         float STHeight = DrillingMachineMovements.GetSTHeight();
         foreach (Transform stSensor in STSensors)
-        {
-            Vector3 pos = stSensor.position;
-            pos.y = STHeight;
-            stSensor.position = pos;
-        }
+            ChangeSensorPosition(stSensor, STHeight);
     }
 
 
