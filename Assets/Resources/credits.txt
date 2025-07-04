@@ -1,0 +1,30 @@
+Name: Drilling Machine Digital Twin
+Developed by: Jérôme Lin
+
+Assets:
+- <link="https://europe1.discourse-cdn.com/unity/original/3X/e/f/efe9ca5c1dbe809100073029c8549e13e8021ff1.jpeg"><color=#4AA3DF>Texture de sable</color></link>
+- <link="https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633"><color=#4AA3DF>"Skybox Series Free"</color></link> by Avionx
+- <link="https://assetstore.unity.com/packages/2d/textures-materials/water/simple-water-shader-urp-191449"><color=#4AA3DF>"Simple Water Shader URP"</color></link> by IgniteCoders
+
+Game Engine:
+- <link="https://unity.com"><color=#4AA3DF>Unity</color></link> Version 6000.1.6f1
+
+Development Tools:
+- <link="https://unity.com"><color=#4AA3DF>Unity</color></link> – Game engine
+- <link="https://blender.org"><color=#4AA3DF>Blender</color></link> – 3D modeling
+- Git & GitHub – Version control
+- <link="https://github.com/Starlight-25/DrillingMachine-DigitalTwin"><color=#4AA3DF>Project Repository on GitHub</color></link>
+© 2025 Saipem SA. All rights reserved.
+
+
+
+End-User License Agreement (EULA)
+
+This software is licensed, not sold. By installing or using the software, you agree to the following terms:
+
+1. You may use this software for personal entertainment.
+2. You may not redistribute, modify, or decompile this software.
+3. All content, including code, art, and audio, is owned by Lin Jérôme.
+4. This software is provided "as is", without warranty of any kind.
+
+© 2025 Saipem SA. All rights reserved.
