@@ -1,4 +1,0 @@
-Sand texture : https://europe1.discourse-cdn.com/unity/original/3X/e/f/efe9ca5c1dbe809100073029c8549e13e8021ff1.jpeg
-
-"Skybox Series Free" by Avionx (https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
-"Simple Water Shader URP" by IgniteCoders (https://assetstore.unity.com/packages/2d/textures-materials/water/simple-water-shader-urp-191449)
