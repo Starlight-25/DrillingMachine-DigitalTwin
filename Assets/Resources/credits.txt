@@ -14,6 +14,9 @@ Development Tools:
 - <link="https://blender.org"><color=#4AA3DF>Blender</color></link> – 3D modeling
 - Git & GitHub – Version control
 - <link="https://github.com/Starlight-25/DrillingMachine-DigitalTwin"><color=#4AA3DF>Project Repository on GitHub</color></link>
+- <link="https://www.adobe.com/fr/products/photoshop.html"><color=#4AA3DF>Adobe Photoshop</color></link> – Sprite design
+- <link="https://www.adobe.com/fr/products/illustrator.html"><color=#4AA3DF>Adobe Illustrator</color></link> – Icon design
+
 © 2025 Saipem SA. All rights reserved.
 
 
