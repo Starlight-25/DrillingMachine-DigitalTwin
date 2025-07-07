@@ -699,6 +699,7 @@ MonoBehaviour:
   DrillingMachine:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   ConfimButton: {fileID: 2925771334023846629}
   SelectedFileText: {fileID: 1365266648363889203}
   PlayerInput: {fileID: 5868002756629430052}
