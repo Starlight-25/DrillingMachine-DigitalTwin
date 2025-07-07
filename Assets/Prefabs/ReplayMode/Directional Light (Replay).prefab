@@ -134,4 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3938b7ed7b4c4860bf93dc65736efd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skyboxDay: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
+  skyboxNight: {fileID: 2100000, guid: 369b9ebe3a62b904dbc19bd332b44086, type: 2}
   DrillingDataManager: {fileID: 0}
