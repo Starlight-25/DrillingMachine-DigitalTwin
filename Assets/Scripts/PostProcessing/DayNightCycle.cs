@@ -3,6 +3,8 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
     private Transform Light;
+    [SerializeField] private Material skyboxDay;
+    [SerializeField] private Material skyboxNight;
     [SerializeField] private MainUIHandler MainUIHandler;
     
     
@@ -24,6 +26,7 @@ public class DayNightCycle : MonoBehaviour
         float timeInHour = curTime / 3600 % 24;
         
         LightRotation(timeInHour);
+        ChangeSkybox(timeInHour);
     }
 
     
@@ -34,5 +37,19 @@ public class DayNightCycle : MonoBehaviour
     {
         float sunAngle = timeInHour / 24f * 360f - 90f;
         Light.rotation = Quaternion.Euler(sunAngle, 0, 0);
+    }
+
+
+
+    
+
+    private void ChangeSkybox(float timeInHour)
+    {
+        Material targetSkybox = (timeInHour >= 6f && timeInHour < 18f) ? skyboxDay : skyboxNight;
+        if (RenderSettings.skybox != targetSkybox)
+        {
+            RenderSettings.skybox = targetSkybox;
+            DynamicGI.UpdateEnvironment();
+        }
     }
 }

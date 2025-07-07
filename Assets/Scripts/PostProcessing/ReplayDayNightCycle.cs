@@ -52,5 +52,4 @@ public class ReplayDayNightCycle : MonoBehaviour
         float sunAngle = timeInHour / 24f * 360f - 90f;
         Light.rotation = Quaternion.Euler(sunAngle, 0, 0);
     }
-
 }
