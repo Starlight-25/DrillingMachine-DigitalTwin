@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6034514352897578279}
   - component: {fileID: 2050780494810073870}
   - component: {fileID: 4456477526680646083}
-  m_Layer: 0
+  - component: {fileID: 1433892557446816994}
+  m_Layer: 6
   m_Name: Directional Light (Replay)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,3 +138,15 @@ MonoBehaviour:
   skyboxDay: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
   skyboxNight: {fileID: 2100000, guid: 369b9ebe3a62b904dbc19bd332b44086, type: 2}
   DrillingDataManager: {fileID: 0}
+--- !u!114 &1433892557446816994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605672486823730264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2a58a6131d4819ac25303841c57b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
