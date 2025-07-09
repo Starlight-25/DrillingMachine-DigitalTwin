@@ -15,14 +15,14 @@ public class ReplayDMMovements : MonoBehaviour
     [SerializeField] private Transform RotaryTable;
     [SerializeField] private GameObject Sensors;
     private MeshRenderer[] DLT_BMesh;
-    private MeshRenderer DLT_CMesh;
+    private MeshRenderer[] DLT_CMesh;
     private MeshRenderer[] DMMesh;
     
     [SerializeField] private DrillingDataManager DrillingDataManager;
     private List<DrillingDataCSV> DrillingData;
     
     private InputAction DLTDetailsVisibleInputAction;
-    private MeshRenderer DLTDetailsMeshRenderer;
+    private MeshRenderer[] DLTDetailsMeshRenderer;
     private float t = 0f;
     private float timeInterval;
     [SerializeField] private Parameters Parameters;
@@ -58,10 +58,11 @@ public class ReplayDMMovements : MonoBehaviour
         SetTimeFields();
         
         DLTDetailsVisibleInputAction = GetComponent<PlayerInput>().actions["DLTDetailsVisible"];
-        DLTDetailsMeshRenderer = DLT_B.GetChild(0).GetComponent<MeshRenderer>();
+        DLTDetailsMeshRenderer = new[]
+            { DLT_B.GetChild(0).GetComponent<MeshRenderer>(), DLT_C.GetChild(0).GetComponent<MeshRenderer>() };
 
-        DLT_BMesh = new[] { DLT_B.GetComponent<MeshRenderer>(), DLTDetailsMeshRenderer };
-        DLT_CMesh = DLT_C.GetComponent<MeshRenderer>();
+        DLT_BMesh = new[] { DLT_B.GetComponent<MeshRenderer>(), DLT_B.GetChild(0).GetComponent<MeshRenderer>() };
+        DLT_CMesh = new[] { DLT_C.GetComponent<MeshRenderer>(), DLT_C.GetChild(0).GetComponent<MeshRenderer>() };
         DMMesh = new[]
         {
             Kelly.GetComponent<MeshRenderer>(), DrillBit.GetComponent<MeshRenderer>(),
@@ -77,11 +78,12 @@ public class ReplayDMMovements : MonoBehaviour
     
     private void InitEquipmentPostition()
     {
-        foreach (var mesh in DLT_BMesh)
+        foreach (MeshRenderer mesh in DLT_BMesh)
             mesh.enabled = false;
-        foreach (var mesh in DMMesh)
+        foreach (MeshRenderer mesh in DLT_CMesh)
             mesh.enabled = false;
-        DLT_CMesh.enabled = false;
+        foreach (MeshRenderer mesh in DMMesh)
+            mesh.enabled = false;
         
         DLT_B.position = Vector3.up * EquipmentStarPos;
         DLT_C.position = Vector3.up * EquipmentStarPos;
@@ -117,11 +119,15 @@ public class ReplayDMMovements : MonoBehaviour
         Sensors.SetActive(IsInstalled(curData));
     }
 
-    
-    
-    
 
-    private void SwitchDLTDetailsVisibility() => DLTDetailsMeshRenderer.enabled = !DLTDetailsMeshRenderer.enabled;
+
+
+
+    private void SwitchDLTDetailsVisibility()
+    {
+        foreach (MeshRenderer mesh in DLTDetailsMeshRenderer)
+            mesh.enabled = !mesh.enabled;
+    }
     
     
     
@@ -218,7 +224,8 @@ public class ReplayDMMovements : MonoBehaviour
         if (curData.DLT_B == 1f) DLT_B.position = Vector3.zero;
         
         visible = curData.DLT_C != 0f;
-        DLT_CMesh.enabled = visible;
+        foreach (MeshRenderer mesh in DLT_CMesh)
+            mesh.enabled = visible;
         if (curData.DLT_C == 1f) DLT_C.position = Vector3.zero;
         
         visible = curData.DM != 0f;
