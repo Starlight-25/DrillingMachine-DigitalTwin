@@ -118,7 +118,7 @@ public class ReplayDMMovements : MonoBehaviour
             Vector3 DMPos = GetPosInstallation(curData.DM);
             (DrillBit.position, Kelly.position) = (DMPos, DMPos);
             (RotaryTable.position, SlipTable.position) = (DMPos + Vector3.up * 16, DMPos + Vector3.up * 22);
-            Sensors.SetActive(true);
+            Sensors.SetActive(false);
         }
         else
         {
@@ -126,7 +126,7 @@ public class ReplayDMMovements : MonoBehaviour
             (DrillBit.position, Kelly.position) = (DBPos, DBPos);
             SlipTable.position = GetPosMove(curData.ST_Height);
             RotaryTable.position = GetPosMove(curData.RT_Height);
-            Sensors.SetActive(false);
+            Sensors.SetActive(true);
         }
         EquipmentVisibilityPositionHandler(curData);
     }
