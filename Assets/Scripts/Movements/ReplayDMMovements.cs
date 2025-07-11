@@ -111,12 +111,24 @@ public class ReplayDMMovements : MonoBehaviour
     public void PauseButtonClicked() => paused = !paused;
     public void SetEquipmentPosition(DrillingDataCSV curData)
     {
-        DrillBit.position = GetPosMove(curData.DrillBit_Height);
-        Kelly.position = GetPosMove(curData.DrillBit_Height);
-        SlipTable.position = GetPosMove(curData.ST_Height);
-        RotaryTable.position = GetPosMove(curData.RT_Height);
+        if (!IsInstalled(curData))
+        {
+            DLT_B.position = GetPosInstallation(curData.DLT_B);
+            DLT_C.position = GetPosInstallation(curData.DLT_C);
+            Vector3 DMPos = GetPosInstallation(curData.DM);
+            (DrillBit.position, Kelly.position) = (DMPos, DMPos);
+            (RotaryTable.position, SlipTable.position) = (DMPos + Vector3.up * 16, DMPos + Vector3.up * 22);
+            Sensors.SetActive(true);
+        }
+        else
+        {
+            Vector3 DBPos = GetPosMove(curData.DrillBit_Height);
+            (DrillBit.position, Kelly.position) = (DBPos, DBPos);
+            SlipTable.position = GetPosMove(curData.ST_Height);
+            RotaryTable.position = GetPosMove(curData.RT_Height);
+            Sensors.SetActive(false);
+        }
         EquipmentVisibilityPositionHandler(curData);
-        Sensors.SetActive(IsInstalled(curData));
     }
 
 
