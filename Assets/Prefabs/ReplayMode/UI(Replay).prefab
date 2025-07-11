@@ -27187,7 +27187,7 @@ GameObject:
   - component: {fileID: 2476691035428544460}
   - component: {fileID: 6882469345937948953}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title (Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27210,7 +27210,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -75, y: -250}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2476691035428544460
 CanvasRenderer:
@@ -27267,8 +27267,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -31151,6 +31151,7 @@ GameObject:
   - component: {fileID: 5435381355226422673}
   - component: {fileID: 1052304802803758851}
   - component: {fileID: 200117408006500690}
+  - component: {fileID: 1955071776106284597}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -31218,6 +31219,51 @@ MonoBehaviour:
   DrillingDataManager: {fileID: 0}
   ReplayDMMovements: {fileID: 0}
   lineChart: {fileID: 1160662375505156106}
+--- !u!114 &1955071776106284597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516381357018554717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f55761bfaf4fb5bef2c18ca9039a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrillingDataManager: {fileID: 0}
+  DrillBitMesh: {fileID: 0}
+  colorGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0, g: 1, b: 0, a: 1}
+    key2: {r: 1, g: 1, b: 0, a: 0}
+    key3: {r: 1, g: 0.5019608, b: 0, a: 0}
+    key4: {r: 1, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16384
+    ctime2: 32768
+    ctime3: 49151
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  ColorBar: {fileID: 5717704304088342374}
 --- !u!1 &7518963134145850193
 GameObject:
   m_ObjectHideFlags: 0

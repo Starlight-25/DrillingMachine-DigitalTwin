@@ -371,6 +371,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6471574017191872532, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
   m_PrefabInstance: {fileID: 3049750729019191024}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &675855362 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 410979559833375406, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
+  m_PrefabInstance: {fileID: 3049750729019191024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &757534109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,6 +942,14 @@ PrefabInstance:
       propertyPath: DrillingDataManager
       value: 
       objectReference: {fileID: 288865096}
+    - target: {fileID: 1955071776106284597, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: DrillBitMesh
+      value: 
+      objectReference: {fileID: 675855362}
+    - target: {fileID: 1955071776106284597, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
+      propertyPath: DrillingDataManager
+      value: 
+      objectReference: {fileID: 288865096}
     - target: {fileID: 2365606434154244028, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: SettingsHandler
       value: 
@@ -1029,10 +1042,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI(Replay)
       objectReference: {fileID: 0}
-    - target: {fileID: 7217471695953473794, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3049750729019191032}
     - target: {fileID: 7755011854060566038, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
       propertyPath: DrillingDataManager
       value: 
@@ -1053,10 +1062,6 @@ PrefabInstance:
       propertyPath: 'DrillingMachine.Array.data[3]'
       value: 
       objectReference: {fileID: 1219774022}
-    - target: {fileID: 8372915279656055650, guid: cab8dcc8fcd1df848b22c333c8ef8b20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3049750729019191032}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1186,17 +1191,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3949086b41242c38206fc69501a80bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3049750729019191032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2633358245888717265, guid: be2a0a6f9d05eed408d05918fa7fa0d9, type: 3}
-  m_PrefabInstance: {fileID: 3049750729019191024}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556803124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f55761bfaf4fb5bef2c18ca9039a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4168483380276138271
