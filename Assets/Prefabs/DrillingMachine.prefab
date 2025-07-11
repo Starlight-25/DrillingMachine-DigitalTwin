@@ -668,12 +668,13 @@ MonoBehaviour:
   SlipTable: {fileID: 3805711693877180604}
   RotaryTable: {fileID: 75837946075923703}
   DrillBit: {fileID: 2018002507622776012}
-  BasicMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  BasicMaterial: {fileID: 2100000, guid: eafba39549f20914e878ae146aea334e, type: 2}
   HiglightMaterial: {fileID: 2100000, guid: 6f9c6d0a524c19a479b7b1158f54dae9, type: 2}
   LockedMaterial: {fileID: 2100000, guid: 8abd372b94f23904183eedcdeec343cd, type: 2}
   TransparentMaterial: {fileID: 2100000, guid: 0f0e1b10d799178408192265586904fe, type: 2}
   PlayerInput: {fileID: 1656118903520455883}
-  DLTDetailMeshRenderer: {fileID: 7015838865832585346}
+  DLTDetailMeshRenderer:
+  - {fileID: 0}
   Parameters: {fileID: 0}
   MainUIHandler: {fileID: 0}
 --- !u!114 &5090554085223880703
@@ -6175,11 +6176,6 @@ PrefabInstance:
 --- !u!4 &2712095559378501545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
-  m_PrefabInstance: {fileID: 2461769115813419074}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &7015838865832585346 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4860705272215285952, guid: 559793650ef56964cb59d04087a3db8b, type: 3}
   m_PrefabInstance: {fileID: 2461769115813419074}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3700309498509139799

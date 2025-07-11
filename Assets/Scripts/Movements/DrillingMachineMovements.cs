@@ -25,7 +25,7 @@ public class DrillingMachineMovements : MonoBehaviour
     private InputAction DLTDetailsVisibleInputAction;
     private InputAction LockEquipmentInputAction;
 
-    [SerializeField] private MeshRenderer DLTDetailMeshRenderer;
+    [SerializeField] private MeshRenderer[] DLTDetailMeshRenderer;
     private bool isDLTDetailsTransparent = false;
 
     [SerializeField] private Parameters Parameters;
@@ -230,7 +230,9 @@ public class DrillingMachineMovements : MonoBehaviour
 
     private void SwitchDLTDetailsVisibility()
     {
-        DLTDetailMeshRenderer.material = isDLTDetailsTransparent ? BasicMaterial : TransparentMaterial;
+        foreach (MeshRenderer mesh in DLTDetailMeshRenderer)
+            mesh.material = isDLTDetailsTransparent ? BasicMaterial : TransparentMaterial;
+        
         isDLTDetailsTransparent = !isDLTDetailsTransparent;
     }
 }
