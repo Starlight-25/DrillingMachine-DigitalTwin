@@ -140,10 +140,7 @@ public class WeightManagement : MonoBehaviour
         IndicatorsText[IndicatorsText.Length - 1].text = maxWeight.ToString("F0");
         float interval = maxWeight / 5f;
         for (int i = 1; i < IndicatorsText.Length - 1; i++)
-        {
-            Debug.Log(i);
             IndicatorsText[i].text = (i * interval).ToString("F0");
-        }
     }
 
 
