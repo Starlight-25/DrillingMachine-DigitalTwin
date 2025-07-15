@@ -19,7 +19,7 @@ public class ColorBarSensor : MonoBehaviour
     private TextMeshProUGUI TitleText;
     private TextMeshProUGUI MinText;
     private TextMeshProUGUI MaxText;
-    
+    private TextMeshProUGUI[] IndicatorsText;
     private enum SensorType
     {
         DBTorque,
@@ -36,7 +36,11 @@ public class ColorBarSensor : MonoBehaviour
         TitleText = ColorBar.GetChild(0).GetComponent<TextMeshProUGUI>();
         MinText = ColorBar.GetChild(1).GetComponent<TextMeshProUGUI>();
         MaxText = ColorBar.GetChild(2).GetComponent<TextMeshProUGUI>();
-        
+        IndicatorsText = new[]
+        {
+            ColorBar.GetChild(3).GetComponent<TextMeshProUGUI>(), ColorBar.GetChild(4).GetComponent<TextMeshProUGUI>(),
+            ColorBar.GetChild(5).GetComponent<TextMeshProUGUI>(), ColorBar.GetChild(6).GetComponent<TextMeshProUGUI>()
+        };
         ChangeSensor();
     }
 
@@ -100,8 +104,12 @@ public class ColorBarSensor : MonoBehaviour
     private void ChangeColorBarText()
     {
         TitleText.text = sensorType == SensorType.DBTorque ? "Drill Bit Torque (N.m)" : "Weight On Bit (tons)";
-        MinText.text = minValue.ToString("F2");
-        MaxText.text = maxValue.ToString("F2");
+        MinText.text = minValue.ToString("F0");
+        MaxText.text = maxValue.ToString("F0");
+
+        float interval = (maxValue - minValue) / 5f;
+        for (int i = 0; i < IndicatorsText.Length; i++)
+            IndicatorsText[i].text = (minValue + (i + 1) * interval).ToString("F0");
     }
     
     
