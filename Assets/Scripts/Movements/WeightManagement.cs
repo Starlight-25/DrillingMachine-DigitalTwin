@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,9 @@ public class WeightManagement : MonoBehaviour
     private int maxWeight;
     private float excavatedDepth = 0f;
     private bool isDigging = false;
+
+    [SerializeField] private Transform ColorBar;
+    private TextMeshProUGUI[] IndicatorsText;
     
     
     
@@ -38,6 +42,13 @@ public class WeightManagement : MonoBehaviour
         
         DrillBitMeshRenderer = DrillBit.GetComponent<MeshRenderer>();
 
+        IndicatorsText = new[]
+        {
+            ColorBar.GetChild(1).GetComponent<TextMeshProUGUI>(), ColorBar.GetChild(2).GetComponent<TextMeshProUGUI>(),
+            ColorBar.GetChild(3).GetComponent<TextMeshProUGUI>(), ColorBar.GetChild(4).GetComponent<TextMeshProUGUI>(),
+            ColorBar.GetChild(5).GetComponent<TextMeshProUGUI>(), ColorBar.GetChild(6).GetComponent<TextMeshProUGUI>()
+        };
+        
         UpdateFromParameters();
     }
 
@@ -90,6 +101,7 @@ public class WeightManagement : MonoBehaviour
     {
         UpdateTerrainLayer();
         ChangeMaxWeightTerrain();
+        ChangeColorBarIndicators();
     }
     
     
@@ -117,6 +129,22 @@ public class WeightManagement : MonoBehaviour
 
 
     public void ChangeMaxWeightTerrain() => maxWeight = Parameters.MaxWeight;
+
+
+
+    
+
+    private void ChangeColorBarIndicators()
+    {
+        IndicatorsText[0].text = "0";
+        IndicatorsText[IndicatorsText.Length - 1].text = maxWeight.ToString("F0");
+        float interval = maxWeight / 5f;
+        for (int i = 1; i < IndicatorsText.Length - 1; i++)
+        {
+            Debug.Log(i);
+            IndicatorsText[i].text = (i * interval).ToString("F0");
+        }
+    }
 
 
     

@@ -605,6 +605,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
+      propertyPath: ColorBar
+      value: 
+      objectReference: {fileID: 1573954868}
+    - target: {fileID: 9145257482254313363, guid: 66dbaa61ba63e2245a81818dfd134cb4, type: 3}
       propertyPath: DrillBit
       value: 
       objectReference: {fileID: 1230094998}
@@ -685,6 +689,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb892e78c61b494298fb137be0eecc5, type: 3}
+--- !u!224 &1573954868 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 756631113619303761, guid: 87f563577760c724aa634c9593c81be9, type: 3}
+  m_PrefabInstance: {fileID: 2022294096460343861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1622668228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5090554085223880703, guid: e3fbbb33460f0e94f94e22a377c921c4, type: 3}
