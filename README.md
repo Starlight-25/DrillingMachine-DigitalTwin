@@ -10,7 +10,7 @@ In addition to interaction, the system supports real-time visualization of senso
 This integration of monitoring and virtual modeling offers a safe and controlled platform for training, facilitates a deeper understanding of machine behavior, and enhances operational insights.
 
 ## Installation
-* Download the installer (DM-DigitalTwinSetup.exe)
+* Download the installer ([DM-DigitalTwinSetup.exe](https://github.com/Starlight-25/DrillingMachine-DigitalTwin/releases/download/v1.0/DM-DigitalTwinSetup.exe))
 * Run the installer (DM-DigitalTwinSetup.exe) and follow the instructions
 * Follow the instructions of the installer:
   * Choose your preferred language
