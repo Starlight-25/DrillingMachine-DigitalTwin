@@ -1,5 +1,6 @@
 Name: Drilling Machine Digital Twin
 Developed by: Jérôme Lin
+Supervised by: Rudy Mauge
 
 Assets:
 - <link="https://europe1.discourse-cdn.com/unity/original/3X/e/f/efe9ca5c1dbe809100073029c8549e13e8021ff1.jpeg"><color=#4AA3DF>Texture de sable</color></link>
