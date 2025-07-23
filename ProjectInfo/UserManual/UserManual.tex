@@ -77,7 +77,7 @@
 \newpage
 \section{Introduction}\hfill
 
-This user manual provides guidance for interacting with a simplified digital twin of a drilling machine, developed using the Unity game engine as part of an engineering internship project at Saipem SA. The digital twin is designed to simulate the functionality of a real-world drilling machine in a virtual environment, enabling users to explore its components and operations in an interactive and intuitive manner.\\
+This user manual provides guidance for interacting with a simplified digital twin of a drilling machine, developed using the Unity game engine as part of an engineering internship project at Saipem SA supervised by Rudy Mauge. The digital twin is designed to simulate the functionality of a real-world drilling machine in a virtual environment, enabling users to explore its components and operations in an interactive and intuitive manner.\\
 
 In addition to interaction, the system allows real-time visualization of sensor data collected from the physical drilling machine. This integration of monitoring and simulation supports a better understanding of machine behavior, facilitates training, and contributes to operational insight in a safe and controlled setting.
 
@@ -129,27 +129,29 @@ Use the Uninstall DrillingMachine-DigitalTwin shortcut from the Start Menu
 \section{Commands}
 \subsection{In Drilling Mode}
 \begin{table}[h]
-    \begin{tabular}{|l|l|}
+    \begin{tabular}{|l|l|l|}
         \hline
-        \textbf{Action} & \textbf{Key}\\
+        \textbf{Action} & \textbf{Key (QWERTY)} & \textbf{Key (AZERTY)}\\
         \hline
-        Return / Settings Menu & ESC\\
+        Return / Settings Menu & ESC & ESC\\
         \hline
-        Open Parameter Menu & Tab\\
+        Open Parameter Menu & Tab & Tab\\
         \hline
-        Move camera view & Mouse Right Click + Mouse Movement\\
+        Move camera view & Mouse Right Click + Mouse Movement & Mouse Right Click + Mouse Movement\\
         \hline
-        Zoom in/out & Mouse scroll\\
+        Height Navigation & W/S & Z/S\\
         \hline
-        Select Slip Table & 1\\
+        Zoom in/out & Mouse scroll & Mouse scroll\\
         \hline
-        Select Rotary Table	& 2\\
+        Select Slip Table & 1 & \&\\
         \hline
-        Reset selection & `\\
+        Select Rotary Table	& 2 & é\\
         \hline
-        Move selected upward & W\\
+        Reset selection & 3 & "\\
         \hline
-        Move selected downward & S\\
+        Move selected upward & Arrow Key Up & Arrow Key Up\\
+        \hline
+        Move selected downward & Arrow Key Down & Arrow Key Down\\
         \hline
         Change Drilling Leader Tower details visibility	& V\\
         \hline
@@ -160,19 +162,21 @@ Use the Uninstall DrillingMachine-DigitalTwin shortcut from the Start Menu
 
 \subsection{In Replay Mode}
 \begin{table}[h]
-    \begin{tabular}{|l|l|}
+    \begin{tabular}{|l|l|l|}
         \hline
-        \textbf{Action} & \textbf{Key}\\
+        \textbf{Action} & \textbf{Key (QWERTY)} & \textbf{Key (AZERTY)}\\
         \hline
-        Return / Settings Menu & ESC\\
+        Return / Settings Menu & ESC & ESC\\
         \hline
-        Move camera view & Mouse Right Click + Mouse Movement\\
+        Move camera view & Mouse Right Click + Mouse Movement & Mouse Right Click + Mouse Movement\\
         \hline
-        Zoom in/out & Mouse scroll\\
+        Height Navigation & W/S & Z/S\\
         \hline
-        Change Drilling Leader Tower details visibility	& V\\
+        Zoom in/out & Mouse scroll & Mouse scroll\\
         \hline
-        Change Terrain Layer visibility & T\\
+        Change Drilling Leader Tower details visibility	& V & V\\
+        \hline
+        Change Terrain Layer visibility & T & T\\\
         \hline
     \end{tabular}
 \end{table}
@@ -185,7 +189,7 @@ Use the Uninstall DrillingMachine-DigitalTwin shortcut from the Start Menu
 \section{Mechanics}
 \subsection{Main Menu}\hfill
 
-Upon launching the software, users can choose between two modes: Drilling Mode and Replay Mode, by selecting the corresponding button.\\
+Upon launching the software, users can choose between two modes: Interactive Mode and Replay Mode, by selecting the corresponding button. \\
 
 Additionally, users are directed to the Settings Menu, where various configurable options are available. These include:
 \begin{itemize}
@@ -198,18 +202,20 @@ Users also have access to the Credits Menu, where information regarding the vari
 
 \subsection{Drilling Mode}\hfill
 
-In Drilling Mode, users directly interact with and control the drilling machine through a set of commands.\\
+In Interactive Mode, users directly interact with and control the drilling machine through a set of commands.\\
 
-To move the drilling machine, the user must select one of the two available tables: the Slip Table or the Rotary Table. These tables move along the Kelly. When a table is locked, the Kelly and drill bit move together with the selected table, enabling the drilling operation.\\
+To move the drilling machine, the user must select one of the two available tables: the Slip Table or the Rotary Table. When one of the tables is selected it is highlighted in white.\\
+
+When a table is locked, it is highlighted in orange upon selection. In this state, the Kelly bar and drill bit move together with the selected table, enabling the drilling operation. When a table is unlocked (highlighted in white), it moves independently along the Kelly bar when the user triggers movement using the associated keys. Note that if both tables are locked simultaneously, neither of them will be able to move.\\
 
 Height navigation is divided into three distinct layers: Surface, Underwater, and Underground. Within the underground layer, users can observe the different terrain strata.\\
 
-A Parameters Menu is accessible by pressing the TAB key, allowing adjustment of several drilling machine and terrain parameters. These include:
+A Parameters Menu is accessible by pressing the TAB key, allowing adjustment of several drilling machine and terrain subsea soil. These include:
 \begin{itemize}
     \item Time speed, enabling acceleration or deceleration of simulated time.
     \item Drilling velocity.
     \item Rotation velocity.
-    \item Terrain layer parameters such as the required weight for each layer and their respective depths.
+    \item Subsea soil  parameters such as the required weight for each layer and their respective depths.
 \end{itemize}
 
 The Settings Menu can be accessed at any time by pressing the ESC key, which also allows returning to the main menu.\\
@@ -225,6 +231,31 @@ The Replay Mode enables users to review and monitor sensor data and observe the 
 
 To use this mode, a properly formatted CSV file containing the required data must be provided. The file must include a header row with the following columns:\\
 Date, DLT\_B, DLT\_C, DM, ST\_Height, RT\_Height, DrillBit\_Height, DrillBit\_Rotation, ST\_Load, ST\_Temp, RT\_Load, RT\_Temp, WeightOnBit, DrillingVelocity, DB\_Torque, Layer.\\
+\begin{table}[h]
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Variables} & \textbf{Unit/Format}\\
+        \hline
+        Date & dd/MM/yyyy hh:mm\\
+        \hline
+        DLT\_B, DLT\_C, DM & Value between 0 and 1\\
+        \hline
+        DrillBit\_Rotation & RPM\\
+        \hline
+        ST\_Load, RT\_Load & tons\\
+        \hline
+        ST\_Temp, RT\_Temp & °C\\
+        \hline
+        DrillingVelocity & mm/s\\
+        \hline
+        DB\_Torque & N.m\\
+        \hline
+        Layer & Integer between 0 and 5\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Sensor data visualization is available through line charts similar to those in Interactive Mode. Users can navigate through the timeline using a slider to move forward or backward to specific timestamps.\\
 
 Replay playback speed can be adjusted, functioning like a video player within a 3D environment.\\
 
@@ -235,6 +266,41 @@ The Settings Menu in Replay Mode offers the same configuration options as in Dri
     \includegraphics[width=6in]{ReplayMode.jpg}
 \end{center}
 
+
+
+
+
+\section{Step-by-step example}\hfill
+\noindent Start the Interactive mode
+\begin{itemize}
+    \item Launch the Digital Twin
+    \item Click on Interactive Mode
+\end{itemize}
+Change the time acceleration
+\begin{itemize}
+	\item Go to the parameter menu
+	\item Change the Time Speed to “30min/sec”
+\end{itemize}
+Drill with the slip table
+\begin{itemize}
+    \item Select the slip table (press 1)
+    \item Move the slip table (press Arrow key Down)
+\end{itemize}
+Drill with the rotary table
+\begin{itemize}
+    \item Unlock the slip table (press L)
+    \item Select the rotary table (press 2)
+    \item Lock the rotary table (press L)
+    \item Move the rotary table (press Arrow key Down)
+\end{itemize}
+Move the Drilling Machine Upward
+\begin{itemize}
+    \item Move the rotary table (press Arrow key Up)
+\end{itemize}
+See the sensors values
+\begin{itemize}
+    \item Click on the Rotary Table sensor (click on the blue on one of the blue dots on the rotary table)
+\end{itemize}
 
 
 
