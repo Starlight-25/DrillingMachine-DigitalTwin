@@ -85,8 +85,8 @@ public class ColorBarSensor : MonoBehaviour
     {
         if (sensorType == SensorType.DBTorque)
         {
-            minValue = DrillingData.Min(data => data.DB_Torque);
-            maxValue = DrillingData.Max(data => data.DB_Torque);
+            minValue = DrillingData.Min(data => data.DM_Torque);
+            maxValue = DrillingData.Max(data => data.DM_Torque);
         }
         else
         {
@@ -119,7 +119,7 @@ public class ColorBarSensor : MonoBehaviour
     private void SetDBColor()
     {
         DrillingDataCSV curDrillingData = DrillingData[DrillingDataManager.Index];
-        float t = Mathf.InverseLerp(minValue, maxValue, sensorType == SensorType.DBTorque ? curDrillingData.DB_Torque : curDrillingData.WeightOnBit);
+        float t = Mathf.InverseLerp(minValue, maxValue, sensorType == SensorType.DBTorque ? curDrillingData.DM_Torque : curDrillingData.WeightOnBit);
         DrillBitMesh.material.color = colorGradient.Evaluate(t);
     }
 }

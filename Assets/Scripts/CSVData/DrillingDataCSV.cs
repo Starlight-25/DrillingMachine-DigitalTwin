@@ -14,6 +14,6 @@ public class DrillingDataCSV
     public float RT_Temp { get; set; }
     public float WeightOnBit { get; set; }
     public float DrillingVelocity { get; set; }
-    public float DB_Torque { get; set; }
-    public int Layer { get; set; }
+    public float DM_Torque { get; set; }
+    public int Soil_Type { get; set; }
 }

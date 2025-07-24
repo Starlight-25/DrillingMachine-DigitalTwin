@@ -64,7 +64,7 @@ public class ReplayTerrainLayerHandler : MonoBehaviour
         int layers = 1;
         for (int i = 0; i < DrillingData.Count - 1; i++)
         {
-            if (DrillingData[i].Layer != DrillingData[i + 1].Layer)
+            if (DrillingData[i].Soil_Type != DrillingData[i + 1].Soil_Type)
             {
                 TerrainLayers[layers].Depth = DrillingData[i + 1].DrillBit_Height / 1000;
                 if (++layers == 6) return;
