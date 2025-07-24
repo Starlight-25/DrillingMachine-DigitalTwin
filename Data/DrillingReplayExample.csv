@@ -1,4 +1,4 @@
-Date,DLT_B,DLT_C,DM,ST_Height,RT_Height,DrillBit_Height,DrillBit_Rotation,ST_Load,ST_Temp,RT_Load,RT_Temp,WeightOnBit,DrillingVelocity,DB_Torque,Layer
+Date,DLT_B,DLT_C,DM,ST_Height,RT_Height,DrillBit_Height,DrillBit_Rotation,ST_Load,ST_Temp,RT_Load,RT_Temp,WeightOnBit,DrillingVelocity,DM_Torque,Soil_Type
 01/01/2020 00:00,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 01/01/2020 00:01,0.001388889,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 01/01/2020 00:02,0.002777778,0,0,0,0,0,0,0,0,0,0,0,0,0,0
